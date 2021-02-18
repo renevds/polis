@@ -3,6 +3,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import polis.Tools.DeleteTool;
 import polis.Tools.RoadTool;
 import polis.Tools.Selector;
 import prog2.util.Viewport;
@@ -26,15 +27,15 @@ public class polisController {
     @FXML
     void initialize(){
         gamePane = new Pane();
-        viewPort = new Viewport(gamePane, 0.1);
+        viewPort = new Viewport(gamePane, 0.6);
         mainPane.getChildren().add(viewPort);
         viewPort.setFocusTraversable(true);
         viewPort.toBack();
         borderPane.setPickOnBounds(false);
         GC = new gameController(this);
         viewPort.getStyleClass().add("viewport");
-        gamePane.setPrefWidth(CELL_SIZE * 2 * size);
-        gamePane.setPrefHeight(CELL_SIZE * size);
+        mainPane.setPrefWidth(CELL_SIZE * 2 * size * 10);
+        mainPane.setPrefHeight(CELL_SIZE * size * 10);
         GC.drawTiles();
         GC.createImmigrantRoad();
     }
@@ -62,6 +63,17 @@ public class polisController {
     void roadButton(){
         GC.setTool(new RoadTool(GC));
         System.out.println("Road tool chosen");
+    }
+
+    @FXML
+    void deleteButton(){
+        GC.setTool(new DeleteTool(GC));
+        System.out.println("Delete tool chosen");
+    }
+
+    @FXML
+    void printTest(){
+        System.out.println("test");
     }
 
 }

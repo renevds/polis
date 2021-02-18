@@ -28,7 +28,7 @@ public class RoadTool extends Tool{
         else {
             polygon.setFill(Color.rgb(255, 0, 0, 0.5));
         }
-
+        polygon.setMouseTransparent(true);
 
     }
 
@@ -46,7 +46,9 @@ public class RoadTool extends Tool{
     @Override
     public void clicked(Tile tile) {
         if(valid){
-            GC.replaceTile(new Street(tile.getX(), tile.getY(), GC));
+            Street newstreet = new Street(tile.getX(), tile.getY(), GC);
+            GC.replaceTile(newstreet);
+            newstreet.setImageString(true);
         }
     }
 }

@@ -56,7 +56,7 @@ abstract public class Tile {
     }
 
     public void clicked(){
-        System.out.print("clicked" + this);
+        System.out.println("clicked" + this);
         GC.setClicked(this);
     }
 
