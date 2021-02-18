@@ -1,24 +1,14 @@
-package polis.Tiles;
+package polis.tiles;
 
-import javafx.scene.image.ImageView;
 import polis.gameController;
 
-public class Street extends Tile{
+public class Street extends ImageTile{
     boolean removable = true;
-    ImageView img;
-    String imageLink;
 
     public Street(int x, int y, gameController GC){
         super(x, y, GC);
         setImageString();
-    }
-
-    @Override
-    public void draw(){
-        img = new ImageView(imageLink);
-        img.setTranslateX(getRenderX());
-        img.setTranslateY(getRenderY());
-        GC.getPC().gamePane.getChildren().add(img);
+        //imageLink = "polis/tiles/test.png";
     }
 
     public void remove(){

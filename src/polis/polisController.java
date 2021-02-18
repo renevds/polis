@@ -1,19 +1,12 @@
 package polis;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
-import javafx.scene.text.Text;
-import polis.Tiles.StandardTile;
-import polis.Tiles.Tile;
+import polis.Tools.RoadTool;
+import polis.Tools.Selector;
 import prog2.util.Viewport;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class polisController {
     gameController GC;
@@ -43,7 +36,7 @@ public class polisController {
         gamePane.setPrefWidth(CELL_SIZE * 2 * size);
         gamePane.setPrefHeight(CELL_SIZE * size);
         GC.drawTiles();
-        GC.setTool(GC.tool);
+        GC.createImmigrantRoad();
     }
 
 
@@ -57,6 +50,18 @@ public class polisController {
 
     public Pane getGamePane(){
         return gamePane;
+    }
+
+    @FXML
+    void selectButton(){
+        GC.setTool(new Selector(GC));
+        System.out.println("selector tool chosen");
+    }
+
+    @FXML
+    void roadButton(){
+        GC.setTool(new RoadTool(GC));
+        System.out.println("Road tool chosen");
     }
 
 }

@@ -1,4 +1,4 @@
-package polis.Tiles;
+package polis.tiles;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -15,10 +15,16 @@ public class StandardTile extends Tile{
 
     @Override
     public void draw(){
-        polygon= drawSquare();
-        polygon.setTranslateX(getRenderX());
-        polygon.setTranslateY(getRenderY() - polisController.getCELLSIZE()/2);
+        polygon = drawSquare();
+        polygon.setTranslateX(getTileRenderX());
+        polygon.setTranslateY(getTileRenderY());
         gamePane.getChildren().add(polygon);
+        polygon.setOnMouseEntered(mouseEvent  -> hover());
+        polygon.setOnMousePressed(mouseEvent  -> clicked());
+        //Text text = new Text("(" + x + ", " + y + ")");
+        //text.setTranslateX(getTileRenderX());
+        //text.setTranslateY(getTileRenderY() + polisController.getCELLSIZE()/2);
+        //gamePane.getChildren().add(text);
     }
 
     Polygon drawSquare() {

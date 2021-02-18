@@ -1,10 +1,10 @@
 package polis;
 
-import polis.Tiles.StandardTile;
-import polis.Tiles.Street;
-import polis.Tiles.Tile;
-import polis.tools.Selector;
-import polis.tools.Tool;
+import polis.Tools.Selector;
+import polis.tiles.StandardTile;
+import polis.tiles.Street;
+import polis.tiles.Tile;
+import polis.Tools.Tool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,12 @@ public class gameController {
     static int MAP_SIZE = 32;
     List<Tile> tiles = new ArrayList<>();
     Tool tool;
+    Tile currentHover;
 
     public gameController(polisController PC){
         this.PC = PC;
         createTiles();
+        this.tool = new Selector(this);
     }
 
     public void createTiles(){
@@ -27,8 +29,12 @@ public class gameController {
                 tiles.add(temp);
             }
         }
+    }
+
+    public void createImmigrantRoad(){
         Street immigrantRoad = new Street(16, 1, this);
-        replaceTile(16, 1, immigrantRoad);
+        immigrantRoad.makeUnRemovable();
+        replaceTile(immigrantRoad);
     }
 
     public static int getMAPSIZE(){
@@ -48,15 +54,18 @@ public class gameController {
     }
 
     public int coordToIndex(int x, int y){
-        return x*MAP_SIZE - 1 + y;
+        return (x-1)*MAP_SIZE + y - 1;
     }
 
-    public void replaceTile(int x, int y, Tile newTile){
+    public void replaceTile(Tile newTile){
+        int x = newTile.getX();
+        int y = newTile.getY();
         Tile oldtile = getTileAtCoord(x, y);
         if (oldtile.removable()){
             oldtile.remove();
             tiles.set(coordToIndex(x, y), newTile);
         }
+        newTile.draw();
 
     }
 
@@ -69,6 +78,18 @@ public class gameController {
     }
 
     public void setTool(Tool tool){
-        this.tool = tool;
+        if(tool.getClass() != this.tool.getClass()){
+            this.tool.close();
+            this.tool = tool;
+        }
+    }
+
+    public void setCurrentHover(Tile tile){
+        currentHover = tile;
+        tool.hover(currentHover);
+    }
+
+    public void setClicked(Tile tile) {
+        tool.clicked(tile);
     }
 }
