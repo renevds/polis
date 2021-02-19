@@ -1,17 +1,23 @@
 package polis.Tools;
 
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-import polis.Drawers.Square;
-import polis.tiles.StandardTile;
 import polis.tiles.Street;
 import polis.tiles.Tile;
 import polis.gameController;
 
-public class RoadTool extends Tool{
+import java.util.ArrayList;
+import java.util.List;
 
-    Polygon polygon;
+public class RoadTool extends MultiPolyTool {
+
     boolean valid;
+
+    Tile firstTile;
+    Tile lastTile;
+
+    List<Tile> editTiles = new ArrayList<>();
+
+    Polygon cursorPoly;
 
     public RoadTool(gameController GC) {
         super(GC);
@@ -19,36 +25,64 @@ public class RoadTool extends Tool{
 
     @Override
     public void hover(Tile tile) {
-        hidePolygon();
-        polygon = Square.drawOnTile(tile, GC);
-        valid = (tile.getClass() == StandardTile.class);
-        if(valid){
-            polygon.setFill(Color.rgb(0, 127, 255, 0.5));
+        GC.getPC().getGamePane().getChildren().remove(cursorPoly);
+        cursorPoly = createPolyOnTile(tile);
+    }
+
+    void createPolys(){
+        hidePolys();
+        editTiles.clear();
+        int firstTileX = firstTile.getX();
+        int lastTileX = lastTile.getX();
+        int Xlength = lastTileX - firstTileX;
+        int Xsign = (0>(Xlength))?-1:1;
+
+        int firstTileY = firstTile.getY();
+        int lastTileY = lastTile.getY();
+        int Ylength = lastTileY - firstTileY;
+        int Ysign = (0>(Ylength))?-1:1;
+
+        for(int x = 0; x <= Xsign*Xlength; x++){
+            Tile temp = GC.getTileAtCoord(firstTileX + Xsign*x, firstTileY);
+            hoverTiles.add(createPolyOnTile(temp));
+            editTiles.add(temp);
+        }
+
+        for(int y = 1; y <= Ysign*Ylength; y++){
+            Tile temp = GC.getTileAtCoord(lastTileX, firstTileY + Ysign*y);
+            hoverTiles.add(createPolyOnTile(temp));
+            editTiles.add(temp);
+        }
+    }
+
+    public void clicked(Tile tile){
+        drag(tile);
+    }
+
+    @Override
+    public void drag(Tile tile) {
+        GC.getPC().getGamePane().getChildren().remove(cursorPoly);
+        if(firstTile == null){
+            firstTile = tile;
+            lastTile = tile;
         }
         else {
-            polygon.setFill(Color.rgb(255, 0, 0, 0.5));
+            lastTile = tile;
         }
-        polygon.setMouseTransparent(true);
-
+        createPolys();
     }
 
     @Override
-    public void close() {
-        hidePolygon();
+    public void release(Tile tile) {
+        firstTile = null;
+        lastTile = null;
+        for(Tile editTile: editTiles){
+            Street newStreet = new Street(editTile.getX(), editTile.getY(), GC);
+            GC.replaceTile(newStreet);
+            newStreet.setImageString(true);
+        }
+        hidePolys();
+        editTiles.clear();
     }
 
-    public void hidePolygon(){
-        if (polygon != null){
-            gamePane.getChildren().remove(polygon);
-        }
-    }
-
-    @Override
-    public void clicked(Tile tile) {
-        if(valid){
-            Street newstreet = new Street(tile.getX(), tile.getY(), GC);
-            GC.replaceTile(newstreet);
-            newstreet.setImageString(true);
-        }
-    }
 }

@@ -4,6 +4,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import polis.Tools.DeleteTool;
+import polis.Tools.MultiTileBuilder;
 import polis.Tools.RoadTool;
 import polis.Tools.Selector;
 import prog2.util.Viewport;
@@ -72,8 +73,20 @@ public class polisController {
     }
 
     @FXML
-    void printTest(){
-        System.out.println("test");
+    void buildResidentialButton(){
+        GC.setTool(new MultiTileBuilder(GC, "residential"));
+        System.out.println("Residential tool chosen");
     }
 
+    @FXML
+    void buildIndustrialButton(){
+        GC.setTool(new MultiTileBuilder(GC, "industrial"));
+        System.out.println("Industrial tool chosen");
+    }
+
+    @FXML
+    void buildCommercialButton(){
+        GC.setTool(new MultiTileBuilder(GC, "commercial"));
+        System.out.println("Commercial tool chosen");
+    }
 }

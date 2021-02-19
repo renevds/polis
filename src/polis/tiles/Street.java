@@ -8,11 +8,11 @@ public class Street extends ImageTile{
 
     public Street(int x, int y, gameController GC){
         super(x, y, GC);
-        //imageLink = "polis/tiles/test.png";
+        imageLink = "polis/tiles/road-0.png";
     }
 
     public void remove(){
-        GC.getPC().gamePane.getChildren().remove(img);
+        GC.getPC().gamePane.getChildren().remove(mainNode);
     }
 
     @Override
@@ -26,14 +26,16 @@ public class Street extends ImageTile{
 
     public void setImageString(Boolean starter) {
         int n = 0;
-        if (GC.validCoord(y - 1)){
-            Tile neighbourTile = GC.getTileAtCoord(x, y - 1);
-            if(neighbourTile instanceof Street){
-                n += 1;
+        if (removable) {
+            if (GC.validCoord(y - 1)) {
+                Tile neighbourTile = GC.getTileAtCoord(x, y - 1);
+                if (neighbourTile instanceof Street) {
+                    n += 1;
+                }
             }
         }
-        else if(!removable()){
-            n += 1;
+        else {
+            n +=1;
         }
 
         if (GC.validCoord(y + 1)){

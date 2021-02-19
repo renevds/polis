@@ -14,7 +14,6 @@ public class gameController {
     static int MAP_SIZE = 32;
     List<Tile> tiles = new ArrayList<>();
     Tool tool;
-    Tile currentHover;
 
     public gameController(polisController PC){
         this.PC = PC;
@@ -57,16 +56,39 @@ public class gameController {
         return (x-1)*MAP_SIZE + y - 1;
     }
 
+
+    public Boolean safeDeleteTile(Tile tile){
+        if (tile.removable()){
+            tile.remove();
+            return true;
+        }
+        return false;
+    }
+
+
     public void replaceTile(Tile newTile){
         int x = newTile.getX();
         int y = newTile.getY();
         Tile oldtile = getTileAtCoord(x, y);
-        if (oldtile.removable()){
-            oldtile.remove();
+        if (safeDeleteTile(oldtile)){
             tiles.set(coordToIndex(x, y), newTile);
+            newTile.draw();
         }
-        newTile.draw();
 
+
+    }
+
+    public void replaceMultiTile(Tile newTile, int width){
+        int x = newTile.getX();
+        int y = newTile.getY();
+        for(int dx = 0; dx < width; dx++){
+            for(int dy = 0; dy < width; dy++){
+                getTileAtCoord(x + dx, y + dy).remove();
+                tiles.set(coordToIndex(x + dx, y + dy), newTile);
+                newTile.draw();
+
+            }
+        }
     }
 
     public Tile getTileAtCoord(int x, int y){
@@ -85,11 +107,18 @@ public class gameController {
     }
 
     public void setCurrentHover(Tile tile){
-        currentHover = tile;
-        tool.hover(currentHover);
+        tool.hover(tile);
     }
 
     public void setClicked(Tile tile) {
         tool.clicked(tile);
+    }
+
+    public void setDrag(Tile tile) {
+        tool.drag(tile);
+    }
+
+    public void setRelease(Tile tile) {
+        tool.release(tile);
     }
 }

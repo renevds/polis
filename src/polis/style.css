@@ -2,6 +2,7 @@
     -fx-background-color: beige;
 }
 
-.green-background{
-    -fx-background-color: rgb(204, 249, 170);
+.statistics{
+    -fx-background-color: white;
+    -fx-border-color: black;
 }

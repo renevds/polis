@@ -7,7 +7,6 @@ import polis.polisController;
 
 public class StandardTile extends Tile{
 
-    Polygon polygon;
 
     public StandardTile(int x, int y, gameController GC) {
         super(x, y, GC);
@@ -15,12 +14,11 @@ public class StandardTile extends Tile{
 
     @Override
     public void draw(){
-        polygon = drawSquare();
-        polygon.setTranslateX(getTileRenderX());
-        polygon.setTranslateY(getTileRenderY());
-        gamePane.getChildren().add(polygon);
-        polygon.setOnMouseEntered(mouseEvent  -> hover());
-        polygon.setOnMousePressed(mouseEvent  -> clicked());
+        mainNode = drawSquare();
+        mainNode.setTranslateX(getTileRenderX());
+        mainNode.setTranslateY(getTileRenderY());
+        gamePane.getChildren().add(mainNode);
+        createEvents(mainNode);
         //Text text = new Text("(" + x + ", " + y + ")");
         //text.setTranslateX(getTileRenderX());
         //text.setTranslateY(getTileRenderY() + polisController.getCELLSIZE()/2);
@@ -42,7 +40,7 @@ public class StandardTile extends Tile{
     }
 
     public void remove(){
-        gamePane.getChildren().remove(polygon);
+        gamePane.getChildren().remove(mainNode);
     }
 
     @Override
