@@ -4,15 +4,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import polis.Drawers.Square;
 import polis.gameController;
-import polis.tiles.ResidentialTile;
-import polis.tiles.StandardTile;
-import polis.tiles.Tile;
+import polis.tiles.*;
 
 import java.lang.reflect.Method;
 
 public class MultiTileBuilder extends MultiPolyTool {
     int tileSize = 2;
-    private String type;
+    String type;
 
     public MultiTileBuilder(gameController GC, String type) {
         super(GC);
@@ -48,12 +46,6 @@ public class MultiTileBuilder extends MultiPolyTool {
         checkValid(tile);
     }
 
-
-    @Override
-    public void close() {
-
-    }
-
     public void checkValid(Tile tile) {
         valid = true;
         for(int dx = 0; dx< tileSize; dx++){
@@ -73,10 +65,19 @@ public class MultiTileBuilder extends MultiPolyTool {
 
     @Override
     public void clicked(Tile tile) {
-        Tile newTile = null;
+        ZoneTile newTile = null;
         if(valid){
-            if(type.equals("residential")){
-                newTile = new ResidentialTile(tile.getX(), tile.getY(), GC);
+            switch (type){
+                case "residential":
+                    newTile = new ResidentialTile(tile.getX(), tile.getY(), GC);
+                    break;
+                case "industrial":
+                    newTile = new IndustrialTile(tile.getX(), tile.getY(), GC);
+                    break;
+                case "commercial":
+                    System.out.println();
+                    newTile = new CommercialTile(tile.getX(), tile.getY(), GC);
+                    break;
             }
             GC.replaceMultiTile(newTile, tileSize);
         }

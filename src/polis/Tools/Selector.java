@@ -5,6 +5,8 @@ import javafx.scene.shape.Polygon;
 import polis.Drawers.Square;
 import polis.tiles.Tile;
 import polis.gameController;
+import polis.tiles.ZoneFiller;
+import polis.tiles.ZoneTile;
 
 public class Selector extends PolygonTool {
     
@@ -24,7 +26,12 @@ public class Selector extends PolygonTool {
 
     @Override
     public void clicked(Tile tile){
-
+        if(tile instanceof ZoneTile){
+            ((ZoneTile)tile).increaseLevel();
+        }
+        else if(tile instanceof ZoneFiller){
+            ((ZoneFiller)tile).getParentZone().increaseLevel();
+        }
     }
 
 }

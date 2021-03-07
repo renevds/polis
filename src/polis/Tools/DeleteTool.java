@@ -24,6 +24,9 @@ public class DeleteTool extends PolygonTool{
 
     @Override
     public void clicked(Tile tile) {
+        System.out.println("a " + tile);
+        System.out.println("b " + polygon);
+        System.out.println("c " + GC);
         if(tile.removable()){
             GC.replaceTile(new StandardTile(tile.getX(), tile.getY(), GC));
             if(tile instanceof Street){

@@ -56,7 +56,6 @@ abstract public class Tile {
     public abstract Boolean removable();
 
     public void hover(){
-        System.out.println("hover " + this);
         GC.setCurrentHover(this);
     }
 
@@ -87,5 +86,9 @@ abstract public class Tile {
         node.setOnDragDetected(mouseEvent -> startDrag(node));
         node.setOnMouseDragOver(mouseEvent -> drag());
         node.setOnMouseReleased(mouseEvent -> release());
+    }
+
+    public void toFront(){
+        mainNode.toFront();
     }
 }

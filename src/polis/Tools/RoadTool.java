@@ -1,6 +1,7 @@
 package polis.Tools;
 
 import javafx.scene.shape.Polygon;
+import polis.tiles.StandardTile;
 import polis.tiles.Street;
 import polis.tiles.Tile;
 import polis.gameController;
@@ -17,7 +18,7 @@ public class RoadTool extends MultiPolyTool {
 
     List<Tile> editTiles = new ArrayList<>();
 
-    Polygon cursorPoly;
+
 
     public RoadTool(gameController GC) {
         super(GC);
@@ -72,14 +73,17 @@ public class RoadTool extends MultiPolyTool {
         createPolys();
     }
 
+
     @Override
     public void release(Tile tile) {
         firstTile = null;
         lastTile = null;
         for(Tile editTile: editTiles){
-            Street newStreet = new Street(editTile.getX(), editTile.getY(), GC);
-            GC.replaceTile(newStreet);
-            newStreet.setImageString(true);
+            if(editTile instanceof StandardTile) {
+                Street newStreet = new Street(editTile.getX(), editTile.getY(), GC);
+                GC.replaceTile(newStreet);
+                newStreet.setImageString(true);
+            }
         }
         hidePolys();
         editTiles.clear();

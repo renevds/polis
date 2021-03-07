@@ -1,6 +1,6 @@
 - Het opstarten: leeg stadsplan met (onverwijderbare) straat ✓
 
-- De drie zoneknoppen
+- De drie zoneknoppen ✓
 
 - de straatknop ✓
 
@@ -17,4 +17,4 @@
 
 - Wanneer de selectieknop is geselecteerd en je klikt op een zone op de kaart,
   dan verandert de afbeelding van die zone van
-  niveau 0 naar 1, van niveau 1 naar 2, … van niveau 3 terug naar 0.
+  niveau 0 naar 1, van niveau 1 naar 2, … van niveau 3 terug naar 0. ✓

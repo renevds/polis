@@ -2,7 +2,7 @@ package polis.tiles;
 
 import polis.gameController;
 
-public class ResidentialTile extends zoneTile{
+public class ResidentialTile extends ZoneTile {
 
     static String[] images = new String[]{"/polis/tiles/residence-0.png", "/polis/tiles/residence-1.png", "/polis/tiles/residence-2.png", "/polis/tiles/residence-3.png"};
 
@@ -10,17 +10,7 @@ public class ResidentialTile extends zoneTile{
         super(x, y, GC);
     }
 
-    @Override
-    public void remove() {
-        GC.getPC().getGamePane().getChildren().remove(mainNode);
-    }
-
-    @Override
-    public Boolean removable() {
-        return null;
-    }
-
-    public void updateImage(){
+    public void updateImageLink(){
         imageLink = images[level - 1];
     }
 }

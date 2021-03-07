@@ -1,9 +1,7 @@
 package polis;
 
 import polis.Tools.Selector;
-import polis.tiles.StandardTile;
-import polis.tiles.Street;
-import polis.tiles.Tile;
+import polis.tiles.*;
 import polis.Tools.Tool;
 
 import java.util.ArrayList;
@@ -57,38 +55,37 @@ public class gameController {
     }
 
 
-    public Boolean safeDeleteTile(Tile tile){
-        if (tile.removable()){
-            tile.remove();
-            return true;
-        }
-        return false;
-    }
-
-
     public void replaceTile(Tile newTile){
         int x = newTile.getX();
         int y = newTile.getY();
+        System.out.println("test");
         Tile oldtile = getTileAtCoord(x, y);
-        if (safeDeleteTile(oldtile)){
-            tiles.set(coordToIndex(x, y), newTile);
-            newTile.draw();
+        if(oldtile instanceof ZoneFiller){
+            oldtile = ((ZoneFiller) oldtile).getParentZone();
+            x = oldtile.getX();
+            y = oldtile.getY();
         }
-
-
+        tiles.set(coordToIndex(x, y), newTile);
+        oldtile.remove();
+        newTile.draw();
+        fixLayers();
     }
 
-    public void replaceMultiTile(Tile newTile, int width){
+    public void replaceMultiTile(ZoneTile newTile, int width){
+        System.out.println(tiles);
         int x = newTile.getX();
         int y = newTile.getY();
         for(int dx = 0; dx < width; dx++){
             for(int dy = 0; dy < width; dy++){
-                getTileAtCoord(x + dx, y + dy).remove();
-                tiles.set(coordToIndex(x + dx, y + dy), newTile);
-                newTile.draw();
-
+                if(dx == 0 && dy == 0 ){
+                    replaceTile(newTile);
+                }
+                else {
+                    replaceTile(new ZoneFiller(x + dx, y + dy, this, newTile));
+                }
             }
         }
+        System.out.println(tiles);
     }
 
     public Tile getTileAtCoord(int x, int y){
@@ -100,10 +97,8 @@ public class gameController {
     }
 
     public void setTool(Tool tool){
-        if(tool.getClass() != this.tool.getClass()){
             this.tool.close();
             this.tool = tool;
-        }
     }
 
     public void setCurrentHover(Tile tile){
@@ -121,4 +116,22 @@ public class gameController {
     public void setRelease(Tile tile) {
         tool.release(tile);
     }
+
+    public void setTile(Tile newTile){
+        int x = newTile.getX();
+        int y = newTile.getY();
+        tiles.set(coordToIndex(x, y), newTile);
+    }
+
+    public void fixLayers(){
+        for(int a = 0; a < MAP_SIZE; a++){
+            for (int b = a; b > 0 ; b--){
+                Tile tile = getTileAtCoord(b + 1, a + 1 - b);
+                if(!(tile instanceof Street)){
+                    tile.toFront();
+                }
+            }
+        }
+    }
+
 }

@@ -22,6 +22,7 @@ public class Street extends ImageTile{
 
     public void makeUnRemovable() {
         removable = false;
+        setImageString(true);
     }
 
     public void setImageString(Boolean starter) {
