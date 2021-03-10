@@ -1,6 +1,5 @@
 package polis.Tools;
 
-import javafx.scene.shape.Polygon;
 import polis.tiles.StandardTile;
 import polis.tiles.Street;
 import polis.tiles.Tile;
@@ -11,12 +10,10 @@ import java.util.List;
 
 public class RoadTool extends MultiPolyTool {
 
-    boolean valid;
+    private Tile firstTile;
+    private Tile lastTile;
 
-    Tile firstTile;
-    Tile lastTile;
-
-    List<Tile> editTiles = new ArrayList<>();
+    private List<Tile> editTiles = new ArrayList<>();
 
 
 

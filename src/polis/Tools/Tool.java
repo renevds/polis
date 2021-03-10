@@ -5,8 +5,8 @@ import polis.tiles.Tile;
 import polis.gameController;
 
 public abstract class Tool {
-    public gameController GC;
-    public Pane gamePane;
+    protected gameController GC;
+    protected Pane gamePane;
 
     public Tool(gameController GC){
         this.GC = GC;

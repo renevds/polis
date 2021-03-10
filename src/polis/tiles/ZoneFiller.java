@@ -3,8 +3,8 @@ package polis.tiles;
 import polis.Drawers.Square;
 import polis.gameController;
 
-public class ZoneFiller extends Tile{
-    ZoneTile parentZone;
+public class ZoneFiller extends Tile {
+    private final ZoneTile parentZone;
 
     public ZoneFiller(int x, int y, gameController GC, ZoneTile parentZone) {
         super(x, y, GC);
@@ -12,7 +12,7 @@ public class ZoneFiller extends Tile{
         parentZone.addFillerTile(this);
     }
 
-    public void draw(){
+    public void draw() {
         mainNode = Square.drawOnTile(this, GC);
         mainNode.setStyle("-fx-fill: transparent;");
         createEvents(mainNode);
@@ -20,12 +20,13 @@ public class ZoneFiller extends Tile{
 
     @Override
     public void remove() {
-        parentZone.remove();
+        System.out.println("filler removed at (" + this.x + ", " + this.y + ")");
+        GC.getPC().getGamePane().getChildren().remove(mainNode);
+        GC.setTile(new StandardTile(this.x, this.y, GC));
     }
 
-    public void removeSelf(){
-        GC.getPC().getGamePane().getChildren().remove(mainNode);
-        GC.setTile(new StandardTile(this.getX(), this.getY(), GC));
+    @Override
+    public void toFront() {
     }
 
     @Override

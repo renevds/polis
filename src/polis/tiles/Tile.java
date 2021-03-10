@@ -1,17 +1,20 @@
 package polis.tiles;
 
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import polis.Drawers.Square;
 import polis.gameController;
 import polis.polisController;
 
 abstract public class Tile {
-    gameController GC;
-    Pane gamePane;
-    static int CELLSIZE;
-    static int size;
-    int x;
-    int y;
+    protected gameController GC;
+    protected Pane gamePane;
+    protected static int CELLSIZE;
+    protected static int size;
+    protected int x;
+    protected int y;
 
     Node mainNode;
 
@@ -56,6 +59,7 @@ abstract public class Tile {
     public abstract Boolean removable();
 
     public void hover(){
+        System.out.println("hover " + this);
         GC.setCurrentHover(this);
     }
 
@@ -88,7 +92,6 @@ abstract public class Tile {
         node.setOnMouseReleased(mouseEvent -> release());
     }
 
-    public void toFront(){
-        mainNode.toFront();
-    }
+    public abstract  void toFront();
+
 }

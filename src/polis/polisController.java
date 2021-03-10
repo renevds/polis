@@ -1,5 +1,7 @@
 package polis;
 import javafx.fxml.FXML;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -15,15 +17,22 @@ import prog2.util.Viewport;
 
 
 public class polisController {
-    gameController GC;
+    private gameController GC;
 
     public StackPane mainPane;
     public Viewport viewPort;
     public Pane gamePane;
     public BorderPane borderPane;
 
-    static int CELL_SIZE= 64;
-    static int size = 1;
+    public ToggleButton residential_button;
+    public ToggleButton industrial_button;
+    public ToggleButton commercial_button;
+    public ToggleButton road_button;
+    public ToggleButton delete_button;
+    public ToggleButton select_button;
+
+    private static int CELL_SIZE= 64;
+    private static int size = 1;
 
 
     public polisController(){
@@ -34,6 +43,7 @@ public class polisController {
         gamePane = new Pane();
         viewPort = new Viewport(gamePane, 0.6);
         mainPane.getChildren().add(viewPort);
+        mainPane.setOnKeyPressed(this::handleKeyPressed);
         viewPort.setFocusTraversable(true);
         viewPort.toBack();
         borderPane.setPickOnBounds(false);
@@ -106,4 +116,33 @@ public class polisController {
         GC.setTool(new MultiTileBuilder(GC, "commercial"));
         System.out.println("Commercial tool chosen");
     }
+
+    private void handleKeyPressed(KeyEvent keyEvent) {
+        switch (keyEvent.getCode()) {
+            case R:
+                residential_button.setSelected(true);
+                buildResidentialButton();
+                break;
+            case I:
+                industrial_button.setSelected(true);
+                buildIndustrialButton();
+                break;
+            case C:
+                commercial_button.setSelected(true);
+                buildCommercialButton();
+                break;
+            case S:
+                road_button.setSelected(true);
+                roadButton();
+                break;
+            case B:
+                delete_button.setSelected(true);
+                deleteButton();
+                break;
+            case ESCAPE:
+                select_button.setSelected(true);
+                selectButton();
+                break;
+        }
+    };
 }

@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -32,15 +34,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button focusTraversable="false" mnemonicParsing="false" prefHeight="57.0" prefWidth="72.0">
-                           <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@/polis/buttons/residence.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#roadButton" prefHeight="57.0" prefWidth="72.0" GridPane.rowIndex="1">
+                        <ToggleButton fx:id="road_button" focusTraversable="false" mnemonicParsing="false" onAction="#roadButton" prefHeight="57.0" prefWidth="72.0" GridPane.rowIndex="1">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -48,8 +42,11 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
-                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#selectButton" prefHeight="57.0" prefWidth="72.0" GridPane.rowIndex="2">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="tools" />
+                           </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton fx:id="select_button" focusTraversable="false" mnemonicParsing="false" onAction="#selectButton" prefHeight="57.0" prefWidth="72.0" selected="true" toggleGroup="$tools" GridPane.rowIndex="2">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -57,8 +54,8 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
-                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#buildResidentialButton" prefHeight="57.0" prefWidth="72.0">
+                        </ToggleButton>
+                        <ToggleButton fx:id="residential_button" focusTraversable="false" mnemonicParsing="false" onAction="#buildResidentialButton" prefHeight="57.0" prefWidth="72.0" toggleGroup="$tools">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -66,8 +63,8 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
-                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#buildIndustrialButton" prefHeight="57.0" prefWidth="72.0" GridPane.columnIndex="1">
+                        </ToggleButton>
+                        <ToggleButton fx:id="industrial_button" focusTraversable="false" mnemonicParsing="false" onAction="#buildIndustrialButton" prefHeight="57.0" prefWidth="72.0" toggleGroup="$tools" GridPane.columnIndex="1">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -75,8 +72,8 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
-                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#deleteButton" prefHeight="57.0" prefWidth="72.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        </ToggleButton>
+                        <ToggleButton fx:id="delete_button" focusTraversable="false" mnemonicParsing="false" onAction="#deleteButton" prefHeight="57.0" prefWidth="72.0" toggleGroup="$tools" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -84,8 +81,8 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
-                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#buildCommercialButton" prefHeight="57.0" prefWidth="72.0" GridPane.columnIndex="2">
+                        </ToggleButton>
+                        <ToggleButton fx:id="commercial_button" focusTraversable="false" mnemonicParsing="false" onAction="#buildCommercialButton" prefHeight="57.0" prefWidth="72.0" toggleGroup="$tools" GridPane.columnIndex="2">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -93,7 +90,7 @@
                                  </image>
                               </ImageView>
                            </graphic>
-                        </Button>
+                        </ToggleButton>
                      </children>
                   </GridPane>
                </children>
@@ -123,7 +120,7 @@
                   </Pane>
                </right>
                <left>
-                  <Pane BorderPane.alignment="CENTER">
+                  <Pane BorderPane.alignment="CENTER" pickOnBounds="false">
                      <children>
                         <Button alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="14.0" layoutY="107.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="80.0">
                            <graphic>

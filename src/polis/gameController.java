@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class gameController {
-    polisController PC;
-    static int MAP_SIZE = 32;
-    List<Tile> tiles = new ArrayList<>();
-    Tool tool;
+    private polisController PC;
+    private static int MAP_SIZE = 32;
+    private List<Tile> tiles = new ArrayList<>();
+    private Tool tool;
 
     public gameController(polisController PC){
         this.PC = PC;
@@ -60,15 +60,12 @@ public class gameController {
         int y = newTile.getY();
         System.out.println("test");
         Tile oldtile = getTileAtCoord(x, y);
-        if(oldtile instanceof ZoneFiller){
-            oldtile = ((ZoneFiller) oldtile).getParentZone();
-            x = oldtile.getX();
-            y = oldtile.getY();
-        }
+        System.out.println("removing from zoneTile: " + oldtile);
         tiles.set(coordToIndex(x, y), newTile);
         oldtile.remove();
         newTile.draw();
         fixLayers();
+        System.out.println(tiles);
     }
 
     public void replaceMultiTile(ZoneTile newTile, int width){
@@ -121,12 +118,13 @@ public class gameController {
         int x = newTile.getX();
         int y = newTile.getY();
         tiles.set(coordToIndex(x, y), newTile);
+        newTile.draw();
     }
 
     public void fixLayers(){
-        for(int a = 0; a < MAP_SIZE; a++){
-            for (int b = a; b > 0 ; b--){
-                Tile tile = getTileAtCoord(b + 1, a + 1 - b);
+        for(int a = 1; a <= MAP_SIZE; a++){
+            for (int b = 1; b <= MAP_SIZE; b++){
+                Tile tile = getTileAtCoord(b, a);
                 if(!(tile instanceof Street)){
                     tile.toFront();
                 }

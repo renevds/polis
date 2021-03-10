@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class ZoneTile extends Tile {
-    static int MAX_LEVEL = 4;
-    int level;
+    protected static int MAX_LEVEL = 4;
+    protected int level;
 
-    String imageLink;
+    protected String imageLink;
 
-    ImageView imageView;
+    protected ImageView imageView;
 
     List<ZoneFiller> childrenTiles = new ArrayList<>();
 
@@ -25,17 +25,17 @@ public abstract class ZoneTile extends Tile {
         updateImageLink();
     }
 
-    public void addFillerTile(ZoneFiller zoneFiller){
+    public void addFillerTile(ZoneFiller zoneFiller) {
         childrenTiles.add(zoneFiller);
     }
 
     public void increaseLevel() {
-        level = level%MAX_LEVEL + 1;
+        level = level % MAX_LEVEL + 1;
         updateImageLink();
         updateImage();
     }
 
-    public void draw(){
+    public void draw() {
         Image img = new Image(imageLink);
         imageView = new ImageView(img);
         fixImageDimensions();
@@ -46,25 +46,27 @@ public abstract class ZoneTile extends Tile {
         createEvents(mainNode);
     }
 
-    public void fixImageDimensions(){
-        imageView.setTranslateX(getTileRenderX()  - polisController.getCELLSIZE()*2 +  polisController.getCELLSIZE()*4 - imageView.getImage().getWidth());
-        imageView.setTranslateY(getTileRenderY() +  polisController.getCELLSIZE()*2 - imageView.getImage().getHeight());
+    private void fixImageDimensions() {
+        imageView.setTranslateX(getTileRenderX() - polisController.getCELLSIZE() * 2 + polisController.getCELLSIZE() * 4 - imageView.getImage().getWidth());
+        imageView.setTranslateY(getTileRenderY() + polisController.getCELLSIZE() * 2 - imageView.getImage().getHeight());
     }
 
     public abstract void updateImageLink();
 
-    public void updateImage(){
+    public void updateImage() {
         imageView.setImage(new Image(imageLink));
         fixImageDimensions();
+        GC.fixLayers();
     }
 
-    public void remove(){
-        for(ZoneFiller zoneFiller: childrenTiles){
-            zoneFiller.removeSelf();
+    public void remove() {
+        for (ZoneFiller zoneFiller : childrenTiles) {
+            zoneFiller.remove();
         }
-        System.out.println("testazeaze");
+        System.out.println("zone removed");
         GC.getPC().getGamePane().getChildren().remove(mainNode);
         GC.getPC().getGamePane().getChildren().remove(imageView);
+        System.out.println(GC);
     }
 
     @Override
@@ -72,7 +74,7 @@ public abstract class ZoneTile extends Tile {
         return true;
     }
 
-    public void toFront(){
+    public void toFront() {
         imageView.toFront();
     }
 

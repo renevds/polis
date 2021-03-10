@@ -7,18 +7,17 @@ import polis.Drawers.Square;
 import polis.gameController;
 import polis.tiles.StandardTile;
 import polis.tiles.Tile;
-import polis.tiles.ZoneFiller;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class MultiPolyTool extends Tool {
 
-    Boolean valid = false;
+    protected Boolean valid = false;
 
-    List<Polygon> hoverTiles = new ArrayList<>();
+    protected List<Polygon> hoverTiles = new ArrayList<>();
 
-    Polygon cursorPoly;
+    protected Polygon cursorPoly;
 
     public MultiPolyTool(gameController GC) {
         super(GC);

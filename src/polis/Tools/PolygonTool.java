@@ -5,7 +5,7 @@ import polis.gameController;
 import polis.tiles.Tile;
 
 public abstract class PolygonTool extends Tool{
-    Polygon polygon;
+    protected Polygon polygon;
 
     public PolygonTool(gameController GC) {
         super(GC);

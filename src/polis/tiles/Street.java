@@ -1,17 +1,16 @@
 package polis.tiles;
 
-import javafx.scene.image.Image;
 import polis.gameController;
 
-public class Street extends ImageTile{
-    boolean removable = true;
+public class Street extends ImageTile {
+    private boolean removable = true;
 
-    public Street(int x, int y, gameController GC){
+    public Street(int x, int y, gameController GC) {
         super(x, y, GC);
         imageLink = "polis/tiles/road-0.png";
     }
 
-    public void remove(){
+    public void remove() {
         GC.getPC().gamePane.getChildren().remove(mainNode);
     }
 
@@ -30,38 +29,37 @@ public class Street extends ImageTile{
         if (removable) {
             if (GC.validCoord(y - 1)) {
                 Tile neighbourTile = GC.getTileAtCoord(x, y - 1);
-                if (neighbourTile instanceof Street) {
+                if (neighbourTile instanceof polis.tiles.Street) {
                     n += 1;
                 }
             }
-        }
-        else {
-            n +=1;
+        } else {
+            n += 1;
         }
 
-        if (GC.validCoord(y + 1)){
+        if (GC.validCoord(y + 1)) {
             Tile neighbourTile = GC.getTileAtCoord(x, y + 1);
-            if(neighbourTile instanceof Street){
+            if (neighbourTile instanceof polis.tiles.Street) {
                 n += 4;
             }
         }
 
-        if (GC.validCoord(x - 1)){
+        if (GC.validCoord(x - 1)) {
             Tile neighbourTile = GC.getTileAtCoord(x - 1, y);
-            if(neighbourTile instanceof Street){
+            if (neighbourTile instanceof polis.tiles.Street) {
                 n += 8;
             }
         }
 
-        if (GC.validCoord(x + 1)){
+        if (GC.validCoord(x + 1)) {
             Tile neighbourTile = GC.getTileAtCoord(x + 1, y);
-            if(neighbourTile instanceof Street){
+            if (neighbourTile instanceof polis.tiles.Street) {
                 n += 2;
             }
         }
 
-        if(starter){
-            makeNeighboursRecalulate();
+        if (starter) {
+            makeNeighboursRecalculate();
         }
 
         System.out.println(this + " image:" + n);
@@ -70,32 +68,32 @@ public class Street extends ImageTile{
         refreshImage();
     }
 
-    public void makeNeighboursRecalulate(){
-        if (GC.validCoord(y - 1)){
+    public void makeNeighboursRecalculate() {
+        if (GC.validCoord(y - 1)) {
             Tile neighbourTile = GC.getTileAtCoord(x, y - 1);
-            if(neighbourTile instanceof Street){
-                ((Street) neighbourTile).setImageString(false);
+            if (neighbourTile instanceof polis.tiles.Street) {
+                ((polis.tiles.Street) neighbourTile).setImageString(false);
             }
         }
 
-        if (GC.validCoord(y + 1)){
+        if (GC.validCoord(y + 1)) {
             Tile neighbourTile = GC.getTileAtCoord(x, y + 1);
-            if(neighbourTile instanceof Street){
-                ((Street) neighbourTile).setImageString(false);
+            if (neighbourTile instanceof polis.tiles.Street) {
+                ((polis.tiles.Street) neighbourTile).setImageString(false);
             }
         }
 
-        if (GC.validCoord(x - 1)){
+        if (GC.validCoord(x - 1)) {
             Tile neighbourTile = GC.getTileAtCoord(x - 1, y);
-            if(neighbourTile instanceof Street){
-                ((Street) neighbourTile).setImageString(false);
+            if (neighbourTile instanceof polis.tiles.Street) {
+                ((polis.tiles.Street) neighbourTile).setImageString(false);
             }
         }
 
-        if (GC.validCoord(x + 1)){
+        if (GC.validCoord(x + 1)) {
             Tile neighbourTile = GC.getTileAtCoord(x + 1, y);
-            if(neighbourTile instanceof Street){
-                ((Street) neighbourTile).setImageString(false);
+            if (neighbourTile instanceof polis.tiles.Street) {
+                ((polis.tiles.Street) neighbourTile).setImageString(false);
             }
         }
     }

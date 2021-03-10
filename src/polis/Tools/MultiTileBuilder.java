@@ -6,11 +6,9 @@ import polis.Drawers.Square;
 import polis.gameController;
 import polis.tiles.*;
 
-import java.lang.reflect.Method;
-
 public class MultiTileBuilder extends MultiPolyTool {
-    int tileSize = 2;
-    String type;
+    private int tileSize = 2;
+    private String type;
 
     public MultiTileBuilder(gameController GC, String type) {
         super(GC);

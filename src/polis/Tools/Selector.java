@@ -1,7 +1,6 @@
 package polis.Tools;
 
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
 import polis.Drawers.Square;
 import polis.tiles.Tile;
 import polis.gameController;
