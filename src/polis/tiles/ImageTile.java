@@ -17,7 +17,7 @@ ImageTile extends Tile {
         mainNode = new ImageView(img);
         mainNode.setTranslateX(getTileRenderX() - img.getWidth() / 2);
         mainNode.setTranslateY(getTileRenderY());
-        GC.getPC().gamePane.getChildren().add(mainNode);
+        GC.getPC().getGameGrid().getChildren().add(mainNode);
         createEvents(mainNode);
     }
 

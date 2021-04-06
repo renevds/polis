@@ -13,7 +13,7 @@ public abstract class PolygonTool extends Tool{
 
     public void hidePolygon(){
         if (polygon != null){
-            gamePane.getChildren().remove(polygon);
+            gameGrid.getChildren().remove(polygon);
         }
     }
 

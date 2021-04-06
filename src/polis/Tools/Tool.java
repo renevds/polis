@@ -3,14 +3,15 @@ package polis.Tools;
 import javafx.scene.layout.Pane;
 import polis.tiles.Tile;
 import polis.gameController;
+import views.GameGrid;
 
 public abstract class Tool {
     protected gameController GC;
-    protected Pane gamePane;
+    protected GameGrid gameGrid;
 
     public Tool(gameController GC){
         this.GC = GC;
-        gamePane = GC.getPC().getGamePane();
+        gameGrid = GC.getPC().getGameGrid();
     }
 
     public void hover(Tile tile){};

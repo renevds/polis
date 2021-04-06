@@ -18,9 +18,9 @@ public class MultiTileBuilder extends MultiPolyTool {
     public Polygon createPolyOutsideMap(int x, int y){
         Polygon polygon = Square.draw();
         polygon.setFill(Color.rgb(255, 0, 0, 0.5));
-        polygon.setTranslateX(Tile.getRenderX(x, y));
-        polygon.setTranslateY(Tile.getRenderY(x, y));
-        GC.getPC().getGamePane().getChildren().add(polygon);
+        polygon.setTranslateX(gameGrid.getRenderX(x, y));
+        polygon.setTranslateY(gameGrid.getRenderY(x, y));
+        GC.getPC().getGameGrid().getChildren().add(polygon);
         return polygon;
     }
 
@@ -32,8 +32,8 @@ public class MultiTileBuilder extends MultiPolyTool {
             for(int dy = 0; dy< tileSize; dy++){
                 int x = tile.getX() + dx;
                 int y = tile.getY() + dy;
-                if(GC.validCoord(x) && GC.validCoord(y)){
-                    Tile newTile = GC.getTileAtCoord(x, y);
+                if(gameGrid.validCoord(x) && gameGrid.validCoord(y)){
+                    Tile newTile = gameGrid.getTileAtCoord(x, y);
                     hoverTiles.add(createPolyOnTile(newTile));
                 }
                 else {
@@ -50,9 +50,9 @@ public class MultiTileBuilder extends MultiPolyTool {
             for(int dy = 0; dy< tileSize; dy++){
                 int x = tile.getX() + dx;
                 int y = tile.getY() + dy;
-                if(GC.validCoord(x) && GC.validCoord(y)){
-                    Tile newTile = GC.getTileAtCoord(x, y);
-                    valid = newTile instanceof StandardTile;
+                if(gameGrid.validCoord(x) && gameGrid.validCoord(y)){
+                    Tile newTile = gameGrid.getTileAtCoord(x, y);
+                    valid &= newTile instanceof StandardTile;
                 }
                 else {
                     valid = false;
@@ -77,7 +77,7 @@ public class MultiTileBuilder extends MultiPolyTool {
                     newTile = new CommercialTile(tile.getX(), tile.getY(), GC);
                     break;
             }
-            GC.replaceMultiTile(newTile, tileSize);
+            gameGrid.replaceMultiTile(newTile, tileSize);
         }
     }
 }

@@ -39,7 +39,7 @@ public abstract class ZoneTile extends Tile {
         Image img = new Image(imageLink);
         imageView = new ImageView(img);
         fixImageDimensions();
-        GC.getPC().gamePane.getChildren().add(imageView);
+        GC.getPC().getGameGrid().getChildren().add(imageView);
         imageView.setMouseTransparent(true);
         mainNode = Square.drawOnTile(this, GC);
         mainNode.setStyle("-fx-fill: transparent;");
@@ -56,7 +56,7 @@ public abstract class ZoneTile extends Tile {
     public void updateImage() {
         imageView.setImage(new Image(imageLink));
         fixImageDimensions();
-        GC.fixLayers();
+        gameGrid.fixLayers();
     }
 
     public void remove() {
@@ -64,8 +64,8 @@ public abstract class ZoneTile extends Tile {
             zoneFiller.remove();
         }
         System.out.println("zone removed");
-        GC.getPC().getGamePane().getChildren().remove(mainNode);
-        GC.getPC().getGamePane().getChildren().remove(imageView);
+        GC.getPC().getGameGrid().getChildren().remove(mainNode);
+        GC.getPC().getGameGrid().getChildren().remove(imageView);
         System.out.println(GC);
     }
 

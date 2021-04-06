@@ -16,7 +16,7 @@ public class StandardTile extends Tile {
         mainNode.setStyle("-fx-fill: transparent;");
         mainNode.setTranslateX(getTileRenderX());
         mainNode.setTranslateY(getTileRenderY());
-        gamePane.getChildren().add(mainNode);
+        gameGrid.getChildren().add(mainNode);
         createEvents(mainNode);
         //Text text = new Text("(" + x + ", " + y + ")");
         //text.setTranslateX(getTileRenderX());
@@ -26,7 +26,7 @@ public class StandardTile extends Tile {
 
 
     public void remove() {
-        gamePane.getChildren().remove(mainNode);
+        gameGrid.getChildren().remove(mainNode);
     }
 
     @Override

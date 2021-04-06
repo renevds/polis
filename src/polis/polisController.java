@@ -1,11 +1,16 @@
 package polis;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 import polis.Drawers.Square;
 import polis.Tools.DeleteTool;
@@ -14,6 +19,7 @@ import polis.Tools.RoadTool;
 import polis.Tools.Selector;
 import polis.tiles.Tile;
 import prog2.util.Viewport;
+import views.GameGrid;
 
 
 public class polisController {
@@ -21,7 +27,7 @@ public class polisController {
 
     public StackPane mainPane;
     public Viewport viewPort;
-    public Pane gamePane;
+    private GameGrid gameGrid;
     public BorderPane borderPane;
 
     public ToggleButton residential_button;
@@ -40,34 +46,45 @@ public class polisController {
 
     @FXML
     void initialize(){
-        gamePane = new Pane();
-        viewPort = new Viewport(gamePane, 0.6);
+        GC = new gameController(this);
+        gameGrid = new GameGrid(GC, 32);
+        viewPort = new Viewport(gameGrid, 0.6);
         mainPane.getChildren().add(viewPort);
         mainPane.setOnKeyPressed(this::handleKeyPressed);
         viewPort.setFocusTraversable(true);
         viewPort.toBack();
         borderPane.setPickOnBounds(false);
-        GC = new gameController(this);
         viewPort.getStyleClass().add("viewport");
         mainPane.setPrefWidth(CELL_SIZE * 2 * size * 10);
         mainPane.setPrefHeight(CELL_SIZE * size * 10);
-        for(int x = 1; x <= gameController.getMAPSIZE(); x++){
-            for(int y = 1; y <= gameController.getMAPSIZE(); y++){
-                Polygon polygon = Square.draw();
-                polygon.setTranslateX(Tile.getRenderX(x, y));
-                polygon.setTranslateY(Tile.getRenderY(x, y));
-                polygon.setStyle("-fx-fill: rgb(204, 249, 170)");
+
+        //draw the green background
+        for(int x = 1; x <= gameGrid.getMAP_SIZE(); x++){
+            for(int y = 1; y <= gameGrid.getMAP_SIZE(); y++){
+                /*Polygon polygon = Square.draw();
+                polygon.setTranslateX(gameGrid.getRenderX(x, y));
+                polygon.setTranslateY(gameGrid.getRenderY(x, y));
+                polygon.getStyleClass().add("background-tile");
                 polygon.setMouseTransparent(true);
                 polygon.toBack();
-                gamePane.getChildren().add(polygon);
+                gameGrid.getChildren().add(polygon);*/
+
+                ImageView iv = new ImageView("polis/tiles/grass.png");
+                gameGrid.getChildren().add(iv);
+                iv.setTranslateX(gameGrid.getRenderX(x, y) - 64);
+                iv.setTranslateY(gameGrid.getRenderY(x, y));
+                iv.toBack();
             }
         }
-        GC.drawTiles();
-        GC.createImmigrantRoad();
 
+        gameGrid.createTiles();
+        gameGrid.drawTiles();
+        gameGrid.createImmigrantRoad();
+
+        GC.setGameGrid(gameGrid);
+        GC.setTool(new Selector(GC));
 
     }
-
 
     public static int getCELLSIZE(){
         return CELL_SIZE;
@@ -77,8 +94,8 @@ public class polisController {
         return size;
     }
 
-    public Pane getGamePane(){
-        return gamePane;
+    public GameGrid getGameGrid(){
+        return gameGrid;
     }
 
     @FXML

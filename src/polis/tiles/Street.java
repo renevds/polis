@@ -11,7 +11,7 @@ public class Street extends ImageTile {
     }
 
     public void remove() {
-        GC.getPC().gamePane.getChildren().remove(mainNode);
+        GC.getPC().getGameGrid().getChildren().remove(mainNode);
     }
 
     @Override
@@ -27,8 +27,8 @@ public class Street extends ImageTile {
     public void setImageString(Boolean starter) {
         int n = 0;
         if (removable) {
-            if (GC.validCoord(y - 1)) {
-                Tile neighbourTile = GC.getTileAtCoord(x, y - 1);
+            if (gameGrid.validCoord(y - 1)) {
+                Tile neighbourTile = gameGrid.getTileAtCoord(x, y - 1);
                 if (neighbourTile instanceof polis.tiles.Street) {
                     n += 1;
                 }
@@ -37,22 +37,22 @@ public class Street extends ImageTile {
             n += 1;
         }
 
-        if (GC.validCoord(y + 1)) {
-            Tile neighbourTile = GC.getTileAtCoord(x, y + 1);
+        if (gameGrid.validCoord(y + 1)) {
+            Tile neighbourTile = gameGrid.getTileAtCoord(x, y + 1);
             if (neighbourTile instanceof polis.tiles.Street) {
                 n += 4;
             }
         }
 
-        if (GC.validCoord(x - 1)) {
-            Tile neighbourTile = GC.getTileAtCoord(x - 1, y);
+        if (gameGrid.validCoord(x - 1)) {
+            Tile neighbourTile = gameGrid.getTileAtCoord(x - 1, y);
             if (neighbourTile instanceof polis.tiles.Street) {
                 n += 8;
             }
         }
 
-        if (GC.validCoord(x + 1)) {
-            Tile neighbourTile = GC.getTileAtCoord(x + 1, y);
+        if (gameGrid.validCoord(x + 1)) {
+            Tile neighbourTile = gameGrid.getTileAtCoord(x + 1, y);
             if (neighbourTile instanceof polis.tiles.Street) {
                 n += 2;
             }
@@ -69,29 +69,29 @@ public class Street extends ImageTile {
     }
 
     public void makeNeighboursRecalculate() {
-        if (GC.validCoord(y - 1)) {
-            Tile neighbourTile = GC.getTileAtCoord(x, y - 1);
+        if (gameGrid.validCoord(y - 1)) {
+            Tile neighbourTile = gameGrid.getTileAtCoord(x, y - 1);
             if (neighbourTile instanceof polis.tiles.Street) {
                 ((polis.tiles.Street) neighbourTile).setImageString(false);
             }
         }
 
-        if (GC.validCoord(y + 1)) {
-            Tile neighbourTile = GC.getTileAtCoord(x, y + 1);
+        if (gameGrid.validCoord(y + 1)) {
+            Tile neighbourTile = gameGrid.getTileAtCoord(x, y + 1);
             if (neighbourTile instanceof polis.tiles.Street) {
                 ((polis.tiles.Street) neighbourTile).setImageString(false);
             }
         }
 
-        if (GC.validCoord(x - 1)) {
-            Tile neighbourTile = GC.getTileAtCoord(x - 1, y);
+        if (gameGrid.validCoord(x - 1)) {
+            Tile neighbourTile = gameGrid.getTileAtCoord(x - 1, y);
             if (neighbourTile instanceof polis.tiles.Street) {
                 ((polis.tiles.Street) neighbourTile).setImageString(false);
             }
         }
 
-        if (GC.validCoord(x + 1)) {
-            Tile neighbourTile = GC.getTileAtCoord(x + 1, y);
+        if (gameGrid.validCoord(x + 1)) {
+            Tile neighbourTile = gameGrid.getTileAtCoord(x + 1, y);
             if (neighbourTile instanceof polis.tiles.Street) {
                 ((polis.tiles.Street) neighbourTile).setImageString(false);
             }

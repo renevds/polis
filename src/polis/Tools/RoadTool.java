@@ -23,7 +23,7 @@ public class RoadTool extends MultiPolyTool {
 
     @Override
     public void hover(Tile tile) {
-        GC.getPC().getGamePane().getChildren().remove(cursorPoly);
+        GC.getPC().getGameGrid().getChildren().remove(cursorPoly);
         cursorPoly = createPolyOnTile(tile);
     }
 
@@ -41,13 +41,13 @@ public class RoadTool extends MultiPolyTool {
         int Ysign = (0>(Ylength))?-1:1;
 
         for(int x = 0; x <= Xsign*Xlength; x++){
-            Tile temp = GC.getTileAtCoord(firstTileX + Xsign*x, firstTileY);
+            Tile temp = gameGrid.getTileAtCoord(firstTileX + Xsign*x, firstTileY);
             hoverTiles.add(createPolyOnTile(temp));
             editTiles.add(temp);
         }
 
         for(int y = 1; y <= Ysign*Ylength; y++){
-            Tile temp = GC.getTileAtCoord(lastTileX, firstTileY + Ysign*y);
+            Tile temp = gameGrid.getTileAtCoord(lastTileX, firstTileY + Ysign*y);
             hoverTiles.add(createPolyOnTile(temp));
             editTiles.add(temp);
         }
@@ -59,7 +59,7 @@ public class RoadTool extends MultiPolyTool {
 
     @Override
     public void drag(Tile tile) {
-        GC.getPC().getGamePane().getChildren().remove(cursorPoly);
+        GC.getPC().getGameGrid().getChildren().remove(cursorPoly);
         if(firstTile == null){
             firstTile = tile;
             lastTile = tile;
@@ -78,7 +78,7 @@ public class RoadTool extends MultiPolyTool {
         for(Tile editTile: editTiles){
             if(editTile instanceof StandardTile) {
                 Street newStreet = new Street(editTile.getX(), editTile.getY(), GC);
-                GC.replaceTile(newStreet);
+                gameGrid.replaceTile(newStreet);
                 newStreet.setImageString(true);
             }
         }

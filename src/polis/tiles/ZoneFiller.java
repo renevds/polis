@@ -21,8 +21,8 @@ public class ZoneFiller extends Tile {
     @Override
     public void remove() {
         System.out.println("filler removed at (" + this.x + ", " + this.y + ")");
-        GC.getPC().getGamePane().getChildren().remove(mainNode);
-        GC.setTile(new StandardTile(this.x, this.y, GC));
+        GC.getPC().getGameGrid().getChildren().remove(mainNode);
+        gameGrid.setTile(new StandardTile(this.x, this.y, GC));
     }
 
     @Override

@@ -21,9 +21,9 @@ public class Square {
 
     public static Polygon drawOnTile(Tile tile, gameController GC){
         Polygon polygon = draw();
-        polygon.setTranslateX(Tile.getRenderX(tile.getX(), tile.getY()));
-        polygon.setTranslateY(Tile.getRenderY(tile.getX(), tile.getY()));
-        GC.getPC().gamePane.getChildren().add(polygon);
+        polygon.setTranslateX(GC.getPC().getGameGrid().getRenderX(tile.getX(), tile.getY()));
+        polygon.setTranslateY(GC.getPC().getGameGrid().getRenderY(tile.getX(), tile.getY()));
+        GC.getPC().getGameGrid().getChildren().add(polygon);
         return polygon;
     }
 }

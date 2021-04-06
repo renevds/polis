@@ -7,6 +7,7 @@ import polis.Drawers.Square;
 import polis.gameController;
 import polis.tiles.StandardTile;
 import polis.tiles.Tile;
+import views.ValidPoly;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,27 +25,20 @@ public abstract class MultiPolyTool extends Tool {
     }
 
     public Polygon createPolyOnTile(Tile tile){
-        Polygon polygon = Square.drawOnTile(tile, GC);
-        if(tile.getClass() == StandardTile.class){
-            polygon.setFill(Color.rgb(0, 127, 255, 0.5));
-        }
-        else {
-            polygon.setFill(Color.rgb(255, 0, 0, 0.5));
-        }
-        polygon.setMouseTransparent(true);
+        Polygon polygon = new ValidPoly(tile.getX(), tile.getY(), gameGrid, tile.getClass() == StandardTile.class);
         polygon.toFront();
         return polygon;
     }
 
     public void hidePolys(){
         for(Polygon polygon: hoverTiles){
-            GC.getPC().getGamePane().getChildren().remove(polygon);
+            GC.getPC().getGameGrid().getChildren().remove(polygon);
         }
         hoverTiles.clear();
     }
 
     public void hideCursorPoly(){
-        GC.getPC().getGamePane().getChildren().remove(cursorPoly);
+        GC.getPC().getGameGrid().getChildren().remove(cursorPoly);
         cursorPoly = null;
     }
 
