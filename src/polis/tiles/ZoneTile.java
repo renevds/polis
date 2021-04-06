@@ -1,23 +1,24 @@
 package polis.tiles;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import polis.Drawers.Square;
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import polis.gameController;
-import polis.polisController;
+import views.ZoneTileView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ZoneTile extends Tile {
+public abstract class ZoneTile extends Tile implements Observable{
     protected static int MAX_LEVEL = 4;
     protected int level;
 
     protected String imageLink;
 
-    protected ImageView imageView;
+    protected ZoneTileView zoneTileView;
 
-    List<ZoneFiller> childrenTiles = new ArrayList<>();
+    List<MultiTileFiller> childrenTiles = new ArrayList<>();
+
+    private List<InvalidationListener> listenerList = new ArrayList<> ();
 
     public ZoneTile(int x, int y, gameController GC) {
         super(x, y, GC);
@@ -25,47 +26,32 @@ public abstract class ZoneTile extends Tile {
         updateImageLink();
     }
 
-    public void addFillerTile(ZoneFiller zoneFiller) {
-        childrenTiles.add(zoneFiller);
+    public void addFillerTile(MultiTileFiller multiTileFiller) {
+        childrenTiles.add(multiTileFiller);
     }
 
     public void increaseLevel() {
         level = level % MAX_LEVEL + 1;
         updateImageLink();
-        updateImage();
+        fireInvalidationEvent();
     }
 
     public void draw() {
-        Image img = new Image(imageLink);
-        imageView = new ImageView(img);
-        fixImageDimensions();
-        GC.getPC().getGameGrid().getChildren().add(imageView);
-        imageView.setMouseTransparent(true);
-        mainNode = Square.drawOnTile(this, GC);
-        mainNode.setStyle("-fx-fill: transparent;");
+        zoneTileView = new ZoneTileView(this);
+        addListener(zoneTileView);
+        mainNode = zoneTileView.getRet();
         createEvents(mainNode);
-    }
-
-    private void fixImageDimensions() {
-        imageView.setTranslateX(getTileRenderX() - polisController.getCELLSIZE() * 2 + polisController.getCELLSIZE() * 4 - imageView.getImage().getWidth());
-        imageView.setTranslateY(getTileRenderY() + polisController.getCELLSIZE() * 2 - imageView.getImage().getHeight());
     }
 
     public abstract void updateImageLink();
 
-    public void updateImage() {
-        imageView.setImage(new Image(imageLink));
-        fixImageDimensions();
-        gameGrid.fixLayers();
-    }
-
     public void remove() {
-        for (ZoneFiller zoneFiller : childrenTiles) {
-            zoneFiller.remove();
+        for (MultiTileFiller multiTileFiller : childrenTiles) {
+            multiTileFiller.remove();
         }
         System.out.println("zone removed");
         GC.getPC().getGameGrid().getChildren().remove(mainNode);
-        GC.getPC().getGameGrid().getChildren().remove(imageView);
+        GC.getPC().getGameGrid().getChildren().remove(zoneTileView);
         System.out.println(GC);
     }
 
@@ -75,7 +61,27 @@ public abstract class ZoneTile extends Tile {
     }
 
     public void toFront() {
-        imageView.toFront();
+        zoneTileView.toFront();
+    }
+
+    public String getImageLink(){
+        return imageLink;
+    };
+
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+        listenerList.add(invalidationListener);
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+        listenerList.remove(invalidationListener);
+    }
+
+    private void fireInvalidationEvent () {
+        for (InvalidationListener listener : listenerList) {
+            listener.invalidated(this);
+        }
     }
 
 }

@@ -11,7 +11,7 @@ public class Street extends ImageTile {
     }
 
     public void remove() {
-        GC.getPC().getGameGrid().getChildren().remove(mainNode);
+        gameGrid.getChildren().remove(mainNode);
     }
 
     @Override

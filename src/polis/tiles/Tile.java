@@ -81,4 +81,8 @@ abstract public class Tile {
 
     public abstract  void toFront();
 
+    public GameGrid getGameGrid(){
+        return gameGrid;
+    }
+
 }

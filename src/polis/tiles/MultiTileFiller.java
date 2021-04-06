@@ -3,10 +3,10 @@ package polis.tiles;
 import polis.Drawers.Square;
 import polis.gameController;
 
-public class ZoneFiller extends Tile {
+public class MultiTileFiller extends Tile {
     private final ZoneTile parentZone;
 
-    public ZoneFiller(int x, int y, gameController GC, ZoneTile parentZone) {
+    public MultiTileFiller(int x, int y, gameController GC, ZoneTile parentZone) {
         super(x, y, GC);
         this.parentZone = parentZone;
         parentZone.addFillerTile(this);

@@ -1,13 +1,10 @@
 package polis.Tools;
 
-import javafx.scene.paint.Color;
-import polis.Drawers.Square;
 import polis.tiles.Tile;
 import polis.gameController;
-import polis.tiles.ZoneFiller;
+import polis.tiles.MultiTileFiller;
 import polis.tiles.ZoneTile;
 import views.SelectorPoly;
-import views.TilePoly;
 
 public class Selector extends PolygonTool {
     
@@ -17,7 +14,7 @@ public class Selector extends PolygonTool {
 
     public void hover(Tile tile) {
         hidePolygon();
-        polygon = new SelectorPoly(tile.getX(), tile.getY(), gameGrid);
+        polygon = new SelectorPoly(tile);
         //System.out.print("(" + tile.getX() + ", " + tile.getY() + ") " + tile);
         //System.out.println(" hovered.");
     }
@@ -27,8 +24,8 @@ public class Selector extends PolygonTool {
         if(tile instanceof ZoneTile){
             ((ZoneTile)tile).increaseLevel();
         }
-        else if(tile instanceof ZoneFiller){
-            ((ZoneFiller)tile).getParentZone().increaseLevel();
+        else if(tile instanceof MultiTileFiller){
+            ((MultiTileFiller)tile).getParentZone().increaseLevel();
         }
     }
 

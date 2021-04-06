@@ -25,7 +25,7 @@ public abstract class MultiPolyTool extends Tool {
     }
 
     public Polygon createPolyOnTile(Tile tile){
-        Polygon polygon = new ValidPoly(tile.getX(), tile.getY(), gameGrid, tile.getClass() == StandardTile.class);
+        Polygon polygon = new ValidPoly(tile, tile.getClass() == StandardTile.class);
         polygon.toFront();
         return polygon;
     }

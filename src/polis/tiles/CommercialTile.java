@@ -1,5 +1,6 @@
 package polis.tiles;
 
+import javafx.beans.InvalidationListener;
 import polis.gameController;
 
 public class
@@ -14,5 +15,4 @@ CommercialTile extends ZoneTile {
     public void updateImageLink() {
         imageLink = images[level - 1];
     }
-
 }

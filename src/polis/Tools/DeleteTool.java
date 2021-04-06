@@ -4,7 +4,7 @@ import polis.gameController;
 import polis.tiles.StandardTile;
 import polis.tiles.Street;
 import polis.tiles.Tile;
-import polis.tiles.ZoneFiller;
+import polis.tiles.MultiTileFiller;
 import views.DeletePoly;
 
 public class DeleteTool extends PolygonTool {
@@ -16,7 +16,7 @@ public class DeleteTool extends PolygonTool {
     @Override
     public void hover(Tile tile) {
         hidePolygon();
-        polygon = new DeletePoly(tile.getX(), tile.getY(), gameGrid);
+        polygon = new DeletePoly(tile);
     }
 
     @Override
@@ -25,8 +25,8 @@ public class DeleteTool extends PolygonTool {
         System.out.println("b " + polygon);
         System.out.println("c " + GC);
         if (tile.removable()) {
-            if (tile instanceof ZoneFiller) {
-                clicked(((ZoneFiller)tile).getParentZone());
+            if (tile instanceof MultiTileFiller) {
+                clicked(((MultiTileFiller)tile).getParentZone());
             } else {
                 gameGrid.replaceTile(new StandardTile(tile.getX(), tile.getY(), GC));
 

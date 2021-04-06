@@ -1,12 +1,14 @@
 package polis;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
@@ -76,6 +78,13 @@ public class polisController {
                 iv.toBack();
             }
         }
+
+        InnerShadow innerShadow = new InnerShadow();
+        innerShadow.setOffsetX(0);
+        innerShadow.setOffsetY(0);
+        innerShadow.setRadius(128);
+        innerShadow.setColor(Color.web("#b1c6ca"));
+        gameGrid.setEffect(innerShadow);
 
         gameGrid.createTiles();
         gameGrid.drawTiles();

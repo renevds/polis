@@ -1,5 +1,6 @@
 package views;
 
+import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import polis.gameController;
 import polis.polisController;
@@ -74,7 +75,7 @@ public class GameGrid extends Pane {
                 if (dx == 0 && dy == 0) {
                     replaceTile(newTile);
                 } else {
-                    replaceTile(new ZoneFiller(x + dx, y + dy, GC, newTile));
+                    replaceTile(new MultiTileFiller(x + dx, y + dy, GC, newTile));
                 }
             }
         }
@@ -89,7 +90,7 @@ public class GameGrid extends Pane {
         return coord > 0 && coord <= MAP_SIZE;
     }
 
-    public void setTile(Tile newTile){
+    public void setTile(Tile newTile) {
         int x = newTile.getX();
         int y = newTile.getY();
         tiles.set(coordToIndex(x, y), newTile);
@@ -97,23 +98,37 @@ public class GameGrid extends Pane {
     }
 
 
-    public void fixLayers(){
-        for(int a = 1; a <= MAP_SIZE; a++){
-            for (int b = 1; b <= MAP_SIZE; b++){
+    public void fixLayers() {
+        for (int a = 1; a <= MAP_SIZE; a++) {
+            for (int b = 1; b <= MAP_SIZE; b++) {
                 Tile tile = getTileAtCoord(b, a);
-                if(!(tile instanceof Street)){
+                if (!(tile instanceof Street)) {
                     tile.toFront();
                 }
             }
         }
     }
 
-    public double getRenderY(int x, int y){
-        return (double)polisController.getCELLSIZE() * (y + x) / 2 - polisController.getCELLSIZE()/2.0;
+    public double getRenderY(int x, int y) {
+        return (double) polisController.getCELLSIZE() * (y + x) / 2 - polisController.getCELLSIZE() / 2.0;
     }
 
-    public double getRenderX(int x, int y){
-        return -((double)polisController.getCELLSIZE()*MAP_SIZE)/2 + polisController.getCELLSIZE() * (polisController.getSize() - y + x);
+    public double getRenderX(int x, int y) {
+        return -((double) polisController.getCELLSIZE() * MAP_SIZE) / 2 + polisController.getCELLSIZE() * (polisController.getSize() - y + x);
+    }
+
+    public void addChildrenToGrid(Node node, int x, int y, double XOffset, double YOffset) {
+        getChildren().add(node);
+        node.setTranslateX(getRenderX(x, y) - XOffset);
+        node.setTranslateY(getRenderY(x, y) - YOffset);
+    }
+
+    public void removeChildren(Node node){
+        getChildren().remove(node);
+    }
+
+    public void addChildrenToGrid(Node node, int x, int y){
+        addChildrenToGrid(node, x, y, 0, 0);
     }
 
 }
