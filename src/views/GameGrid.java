@@ -1,5 +1,11 @@
 package views;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -7,6 +13,7 @@ import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.WindowEvent;
+import javafx.util.Duration;
 import polis.gameController;
 import polis.polisController;
 import polis.tiles.*;
@@ -63,9 +70,9 @@ public class GameGrid extends Pane {
         }
     }
 
-    public void askForRegen(WindowEvent event){
+    public void askForRegen(Event event) {
         Boolean regen = true;
-        while (regen){
+        while (regen) {
             Alert alert = new Alert(Alert.AlertType.NONE, "Would you like to generate a different map?", ButtonType.YES, ButtonType.NO);
             alert.showAndWait();
             regen = (alert.getResult() == ButtonType.YES);
@@ -75,7 +82,7 @@ public class GameGrid extends Pane {
         }
     }
 
-    public void regenBackgroundTiles(){
+    public void regenBackgroundTiles() {
         BackgroundTile.regenNoise(this);
         for (int x = 1; x <= MAP_SIZE; x++) {
             for (int y = 1; y <= MAP_SIZE; y++) {
@@ -177,5 +184,9 @@ public class GameGrid extends Pane {
         addChildrenToGrid(node, x, y, 0, 0);
     }
 
-    public int getMAP_SIZE(){return MAP_SIZE;};
+    public int getMAP_SIZE() {
+        return MAP_SIZE;
+    }
+
+    ;
 }

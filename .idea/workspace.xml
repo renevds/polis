@@ -2,54 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b8ffceb-1858-4fe6-bfe2-2c496097eb85" name="Default Changelist" comment="New graphics and MVC stuff">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project.jar" beforeDir="false" afterPath="$PROJECT_DIR$/project.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/buttons/bulldozer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/buttons/commerce.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/buttons/industry.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/buttons/pause.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/buttons/play.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/buttons/residence.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/buttons/road.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/buttons/selection.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/engine.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/levels.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/commerce-0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/commerce-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/commerce-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/commerce-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/industry-0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/industry-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/industry-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/industry-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/residence-0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/residence-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/residence-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/residence-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-11.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-12.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-13.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-14.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-15.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/road-9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/polis - kopie/tiles/test.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/MultiPolyTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/MultiPolyTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/Selector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/Selector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/polisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/polisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/tiles/MultiTileFiller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/MultiTileFiller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/tiles/Street.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/Street.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/tiles/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/prog2/util/Noise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/prog2/util/Noise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/BackgroundTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/BackgroundTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polisController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polisController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/views/GameGrid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/GameGrid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polis/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/GameGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/GameGrid.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +46,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/accentor" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -107,6 +65,7 @@
       <recent name="polis.gameElements.tiles" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\renev\Documents\informatica_b1_s1\OgPro\01908792" />
       <recent name="C:\Users\renev\Documents\informatica_b1_s1\OgPro\01908792\src\polis" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -155,6 +114,19 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -208,7 +180,7 @@
       <workItem from="1617787447746" duration="31990000" />
       <workItem from="1617870414687" duration="10318000" />
       <workItem from="1617883178307" duration="1844000" />
-      <workItem from="1617885093859" duration="330000" />
+      <workItem from="1617885093859" duration="3999000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1613582156022</created>
@@ -294,7 +266,21 @@
       <option name="project" value="LOCAL" />
       <updated>1617884483460</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="New graphics and MVC stuff">
+      <created>1617885520054</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1617885520054</updated>
+    </task>
+    <task id="LOCAL-00014" summary="New graphics and MVC stuff">
+      <created>1617885590910</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1617885590910</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

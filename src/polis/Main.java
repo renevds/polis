@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
@@ -13,6 +14,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        stage.getIcons().add(new Image("polis/favicon.png")) ;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("polis.fxml"));
         Parent root = loader.load();
