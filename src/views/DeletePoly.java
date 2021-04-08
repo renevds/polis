@@ -1,7 +1,6 @@
 package views;
 
 import javafx.scene.paint.Color;
-import polis.Drawers.Square;
 import polis.tiles.Tile;
 
 public class DeletePoly extends TilePoly{

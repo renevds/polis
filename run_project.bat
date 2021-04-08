@@ -1,0 +1,1 @@
+run.bat -jar project.jar
