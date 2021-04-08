@@ -17,7 +17,6 @@ public class MultiTileFiller extends Tile {
 
     @Override
     public void remove() {
-        System.out.println("filler removed at (" + this.x + ", " + this.y + ")");
         gameGrid.removeChildren(eventNode);
         gameGrid.setTile(new StandardTile(this.x, this.y, GC));
     }
@@ -26,7 +25,6 @@ public class MultiTileFiller extends Tile {
     public void toFront() {
         if((x - parentZone.getX()) <= (parentZone.getWidth()/2.0-1) || (y - parentZone.getY()) <= (parentZone.getHeight()/2.0 -1)){
             parentZone.toFront();
-            System.out.println("tofront helipad");
         }
     }
 

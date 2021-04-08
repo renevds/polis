@@ -39,13 +39,10 @@ public class Street extends Tile implements Observable {
     }
 
     public void calculateOrientationNumber(Boolean starter) {
-        System.out.println("test");
         orientationNumber = 0;
         if (gameGrid.validCoord(y - 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x, y - 1);
-            System.out.println(neighbourTile);
             if (neighbourTile instanceof polis.tiles.Street) {
-                System.out.println("top");
                 orientationNumber += 1;
                 if (starter) {
                     ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
@@ -58,9 +55,7 @@ public class Street extends Tile implements Observable {
 
         if (gameGrid.validCoord(y + 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x, y + 1);
-            System.out.println(neighbourTile);
             if (neighbourTile instanceof polis.tiles.Street) {
-                System.out.println("bottom");
                 orientationNumber += 4;
                 if (starter) {
                     ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
@@ -70,9 +65,7 @@ public class Street extends Tile implements Observable {
 
         if (gameGrid.validCoord(x - 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x - 1, y);
-            System.out.println(neighbourTile);
             if (neighbourTile instanceof polis.tiles.Street) {
-                System.out.println("right");
                 orientationNumber += 8;
                 if (starter) {
                     ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
@@ -82,9 +75,7 @@ public class Street extends Tile implements Observable {
 
         if (gameGrid.validCoord(x + 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x + 1, y);
-            System.out.println(neighbourTile);
             if (neighbourTile instanceof polis.tiles.Street) {
-                System.out.println("left");
                 orientationNumber += 2;
                 if (starter) {
                     ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);

@@ -44,7 +44,6 @@ public abstract class MultiPolyTool extends Tool {
 
     @Override
     public void close() {
-        System.out.println("close");
         hidePolys();
         hideCursorPoly();
     }

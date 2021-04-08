@@ -3,7 +3,7 @@ package prog2.util;
 import java.util.Random;
 
 public class Noise {
-    /** Perlin Noise generator from https://stackoverflow.com/questions/5531019/perlin-noise-in-java**/
+    /** Perlin Noise generator genomen van https://stackoverflow.com/questions/5531019/perlin-noise-in-java door jt78 **/
 
 
     /** Source of entropy */
@@ -74,37 +74,6 @@ public class Noise {
         generate(xm, yl, xh, ym);
         generate(xl, ym, xm, yh);
         generate(xm, ym, xh, yh);
-    }
-
-
-    /**
-     * Dump out as a CSV
-     */
-    public void printAsCSV() {
-        for(int i = 0; i < grid.length; i++) {
-            for(int j = 0; j < grid[0].length; j++) {
-                System.out.print(grid[i][j]);
-                System.out.print(",");
-            }
-            System.out.println();
-        }
-    }
-
-
-    /**
-     * Convert to a Boolean array
-     * @return the boolean array
-     */
-    public boolean[][] toBooleans() {
-        int w = grid.length;
-        int h = grid[0].length;
-        boolean[][] ret = new boolean[w][h];
-        for(int i = 0;i < w;i++) {
-            for(int j = 0;j < h;j++) {
-                ret[i][j] = grid[i][j] < 0;
-            }
-        }
-        return ret;
     }
 
 

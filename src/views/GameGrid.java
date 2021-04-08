@@ -103,7 +103,6 @@ public class GameGrid extends Pane {
     }
 
     public void replaceMultiTile(MultiTile newTile) {
-        System.out.println(tiles);
         int x = newTile.getX();
         int y = newTile.getY();
         for (int dx = 0; dx < newTile.getWidth(); dx++) {
@@ -115,7 +114,6 @@ public class GameGrid extends Pane {
                 }
             }
         }
-        System.out.println(tiles);
     }
 
     public Tile getTileAtCoord(int x, int y) {

@@ -35,22 +35,18 @@ abstract public class Tile {
     public abstract Boolean removable();
 
     public void hover(){
-        //System.out.println("hover " + this);
         GC.setCurrentHover(this);
     }
 
     public void clicked(){
-        System.out.println("clicked " + this);
         GC.setClicked(this);
     }
 
     public void drag(){
-        System.out.println("drag " + this);
         GC.setDrag(this);
     }
 
     public void release(){
-        System.out.println("release " + this);
         GC.setRelease(this);
     }
 

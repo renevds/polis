@@ -72,55 +72,46 @@ public class polisController {
     @FXML
     void selectButton(){
         GC.setTool(new Selector(GC));
-        System.out.println("selector tool chosen");
     }
 
     @FXML
     void roadButton(){
         GC.setTool(new RoadTool(GC));
-        System.out.println("Road tool chosen");
     }
 
     @FXML
     void deleteButton(){
         GC.setTool(new DeleteTool(GC));
-        System.out.println("Delete tool chosen");
     }
 
     @FXML
     void buildResidentialButton(){
         GC.setTool(new MultiTileBuilder(GC, "residential"));
-        System.out.println("Residential tool chosen");
     }
 
     @FXML
     void buildIndustrialButton(){
         GC.setTool(new MultiTileBuilder(GC, "industrial"));
-        System.out.println("Industrial tool chosen");
     }
 
     @FXML
     void buildCommercialButton(){
         GC.setTool(new MultiTileBuilder(GC, "commercial"));
-        System.out.println("Commercial tool chosen");
     }
 
     @FXML
     void buildHelicopterButton(){
         GC.setTool(new MultiTileBuilder(GC, "helicopter"));
-        System.out.println("Commercial tool chosen");
     }
 
     @FXML
     void buildTreeButton(){
         GC.setTool(new TreeTool(GC));
-        System.out.println("Commercial tool chosen");
     }
 
     @FXML
     void buildWaterButton(){
         GC.setTool(new WaterTool(GC));
-        System.out.println("Commercial tool chosen");
     }
 
     private void handleKeyPressed(KeyEvent keyEvent) {

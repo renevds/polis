@@ -16,8 +16,6 @@ public class Selector extends PolygonTool {
     public void hover(Tile tile) {
         hidePolygon();
         polygon = new SelectorPoly(tile);
-        //System.out.print("(" + tile.getX() + ", " + tile.getY() + ") " + tile);
-        //System.out.println(" hovered.");
     }
 
     @Override

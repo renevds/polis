@@ -54,7 +54,6 @@ public class BackgroundTile extends ImageView {
         double decoChance = Math.random();
         if (decoChance < 0.995) {
             float chance = ((noise[x-1][y-1]+1)/2)*forestImages.length;
-            System.out.println(chance);
             if(chance < 0.1){
                 setImage(water);
             }else{
@@ -74,7 +73,6 @@ public class BackgroundTile extends ImageView {
         Noise temp = new Noise(null, 1f, gameGrid.getMAP_SIZE(), gameGrid.getMAP_SIZE());
         temp.initialise();
         noise = temp.getGrid();
-        System.out.println(Arrays.deepToString(noise));
     }
 
     public void clear() {
