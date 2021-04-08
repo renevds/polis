@@ -17,12 +17,16 @@ public abstract class ZoneTile extends MultiTile implements Observable{
 
     protected ZoneTileView zoneTileView;
 
-    private List<InvalidationListener> listenerList = new ArrayList<> ();
+    private InvalidationListener listener;
 
     public ZoneTile(int x, int y, gameController GC) {
         super(x, y, GC);
         level = 1;
         updateImageLink();
+        zoneTileView = new ZoneTileView(this);
+        addListener(zoneTileView);
+        eventNode = zoneTileView.getRet();
+        createEvents(eventNode);
     }
 
 
@@ -30,13 +34,6 @@ public abstract class ZoneTile extends MultiTile implements Observable{
         level = level % MAX_LEVEL + 1;
         updateImageLink();
         fireInvalidationEvent();
-    }
-
-    public void draw() {
-        zoneTileView = new ZoneTileView(this);
-        addListener(zoneTileView);
-        mainNode = zoneTileView.getRet();
-        createEvents(mainNode);
     }
 
     public abstract void updateImageLink();
@@ -61,16 +58,16 @@ public abstract class ZoneTile extends MultiTile implements Observable{
 
     @Override
     public void addListener(InvalidationListener invalidationListener) {
-        listenerList.add(invalidationListener);
+        listener = invalidationListener;
     }
 
     @Override
     public void removeListener(InvalidationListener invalidationListener) {
-        listenerList.remove(invalidationListener);
+        listener = null;
     }
 
     private void fireInvalidationEvent () {
-        for (InvalidationListener listener : listenerList) {
+        if(listener != null) {
             listener.invalidated(this);
         }
     }

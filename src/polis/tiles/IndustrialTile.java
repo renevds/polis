@@ -6,9 +6,6 @@ import polis.gameController;
 public class
 IndustrialTile extends ZoneTile {
 
-    static int width = 2;
-    static int height = 2;
-
     static Image[] images = new Image[]{
             new Image("/polis/tiles/industry-0.png"),
             new Image("/polis/tiles/industry-1.png"),
@@ -18,16 +15,8 @@ IndustrialTile extends ZoneTile {
 
     public IndustrialTile(int x, int y, gameController GC) {
         super(x, y, GC);
-    }
-
-    @Override
-    public int getWidth() {
-        return width;
-    }
-
-    @Override
-    public int getHeight() {
-        return height;
+        width = 2;
+        height = 2;
     }
 
     public void updateImageLink() {

@@ -97,7 +97,7 @@
                   <Pane pickOnBounds="false" HBox.hgrow="ALWAYS" />
                   <VBox>
                      <children>
-                        <ToggleButton mnemonicParsing="false" onAction="#buildHelicopterButton">
+                        <ToggleButton mnemonicParsing="false" onAction="#buildHelicopterButton" toggleGroup="$tools">
                            <toggleGroup>
                               <ToggleGroup fx:id="tools1" />
                            </toggleGroup>
@@ -114,6 +114,18 @@
                               <ImageView fitHeight="25.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@/polis/buttons/tree.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </ToggleButton>
+                        <ToggleButton mnemonicParsing="false" onAction="#buildWaterButton" toggleGroup="$tools">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@/polis/buttons/water.png" />
                                  </image>
                               </ImageView>
                            </graphic>

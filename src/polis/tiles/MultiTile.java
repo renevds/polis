@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class MultiTile extends Tile{
+    protected int width;
+    protected int height;
 
-    List<MultiTileFiller> childrenTiles = new ArrayList<>();
+    private List<MultiTileFiller> childrenTiles = new ArrayList<>();
 
     public MultiTile(int x, int y, gameController GC) {
         super(x, y, GC);
@@ -17,15 +19,19 @@ public abstract class MultiTile extends Tile{
         childrenTiles.add(multiTileFiller);
     }
 
-    public abstract int getWidth();
+    public int getWidth(){
+        return width;
+    };
 
-    public abstract int getHeight();
+    public int getHeight(){
+        return height;
+    };
 
     public void remove(){
         for (MultiTileFiller multiTileFiller : childrenTiles) {
             multiTileFiller.remove();
         }
-        GC.getPC().getGameGrid().getChildren().remove(mainNode);
+        GC.getPC().getGameGrid().getChildren().remove(eventNode);
     }
 
 }

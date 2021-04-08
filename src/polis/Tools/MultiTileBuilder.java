@@ -6,6 +6,8 @@ import polis.Drawers.Square;
 import polis.gameController;
 import polis.tiles.*;
 
+import java.util.Arrays;
+
 public class MultiTileBuilder extends MultiPolyTool {
     private String type;
 
@@ -27,7 +29,7 @@ public class MultiTileBuilder extends MultiPolyTool {
 
     @Override
     public void hover(Tile tile) {
-        MultiTile temp = getTypeInstance(new StandardTile(0, 0, GC));
+        MultiTile temp = getTypeInstance(tile);
         hidePolys();
         for(int dx = 0; dx< temp.getWidth(); dx++){
             for(int dy = 0; dy< temp.getHeight(); dy++){
@@ -43,10 +45,11 @@ public class MultiTileBuilder extends MultiPolyTool {
             }
         }
         checkValid(tile);
+        temp.remove();
     }
 
     public void checkValid(Tile tile) {
-        MultiTile temp = getTypeInstance(new StandardTile(0, 0, GC));
+        MultiTile temp = getTypeInstance(tile);
         valid = true;
         for(int dx = 0; dx< temp.getWidth(); dx++){
             for(int dy = 0; dy< temp.getHeight(); dy++){
@@ -61,6 +64,7 @@ public class MultiTileBuilder extends MultiPolyTool {
                 }
             }
         }
+        temp.remove();
     }
 
     @Override

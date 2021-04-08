@@ -1,15 +1,15 @@
 package polis.Tools;
 
 import polis.gameController;
+import polis.tiles.MultiTileFiller;
 import polis.tiles.StandardTile;
 import polis.tiles.Street;
 import polis.tiles.Tile;
-import polis.tiles.MultiTileFiller;
 import views.DeletePoly;
 
-public class DeleteTool extends PolygonTool {
+public class WaterTool extends PolygonTool {
 
-    public DeleteTool(gameController GC) {
+    public WaterTool(gameController GC) {
         super(GC);
     }
 
@@ -23,10 +23,11 @@ public class DeleteTool extends PolygonTool {
     public void clicked(Tile tile) {
         if (tile.removable()) {
             if (tile instanceof MultiTileFiller) {
-                clicked(((MultiTileFiller)tile).getParentZone());
+                clicked(((MultiTileFiller) tile).getParentZone());
             } else {
-                gameGrid.replaceTile(new StandardTile(tile.getX(), tile.getY(), GC));
-
+                StandardTile standardTile = new StandardTile(tile.getX(), tile.getY(), GC);
+                gameGrid.replaceTile(standardTile);
+                gameGrid.getBackgroundTileBehindTile(standardTile).setWater();
                 if (tile instanceof Street) {
                     ((Street) tile).calculateOrientationNumber(true);
                 }
@@ -37,3 +38,4 @@ public class DeleteTool extends PolygonTool {
     }
 
 }
+

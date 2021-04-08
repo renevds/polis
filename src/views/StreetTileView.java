@@ -1,12 +1,13 @@
 package views;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import polis.tiles.Street;
 
-public class StreetTileView extends ImageView {
-
-    Street street;
+public class StreetTileView extends ImageView implements InvalidationListener {
+    private Street street;
 
     static Image[] images = new Image[]{
             new Image("/polis/tiles/road-0.png"),
@@ -33,7 +34,8 @@ public class StreetTileView extends ImageView {
         street.getGameGrid().addChildrenToGrid(this, street.getX(), street.getY(), getImage().getWidth()/2, 0);
     }
 
-    public void setOrientationNumber(int sideLevel) {
-        setImage(images[sideLevel]);
+    @Override
+    public void invalidated(Observable observable) {
+        setImage(images[street.getOrientationNumber()]);
     }
 }

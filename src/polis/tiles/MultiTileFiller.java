@@ -10,18 +10,15 @@ public class MultiTileFiller extends Tile {
         super(x, y, GC);
         this.parentZone = parentZone;
         parentZone.addFillerTile(this);
-    }
-
-    public void draw() {
-        mainNode = Square.drawOnTile(this, GC);
-        mainNode.setStyle("-fx-fill: transparent;");
-        createEvents(mainNode);
+        eventNode = Square.drawOnTile(this, GC);
+        eventNode.setStyle("-fx-fill: transparent;");
+        createEvents(eventNode);
     }
 
     @Override
     public void remove() {
         System.out.println("filler removed at (" + this.x + ", " + this.y + ")");
-        GC.getPC().getGameGrid().getChildren().remove(mainNode);
+        gameGrid.removeChildren(eventNode);
         gameGrid.setTile(new StandardTile(this.x, this.y, GC));
     }
 

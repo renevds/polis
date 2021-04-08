@@ -1,22 +1,24 @@
 package polis.tiles;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import polis.gameController;
 import views.StreetTileView;
 
-public class Street extends Tile {
+public class Street extends Tile implements Observable {
     private boolean removable = true;
-    StreetTileView streetTileView;
+    private StreetTileView streetTileView;
+    private InvalidationListener listener;
+    private int orientationNumber;
 
     public Street(int x, int y, gameController GC) {
         super(x, y, GC);
         streetTileView = new StreetTileView(this);
+        addListener(streetTileView);
+        eventNode = streetTileView;
         createEvents(streetTileView);
     }
 
-    @Override
-    public void draw() {
-
-    }
 
     public void remove() {
         gameGrid.getChildren().remove(streetTileView);
@@ -38,20 +40,20 @@ public class Street extends Tile {
 
     public void calculateOrientationNumber(Boolean starter) {
         System.out.println("test");
-        int n = 0;
+        orientationNumber = 0;
         if (gameGrid.validCoord(y - 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x, y - 1);
             System.out.println(neighbourTile);
             if (neighbourTile instanceof polis.tiles.Street) {
                 System.out.println("top");
-                n += 1;
-                if (starter){
+                orientationNumber += 1;
+                if (starter) {
                     ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
                 }
             }
         }
-        if(!removable){
-            n = 1;
+        if (!removable) {
+            orientationNumber = 1;
         }
 
         if (gameGrid.validCoord(y + 1)) {
@@ -59,8 +61,8 @@ public class Street extends Tile {
             System.out.println(neighbourTile);
             if (neighbourTile instanceof polis.tiles.Street) {
                 System.out.println("bottom");
-                n += 4;
-                if (starter){
+                orientationNumber += 4;
+                if (starter) {
                     ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
                 }
             }
@@ -71,8 +73,8 @@ public class Street extends Tile {
             System.out.println(neighbourTile);
             if (neighbourTile instanceof polis.tiles.Street) {
                 System.out.println("right");
-                n += 8;
-                if (starter){
+                orientationNumber += 8;
+                if (starter) {
                     ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
                 }
             }
@@ -83,13 +85,32 @@ public class Street extends Tile {
             System.out.println(neighbourTile);
             if (neighbourTile instanceof polis.tiles.Street) {
                 System.out.println("left");
-                n += 2;
-                if (starter){
+                orientationNumber += 2;
+                if (starter) {
                     ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
                 }
             }
         }
+        fireInvalidationEvent();
+    }
 
-        streetTileView.setOrientationNumber(n);
+    @Override
+    public void addListener(InvalidationListener invalidationListener) {
+        listener = invalidationListener;
+    }
+
+    @Override
+    public void removeListener(InvalidationListener invalidationListener) {
+        listener = null;
+    }
+
+    private void fireInvalidationEvent() {
+        if (listener != null) {
+            listener.invalidated(this);
+        }
+    }
+
+    public int getOrientationNumber() {
+        return orientationNumber;
     }
 }

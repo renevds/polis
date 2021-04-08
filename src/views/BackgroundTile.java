@@ -45,10 +45,7 @@ public class BackgroundTile extends ImageView {
         super();
 
         if(noise == null){
-            Noise temp = new Noise(null, 1f, gameGrid.getMAP_SIZE(), gameGrid.getMAP_SIZE());
-            temp.initialise();
-            noise = temp.getGrid();
-            System.out.println(Arrays.deepToString(noise));
+            regenNoise(gameGrid);
         }
 
 
@@ -73,6 +70,12 @@ public class BackgroundTile extends ImageView {
         setMouseTransparent(true);
     }
 
+    public static void regenNoise(GameGrid gameGrid){
+        Noise temp = new Noise(null, 1f, gameGrid.getMAP_SIZE(), gameGrid.getMAP_SIZE());
+        temp.initialise();
+        noise = temp.getGrid();
+        System.out.println(Arrays.deepToString(noise));
+    }
 
     public void clear() {
         Image newImage = grass;
@@ -84,5 +87,9 @@ public class BackgroundTile extends ImageView {
         Image newImage = allImages.get((allImages.indexOf(getImage()) + 1)%allImages.size());
         setTranslateY(getTranslateY() + getImage().getHeight() - newImage.getHeight());
         setImage(newImage);
+    }
+
+    public void setWater() {
+        setImage(water);
     }
 }

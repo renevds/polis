@@ -9,8 +9,8 @@ import polis.polisController;
 import polis.tiles.ZoneTile;
 
 public class ZoneTileView extends ImageView implements InvalidationListener {
-    ZoneTile zoneTile;
-    Polygon ret;
+    private ZoneTile zoneTile;
+    private Polygon ret;
 
     public ZoneTileView(ZoneTile zoneTile) {
         super();
@@ -20,12 +20,11 @@ public class ZoneTileView extends ImageView implements InvalidationListener {
         zoneTile.getGameGrid().addChildrenToGrid(this, zoneTile.getX(), zoneTile.getY(), img.getWidth()/2, img.getHeight() - 128);
         setMouseTransparent(true);
         int CELL_SIZE = polisController.getCELLSIZE();
-        int size = polisController.getSize();
         ret = new Polygon(
                 0, 0,
-                CELL_SIZE * size, 0.5 * CELL_SIZE * size,
-                0, CELL_SIZE * size,
-                -CELL_SIZE * size, 0.5 * CELL_SIZE * size
+                CELL_SIZE, 0.5 * CELL_SIZE,
+                0, CELL_SIZE ,
+                -CELL_SIZE, 0.5 * CELL_SIZE
         );
         ret.setStyle("-fx-fill: transparent;");
         zoneTile.getGameGrid().addChildrenToGrid(ret, zoneTile.getX(), zoneTile.getY());

@@ -1,24 +1,12 @@
 package polis;
 import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.effect.InnerShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Scale;
-import polis.Drawers.Square;
+import javafx.stage.Stage;
 import polis.Tools.*;
-import polis.tiles.Tile;
 import prog2.util.Viewport;
-import views.BackgroundTile;
 import views.GameGrid;
 
 
@@ -37,8 +25,7 @@ public class polisController {
     public ToggleButton delete_button;
     public ToggleButton select_button;
 
-    private static int CELL_SIZE= 64;
-    private static int size = 1;
+    private static final int CELL_SIZE= 64;
 
 
     public polisController(){
@@ -46,33 +33,36 @@ public class polisController {
 
     @FXML
     void initialize(){
+        int MAP_SIZE = 32;
         GC = new gameController(this);
-        gameGrid = new GameGrid(GC, 32);
-        viewPort = new Viewport(gameGrid, 0.6);
+        gameGrid = new GameGrid(GC, MAP_SIZE);
+        viewPort = new Viewport(gameGrid, 0.3);
         mainPane.getChildren().add(viewPort);
         mainPane.setOnKeyPressed(this::handleKeyPressed);
         viewPort.setFocusTraversable(true);
         viewPort.toBack();
         borderPane.setPickOnBounds(false);
         viewPort.getStyleClass().add("viewport");
-        mainPane.setPrefWidth(CELL_SIZE * 2 * size * 10);
-        mainPane.setPrefHeight(CELL_SIZE * size * 10);
+
+        mainPane.setPrefWidth(CELL_SIZE * 2 * 10);
+        mainPane.setPrefHeight(CELL_SIZE * 10);
+        gameGrid.setTranslateX(gameGrid.getTranslateX() + MAP_SIZE*10);
+        gameGrid.setTranslateY(gameGrid.getTranslateY() - MAP_SIZE*5);
 
         gameGrid.createTiles();
-        gameGrid.drawTiles();
+        gameGrid.drawBackgroundTiles();
         gameGrid.createImmigrantRoad();
 
         GC.setGameGrid(gameGrid);
         GC.setTool(new Selector(GC));
+    }
 
+    public void setStage(Stage stage){
+        stage.setOnShown(gameGrid::askForRegen);
     }
 
     public static int getCELLSIZE(){
         return CELL_SIZE;
-    }
-
-    public static int getSize(){
-        return size;
     }
 
     public GameGrid getGameGrid(){
@@ -127,6 +117,12 @@ public class polisController {
         System.out.println("Commercial tool chosen");
     }
 
+    @FXML
+    void buildWaterButton(){
+        GC.setTool(new WaterTool(GC));
+        System.out.println("Commercial tool chosen");
+    }
+
     private void handleKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case R:
@@ -154,5 +150,5 @@ public class polisController {
                 selectButton();
                 break;
         }
-    };
+    }
 }

@@ -8,13 +8,12 @@ import polis.polisController;
 public class Square {
     public static Polygon draw() {
         int CELL_SIZE = polisController.getCELLSIZE();
-        int size = polisController.getSize();
 
         Polygon ret = new Polygon(
                 0, 0,
-                CELL_SIZE * size, 0.5 * CELL_SIZE * size,
-                0, CELL_SIZE * size,
-                -CELL_SIZE * size, 0.5 * CELL_SIZE * size
+                CELL_SIZE, 0.5 * CELL_SIZE,
+                0, CELL_SIZE,
+                -CELL_SIZE, 0.5 * CELL_SIZE
         );
         return ret;
     }

@@ -1,7 +1,6 @@
 package views;
 
 import javafx.scene.paint.Color;
-import polis.tiles.StandardTile;
 import polis.tiles.Tile;
 
 public class ValidPoly extends TilePoly{

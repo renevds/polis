@@ -1,8 +1,6 @@
 package polis.tiles;
 
 import javafx.scene.Node;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import polis.gameController;
 import views.GameGrid;
 
@@ -11,7 +9,7 @@ abstract public class Tile {
     protected int x;
     protected int y;
 
-    Node mainNode;
+    protected Node eventNode;
 
     protected GameGrid gameGrid;
 
@@ -21,16 +19,6 @@ abstract public class Tile {
         this.GC = GC;
 
         gameGrid = GC.getPC().getGameGrid();
-    }
-
-    abstract public void draw();
-
-    public double getTileRenderX(){
-        return gameGrid.getRenderX(x, y);
-    }
-
-    public double getTileRenderY(){
-        return gameGrid.getRenderY(x, y);
     }
 
 
@@ -67,7 +55,7 @@ abstract public class Tile {
     }
 
     public void startDrag(Node node){
-        if(GC.getPC().getGameGrid().getChildren().contains(mainNode)){
+        if(GC.getPC().getGameGrid().getChildren().contains(eventNode)){
             node.startFullDrag();
         }
     }

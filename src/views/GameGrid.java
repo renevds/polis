@@ -1,9 +1,12 @@
 package views;
 
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.WindowEvent;
 import polis.gameController;
 import polis.polisController;
 import polis.tiles.*;
@@ -41,6 +44,7 @@ public class GameGrid extends Pane {
         }
     }
 
+
     public void createImmigrantRoad() {
         for (int i = 1; i <= 16; i++) {
             Street immigrantRoad = new Street(16, i, GC);
@@ -51,14 +55,36 @@ public class GameGrid extends Pane {
 
     }
 
-    public void drawTiles() {
-
+    public void drawBackgroundTiles() {
         for (int x = 1; x <= MAP_SIZE; x++) {
             for (int y = 1; y <= MAP_SIZE; y++) {
                 backgroundTiles.add(new BackgroundTile(x, y, this));
             }
         }
-        tiles.forEach(Tile::draw);
+    }
+
+    public void askForRegen(WindowEvent event){
+        Boolean regen = true;
+        while (regen){
+            Alert alert = new Alert(Alert.AlertType.NONE, "Would you like to generate a different map?", ButtonType.YES, ButtonType.NO);
+            alert.showAndWait();
+            regen = (alert.getResult() == ButtonType.YES);
+            if (regen) {
+                regenBackgroundTiles();
+            }
+        }
+    }
+
+    public void regenBackgroundTiles(){
+        BackgroundTile.regenNoise(this);
+        for (int x = 1; x <= MAP_SIZE; x++) {
+            for (int y = 1; y <= MAP_SIZE; y++) {
+                int index = coordToIndex(x, y);
+                removeChildren(backgroundTiles.get(index));
+                backgroundTiles.set(index, new BackgroundTile(x, y, this));
+            }
+        }
+        createImmigrantRoad();
     }
 
     public int coordToIndex(int x, int y) {
@@ -70,9 +96,8 @@ public class GameGrid extends Pane {
         int x = newTile.getX();
         int y = newTile.getY();
         Tile oldtile = getTileAtCoord(x, y);
-        tiles.set(coordToIndex(x, y), newTile);
         oldtile.remove();
-        newTile.draw();
+        tiles.set(coordToIndex(x, y), newTile);
         getBackgroundTileBehindTile(newTile).clear();
         fixLayers();
     }
@@ -109,7 +134,6 @@ public class GameGrid extends Pane {
         int x = newTile.getX();
         int y = newTile.getY();
         tiles.set(coordToIndex(x, y), newTile);
-        newTile.draw();
     }
 
 
@@ -138,7 +162,7 @@ public class GameGrid extends Pane {
     }
 
     public double getRenderX(int x, int y) {
-        return -((double) polisController.getCELLSIZE() * MAP_SIZE) / 2 + polisController.getCELLSIZE() * (polisController.getSize() - y + x);
+        return -((double) polisController.getCELLSIZE() * MAP_SIZE) / 2 + polisController.getCELLSIZE() * (1 - y + x);
     }
 
     public void addChildrenToGrid(Node node, int x, int y, double XOffset, double YOffset) {
