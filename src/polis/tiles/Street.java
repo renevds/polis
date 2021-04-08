@@ -1,17 +1,25 @@
 package polis.tiles;
 
 import polis.gameController;
+import views.StreetTileView;
 
-public class Street extends ImageTile {
+public class Street extends Tile {
     private boolean removable = true;
+    StreetTileView streetTileView;
 
     public Street(int x, int y, gameController GC) {
         super(x, y, GC);
-        imageLink = "polis/tiles/road-0.png";
+        streetTileView = new StreetTileView(this);
+        createEvents(streetTileView);
+    }
+
+    @Override
+    public void draw() {
+
     }
 
     public void remove() {
-        gameGrid.getChildren().remove(mainNode);
+        gameGrid.getChildren().remove(streetTileView);
     }
 
     @Override
@@ -19,82 +27,69 @@ public class Street extends ImageTile {
         return removable;
     }
 
+    @Override
+    public void toFront() {
+        streetTileView.toFront();
+    }
+
     public void makeUnRemovable() {
         removable = false;
-        setImageString(true);
     }
 
-    public void setImageString(Boolean starter) {
+    public void calculateOrientationNumber(Boolean starter) {
+        System.out.println("test");
         int n = 0;
-        if (removable) {
-            if (gameGrid.validCoord(y - 1)) {
-                Tile neighbourTile = gameGrid.getTileAtCoord(x, y - 1);
-                if (neighbourTile instanceof polis.tiles.Street) {
-                    n += 1;
-                }
-            }
-        } else {
-            n += 1;
-        }
-
-        if (gameGrid.validCoord(y + 1)) {
-            Tile neighbourTile = gameGrid.getTileAtCoord(x, y + 1);
-            if (neighbourTile instanceof polis.tiles.Street) {
-                n += 4;
-            }
-        }
-
-        if (gameGrid.validCoord(x - 1)) {
-            Tile neighbourTile = gameGrid.getTileAtCoord(x - 1, y);
-            if (neighbourTile instanceof polis.tiles.Street) {
-                n += 8;
-            }
-        }
-
-        if (gameGrid.validCoord(x + 1)) {
-            Tile neighbourTile = gameGrid.getTileAtCoord(x + 1, y);
-            if (neighbourTile instanceof polis.tiles.Street) {
-                n += 2;
-            }
-        }
-
-        if (starter) {
-            makeNeighboursRecalculate();
-        }
-
-        System.out.println(this + " image:" + n);
-
-        imageLink = "polis/tiles/road-" + n + ".png";
-        refreshImage();
-    }
-
-    public void makeNeighboursRecalculate() {
         if (gameGrid.validCoord(y - 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x, y - 1);
+            System.out.println(neighbourTile);
             if (neighbourTile instanceof polis.tiles.Street) {
-                ((polis.tiles.Street) neighbourTile).setImageString(false);
+                System.out.println("top");
+                n += 1;
+                if (starter){
+                    ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
+                }
             }
+        }
+        if(!removable){
+            n = 1;
         }
 
         if (gameGrid.validCoord(y + 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x, y + 1);
+            System.out.println(neighbourTile);
             if (neighbourTile instanceof polis.tiles.Street) {
-                ((polis.tiles.Street) neighbourTile).setImageString(false);
+                System.out.println("bottom");
+                n += 4;
+                if (starter){
+                    ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
+                }
             }
         }
 
         if (gameGrid.validCoord(x - 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x - 1, y);
+            System.out.println(neighbourTile);
             if (neighbourTile instanceof polis.tiles.Street) {
-                ((polis.tiles.Street) neighbourTile).setImageString(false);
+                System.out.println("right");
+                n += 8;
+                if (starter){
+                    ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
+                }
             }
         }
 
         if (gameGrid.validCoord(x + 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x + 1, y);
+            System.out.println(neighbourTile);
             if (neighbourTile instanceof polis.tiles.Street) {
-                ((polis.tiles.Street) neighbourTile).setImageString(false);
+                System.out.println("left");
+                n += 2;
+                if (starter){
+                    ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
+                }
             }
         }
+
+        streetTileView.setOrientationNumber(n);
     }
 }

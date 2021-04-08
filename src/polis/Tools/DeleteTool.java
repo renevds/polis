@@ -31,7 +31,7 @@ public class DeleteTool extends PolygonTool {
                 gameGrid.replaceTile(new StandardTile(tile.getX(), tile.getY(), GC));
 
                 if (tile instanceof Street) {
-                    ((Street) tile).makeNeighboursRecalculate();
+                    ((Street) tile).calculateOrientationNumber(true);
                 }
                 polygon.toFront();
             }

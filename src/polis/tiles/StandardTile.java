@@ -2,6 +2,7 @@ package polis.tiles;
 
 import polis.Drawers.Square;
 import polis.gameController;
+import views.StandardTileView;
 
 public class StandardTile extends Tile {
 
@@ -12,11 +13,7 @@ public class StandardTile extends Tile {
 
     @Override
     public void draw() {
-        mainNode = Square.draw();
-        mainNode.setStyle("-fx-fill: transparent;");
-        mainNode.setTranslateX(getTileRenderX());
-        mainNode.setTranslateY(getTileRenderY());
-        gameGrid.getChildren().add(mainNode);
+        mainNode = new StandardTileView(this);
         createEvents(mainNode);
         //Text text = new Text("(" + x + ", " + y + ")");
         //text.setTranslateX(getTileRenderX());
@@ -26,7 +23,7 @@ public class StandardTile extends Tile {
 
 
     public void remove() {
-        gameGrid.getChildren().remove(mainNode);
+        gameGrid.removeChildren(mainNode);
     }
 
     @Override

@@ -1,7 +1,9 @@
 package views;
 
 import javafx.scene.Node;
+import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import polis.gameController;
 import polis.polisController;
 import polis.tiles.*;
@@ -11,14 +13,23 @@ import java.util.List;
 
 public class GameGrid extends Pane {
 
-    private int MAP_SIZE;
-    private List<Tile> tiles;
-    private gameController GC;
+    private final int MAP_SIZE;
+    private final List<Tile> tiles;
+    private final List<BackgroundTile> backgroundTiles;
+    private final gameController GC;
 
     public GameGrid(gameController GC, int MAP_SIZE) {
         this.MAP_SIZE = MAP_SIZE;
         tiles = new ArrayList<>();
+        backgroundTiles = new ArrayList<>();
         this.GC = GC;
+
+        InnerShadow innerShadow = new InnerShadow();
+        innerShadow.setOffsetX(0);
+        innerShadow.setOffsetY(0);
+        innerShadow.setRadius(128);
+        innerShadow.setColor(Color.web("#b1c6ca"));
+        setEffect(innerShadow);
     }
 
     public void createTiles() {
@@ -30,21 +41,23 @@ public class GameGrid extends Pane {
         }
     }
 
-    public int getMAP_SIZE() {
-        return MAP_SIZE;
-    }
-
     public void createImmigrantRoad() {
-        Street immigrantRoad = new Street(16, 1, GC);
-        immigrantRoad.makeUnRemovable();
-        replaceTile(immigrantRoad);
-    }
+        for (int i = 1; i <= 16; i++) {
+            Street immigrantRoad = new Street(16, i, GC);
+            replaceTile(immigrantRoad);
+            immigrantRoad.makeUnRemovable();
+            immigrantRoad.calculateOrientationNumber(true);
+        }
 
-    List<Tile> getTiles() {
-        return tiles;
     }
 
     public void drawTiles() {
+
+        for (int x = 1; x <= MAP_SIZE; x++) {
+            for (int y = 1; y <= MAP_SIZE; y++) {
+                backgroundTiles.add(new BackgroundTile(x, y, this));
+            }
+        }
         tiles.forEach(Tile::draw);
     }
 
@@ -56,22 +69,20 @@ public class GameGrid extends Pane {
     public void replaceTile(Tile newTile) {
         int x = newTile.getX();
         int y = newTile.getY();
-        System.out.println("test");
         Tile oldtile = getTileAtCoord(x, y);
-        System.out.println("removing from zoneTile: " + oldtile);
         tiles.set(coordToIndex(x, y), newTile);
         oldtile.remove();
         newTile.draw();
+        getBackgroundTileBehindTile(newTile).clear();
         fixLayers();
-        System.out.println(tiles);
     }
 
-    public void replaceMultiTile(ZoneTile newTile, int width) {
+    public void replaceMultiTile(MultiTile newTile) {
         System.out.println(tiles);
         int x = newTile.getX();
         int y = newTile.getY();
-        for (int dx = 0; dx < width; dx++) {
-            for (int dy = 0; dy < width; dy++) {
+        for (int dx = 0; dx < newTile.getWidth(); dx++) {
+            for (int dy = 0; dy < newTile.getHeight(); dy++) {
                 if (dx == 0 && dy == 0) {
                     replaceTile(newTile);
                 } else {
@@ -84,6 +95,10 @@ public class GameGrid extends Pane {
 
     public Tile getTileAtCoord(int x, int y) {
         return tiles.get(coordToIndex(x, y));
+    }
+
+    public BackgroundTile getBackgroundTileBehindTile(Tile tile) {
+        return backgroundTiles.get(coordToIndex(tile.getX(), tile.getY()));
     }
 
     public boolean validCoord(int coord) {
@@ -99,14 +114,23 @@ public class GameGrid extends Pane {
 
 
     public void fixLayers() {
-        for (int a = 1; a <= MAP_SIZE; a++) {
-            for (int b = 1; b <= MAP_SIZE; b++) {
-                Tile tile = getTileAtCoord(b, a);
-                if (!(tile instanceof Street)) {
-                    tile.toFront();
-                }
+        for (int a = 1; a < MAP_SIZE * 2; a++) {
+            int Da = Math.min(a, MAP_SIZE);
+            int Dy = Math.max(1, a - MAP_SIZE + 1);
+            for (int i = 0; i < Da && Dy + i <= MAP_SIZE; i++) {
+                int x = Da - i;
+                int y = Dy + i;
+                fixCoordLayer(x, y);
             }
         }
+    }
+
+    public void fixCoordLayer(int x, int y) {
+        Tile tile = getTileAtCoord(x, y);
+        if (!(tile instanceof MultiTileFiller)) {
+            getBackgroundTileBehindTile(tile).toFront();
+        }
+        tile.toFront();
     }
 
     public double getRenderY(int x, int y) {
@@ -123,12 +147,13 @@ public class GameGrid extends Pane {
         node.setTranslateY(getRenderY(x, y) - YOffset);
     }
 
-    public void removeChildren(Node node){
+    public void removeChildren(Node node) {
         getChildren().remove(node);
     }
 
-    public void addChildrenToGrid(Node node, int x, int y){
+    public void addChildrenToGrid(Node node, int x, int y) {
         addChildrenToGrid(node, x, y, 0, 0);
     }
 
+    public int getMAP_SIZE(){return MAP_SIZE;};
 }

@@ -2,21 +2,20 @@ package polis.tiles;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.scene.image.Image;
 import polis.gameController;
 import views.ZoneTileView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ZoneTile extends Tile implements Observable{
+public abstract class ZoneTile extends MultiTile implements Observable{
     protected static int MAX_LEVEL = 4;
     protected int level;
 
-    protected String imageLink;
+    protected Image image;
 
     protected ZoneTileView zoneTileView;
-
-    List<MultiTileFiller> childrenTiles = new ArrayList<>();
 
     private List<InvalidationListener> listenerList = new ArrayList<> ();
 
@@ -26,9 +25,6 @@ public abstract class ZoneTile extends Tile implements Observable{
         updateImageLink();
     }
 
-    public void addFillerTile(MultiTileFiller multiTileFiller) {
-        childrenTiles.add(multiTileFiller);
-    }
 
     public void increaseLevel() {
         level = level % MAX_LEVEL + 1;
@@ -46,13 +42,8 @@ public abstract class ZoneTile extends Tile implements Observable{
     public abstract void updateImageLink();
 
     public void remove() {
-        for (MultiTileFiller multiTileFiller : childrenTiles) {
-            multiTileFiller.remove();
-        }
-        System.out.println("zone removed");
-        GC.getPC().getGameGrid().getChildren().remove(mainNode);
+        super.remove();
         GC.getPC().getGameGrid().getChildren().remove(zoneTileView);
-        System.out.println(GC);
     }
 
     @Override
@@ -64,8 +55,8 @@ public abstract class ZoneTile extends Tile implements Observable{
         zoneTileView.toFront();
     }
 
-    public String getImageLink(){
-        return imageLink;
+    public Image getImage(){
+        return image;
     };
 
     @Override

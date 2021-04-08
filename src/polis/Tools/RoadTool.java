@@ -79,7 +79,7 @@ public class RoadTool extends MultiPolyTool {
             if(editTile instanceof StandardTile) {
                 Street newStreet = new Street(editTile.getX(), editTile.getY(), GC);
                 gameGrid.replaceTile(newStreet);
-                newStreet.setImageString(true);
+                newStreet.calculateOrientationNumber(true);
             }
         }
         hidePolys();

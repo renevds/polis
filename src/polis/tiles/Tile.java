@@ -2,6 +2,7 @@ package polis.tiles;
 
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import polis.gameController;
 import views.GameGrid;
 
@@ -46,7 +47,7 @@ abstract public class Tile {
     public abstract Boolean removable();
 
     public void hover(){
-        System.out.println("hover " + this);
+        //System.out.println("hover " + this);
         GC.setCurrentHover(this);
     }
 

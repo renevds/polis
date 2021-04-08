@@ -15,12 +15,10 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 import polis.Drawers.Square;
-import polis.Tools.DeleteTool;
-import polis.Tools.MultiTileBuilder;
-import polis.Tools.RoadTool;
-import polis.Tools.Selector;
+import polis.Tools.*;
 import polis.tiles.Tile;
 import prog2.util.Viewport;
+import views.BackgroundTile;
 import views.GameGrid;
 
 
@@ -59,32 +57,6 @@ public class polisController {
         viewPort.getStyleClass().add("viewport");
         mainPane.setPrefWidth(CELL_SIZE * 2 * size * 10);
         mainPane.setPrefHeight(CELL_SIZE * size * 10);
-
-        //draw the green background
-        for(int x = 1; x <= gameGrid.getMAP_SIZE(); x++){
-            for(int y = 1; y <= gameGrid.getMAP_SIZE(); y++){
-                /*Polygon polygon = Square.draw();
-                polygon.setTranslateX(gameGrid.getRenderX(x, y));
-                polygon.setTranslateY(gameGrid.getRenderY(x, y));
-                polygon.getStyleClass().add("background-tile");
-                polygon.setMouseTransparent(true);
-                polygon.toBack();
-                gameGrid.getChildren().add(polygon);*/
-
-                ImageView iv = new ImageView("polis/tiles/grass.png");
-                gameGrid.getChildren().add(iv);
-                iv.setTranslateX(gameGrid.getRenderX(x, y) - 64);
-                iv.setTranslateY(gameGrid.getRenderY(x, y));
-                iv.toBack();
-            }
-        }
-
-        InnerShadow innerShadow = new InnerShadow();
-        innerShadow.setOffsetX(0);
-        innerShadow.setOffsetY(0);
-        innerShadow.setRadius(128);
-        innerShadow.setColor(Color.web("#b1c6ca"));
-        gameGrid.setEffect(innerShadow);
 
         gameGrid.createTiles();
         gameGrid.drawTiles();
@@ -140,6 +112,18 @@ public class polisController {
     @FXML
     void buildCommercialButton(){
         GC.setTool(new MultiTileBuilder(GC, "commercial"));
+        System.out.println("Commercial tool chosen");
+    }
+
+    @FXML
+    void buildHelicopterButton(){
+        GC.setTool(new MultiTileBuilder(GC, "helicopter"));
+        System.out.println("Commercial tool chosen");
+    }
+
+    @FXML
+    void buildTreeButton(){
+        GC.setTool(new TreeTool(GC));
         System.out.println("Commercial tool chosen");
     }
 

@@ -6,7 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 import polis.polisController;
-import polis.tiles.ImageTile;
 import polis.tiles.ZoneTile;
 
 public class ZoneTileView extends ImageView implements InvalidationListener {
@@ -16,7 +15,7 @@ public class ZoneTileView extends ImageView implements InvalidationListener {
     public ZoneTileView(ZoneTile zoneTile) {
         super();
         this.zoneTile = zoneTile;
-        Image img = new Image(zoneTile.getImageLink());
+        Image img = zoneTile.getImage();
         super.setImage(img);
         zoneTile.getGameGrid().addChildrenToGrid(this, zoneTile.getX(), zoneTile.getY(), img.getWidth()/2, img.getHeight() - 128);
         setMouseTransparent(true);
@@ -30,16 +29,16 @@ public class ZoneTileView extends ImageView implements InvalidationListener {
         );
         ret.setStyle("-fx-fill: transparent;");
         zoneTile.getGameGrid().addChildrenToGrid(ret, zoneTile.getX(), zoneTile.getY());
+        ret.toFront();
 
 
     }
 
     @Override
     public void invalidated(Observable observable) {
-        Image img = new Image(zoneTile.getImageLink());
+        Image img = zoneTile.getImage();
         setTranslateY(getTranslateY() + getImage().getHeight() - img.getHeight());
         setImage(img);
-        //gameGrid.fixLayers();
     }
 
     public Polygon getRet() {

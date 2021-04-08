@@ -1,5 +1,6 @@
 package polis.Tools;
 
+import polis.tiles.MultiTile;
 import polis.tiles.Tile;
 import polis.gameController;
 import polis.tiles.MultiTileFiller;
@@ -25,7 +26,10 @@ public class Selector extends PolygonTool {
             ((ZoneTile)tile).increaseLevel();
         }
         else if(tile instanceof MultiTileFiller){
-            ((MultiTileFiller)tile).getParentZone().increaseLevel();
+            MultiTile parent = ((MultiTileFiller)tile).getParentZone();
+            if(parent instanceof ZoneTile){
+                ((ZoneTile) parent).increaseLevel();
+            }
         }
     }
 

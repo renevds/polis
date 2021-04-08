@@ -4,9 +4,9 @@ import polis.Drawers.Square;
 import polis.gameController;
 
 public class MultiTileFiller extends Tile {
-    private final ZoneTile parentZone;
+    private final MultiTile parentZone;
 
-    public MultiTileFiller(int x, int y, gameController GC, ZoneTile parentZone) {
+    public MultiTileFiller(int x, int y, gameController GC, MultiTile parentZone) {
         super(x, y, GC);
         this.parentZone = parentZone;
         parentZone.addFillerTile(this);
@@ -27,6 +27,10 @@ public class MultiTileFiller extends Tile {
 
     @Override
     public void toFront() {
+        if((x - parentZone.getX()) <= (parentZone.getWidth()/2.0-1) || (y - parentZone.getY()) <= (parentZone.getHeight()/2.0 -1)){
+            parentZone.toFront();
+            System.out.println("tofront helipad");
+        }
     }
 
     @Override
@@ -34,7 +38,7 @@ public class MultiTileFiller extends Tile {
         return parentZone.removable();
     }
 
-    public ZoneTile getParentZone() {
+    public MultiTile getParentZone() {
         return parentZone;
     }
 }

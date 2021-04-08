@@ -7,12 +7,12 @@ import polis.gameController;
 import polis.tiles.*;
 
 public class MultiTileBuilder extends MultiPolyTool {
-    private int tileSize = 2;
     private String type;
 
     public MultiTileBuilder(gameController GC, String type) {
         super(GC);
         this.type = type;
+
     }
 
     public Polygon createPolyOutsideMap(int x, int y){
@@ -27,9 +27,10 @@ public class MultiTileBuilder extends MultiPolyTool {
 
     @Override
     public void hover(Tile tile) {
+        MultiTile temp = getTypeInstance(new StandardTile(0, 0, GC));
         hidePolys();
-        for(int dx = 0; dx< tileSize; dx++){
-            for(int dy = 0; dy< tileSize; dy++){
+        for(int dx = 0; dx< temp.getWidth(); dx++){
+            for(int dy = 0; dy< temp.getHeight(); dy++){
                 int x = tile.getX() + dx;
                 int y = tile.getY() + dy;
                 if(gameGrid.validCoord(x) && gameGrid.validCoord(y)){
@@ -45,9 +46,10 @@ public class MultiTileBuilder extends MultiPolyTool {
     }
 
     public void checkValid(Tile tile) {
+        MultiTile temp = getTypeInstance(new StandardTile(0, 0, GC));
         valid = true;
-        for(int dx = 0; dx< tileSize; dx++){
-            for(int dy = 0; dy< tileSize; dy++){
+        for(int dx = 0; dx< temp.getWidth(); dx++){
+            for(int dy = 0; dy< temp.getHeight(); dy++){
                 int x = tile.getX() + dx;
                 int y = tile.getY() + dy;
                 if(gameGrid.validCoord(x) && gameGrid.validCoord(y)){
@@ -63,21 +65,24 @@ public class MultiTileBuilder extends MultiPolyTool {
 
     @Override
     public void clicked(Tile tile) {
-        ZoneTile newTile = null;
         if(valid){
-            switch (type){
-                case "residential":
-                    newTile = new ResidentialTile(tile.getX(), tile.getY(), GC);
-                    break;
-                case "industrial":
-                    newTile = new IndustrialTile(tile.getX(), tile.getY(), GC);
-                    break;
-                case "commercial":
-                    System.out.println();
-                    newTile = new CommercialTile(tile.getX(), tile.getY(), GC);
-                    break;
-            }
-            gameGrid.replaceMultiTile(newTile, tileSize);
+            MultiTile newTile = getTypeInstance(tile);
+            gameGrid.replaceMultiTile(newTile);
         }
     }
+
+    public MultiTile getTypeInstance(Tile tile){
+        switch (type){
+            case "residential":
+                return new ResidentialTile(tile.getX(), tile.getY(), GC);
+            case "industrial":
+                return new IndustrialTile(tile.getX(), tile.getY(), GC);
+            case "commercial":
+                return new CommercialTile(tile.getX(), tile.getY(), GC);
+            case "helicopter":
+                return new HelicopterTile(tile.getX(), tile.getY(), GC);
+        }
+        return null;
+    }
+
 }
