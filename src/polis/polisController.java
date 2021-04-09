@@ -6,6 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import polis.Tools.*;
+import polis.tiles.Tile;
 import prog2.util.Viewport;
 import views.GameGrid;
 
@@ -17,6 +18,7 @@ public class polisController {
     public Viewport viewPort;
     private GameGrid gameGrid;
     public BorderPane borderPane;
+    private Tile lastHoverTile;
 
     public ToggleButton residential_button;
     public ToggleButton industrial_button;

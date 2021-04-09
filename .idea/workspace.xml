@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3b8ffceb-1858-4fe6-bfe2-2c496097eb85" name="Default Changelist" comment="New graphics and MVC stuff">
+    <list default="true" id="3b8ffceb-1858-4fe6-bfe2-2c496097eb85" name="Default Changelist" comment="Fix water tool&#10;Remove drawers">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Drawers/Square.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiPolyTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiPolyTool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiTileBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiTileBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/MultiTileFiller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/MultiTileFiller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Drawers/Square.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/MultiPolyTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/MultiPolyTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/MultiTileBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/MultiTileBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/WaterTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/WaterTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/tiles/MultiTileFiller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/MultiTileFiller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/BackgroundTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/BackgroundTile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/TilePoly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/TilePoly.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/ValidPoly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ValidPoly.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/WaterTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/WaterTool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/views/BackgroundTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/BackgroundTile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/views/TilePoly.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/TilePoly.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/views/ValidPoly.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/ValidPoly.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polis/gameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/gameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polis/polis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/polis.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polis/polisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/polisController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +171,7 @@
       <workItem from="1617885093859" duration="5632000" />
       <workItem from="1617904044129" duration="57000" />
       <workItem from="1617904151904" duration="276000" />
-      <workItem from="1617970648513" duration="983000" />
+      <workItem from="1617970648513" duration="3218000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1613582156022</created>
@@ -290,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617889300286</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Fix water tool&#10;Remove drawers">
+      <created>1617971785455</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1617971785455</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +329,8 @@
     <MESSAGE value="Test" />
     <MESSAGE value="Lots of work" />
     <MESSAGE value="New graphics and MVC stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="New graphics and MVC stuff" />
+    <MESSAGE value="Fix water tool&#10;Remove drawers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix water tool&#10;Remove drawers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

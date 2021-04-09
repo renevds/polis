@@ -14,6 +14,7 @@ public class gameController {
     private static int MAP_SIZE = 32;
     private List<Tile> tiles = new ArrayList<>();
     private Tool tool;
+    private Tile lastHoverTile;
 
     public gameController(polisController PC) {
         this.PC = PC;
@@ -31,11 +32,14 @@ public class gameController {
         if (this.tool != null) {
             this.tool.close();
         }
-
         this.tool = tool;
+        if(lastHoverTile != null) {
+            tool.hover(lastHoverTile);
+        }
     }
 
     public void setCurrentHover(Tile tile) {
+        lastHoverTile = tile;
         tool.hover(tile);
     }
 
