@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3b8ffceb-1858-4fe6-bfe2-2c496097eb85" name="Default Changelist" comment="Fix water tool&#10;Remove drawers">
+    <list default="true" id="3b8ffceb-1858-4fe6-bfe2-2c496097eb85" name="Default Changelist" comment="Cleanup fix hover change tool bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/WaterTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/WaterTool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/views/BackgroundTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/BackgroundTile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/views/TilePoly.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/TilePoly.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/views/ValidPoly.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/ValidPoly.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/gameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/gameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/polis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/polis.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/polisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/polisController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/gameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/gameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polis.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polisController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polisController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polisController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polisController.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,9 +116,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="run_project" type="BatchConfigurationType" factoryName="Batch" temporary="true">
+      <module name="polis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\renev\Documents\informatica_b1_s1\OgPro\01908792" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="run_project.bat" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Batch.run_project" />
         <item itemvalue="Application.Noise" />
       </list>
     </recent_temporary>
@@ -171,7 +191,7 @@
       <workItem from="1617885093859" duration="5632000" />
       <workItem from="1617904044129" duration="57000" />
       <workItem from="1617904151904" duration="276000" />
-      <workItem from="1617970648513" duration="3218000" />
+      <workItem from="1617970648513" duration="3537000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1613582156022</created>
@@ -292,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617971785455</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Cleanup fix hover change tool bug">
+      <created>1617974293119</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1617974293119</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +357,8 @@
     <MESSAGE value="Lots of work" />
     <MESSAGE value="New graphics and MVC stuff" />
     <MESSAGE value="Fix water tool&#10;Remove drawers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix water tool&#10;Remove drawers" />
+    <MESSAGE value="Cleanup fix hover change tool bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup fix hover change tool bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
