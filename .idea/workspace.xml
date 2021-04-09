@@ -3,6 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="3b8ffceb-1858-4fe6-bfe2-2c496097eb85" name="Default Changelist" comment="Fix error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiPolyTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiPolyTool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/RoadTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/RoadTool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/Tool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/Tool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/gameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/gameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polis.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polisController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polisController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polisController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polisController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/MultiTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/MultiTile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/Tile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/Tile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/ZoneTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/ZoneTile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/views/BackgroundTile$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/BackgroundTile$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/views/BackgroundTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/BackgroundTile.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/views/GameGrid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/GameGrid.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/views/HelicopterTileView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/HelicopterTileView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/views/StandardTileView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/StandardTileView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/views/TilePoly.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/TilePoly.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/views/ZoneTileView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/ZoneTileView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +95,7 @@
       <recent name="polis.tiles" />
     </key>
   </component>
-  <component name="RunManager" selected="Batch.run_project">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="polis.Main" />
       <module name="polis" />
@@ -136,8 +154,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Batch.run_project" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Batch.run_project" />
         <item itemvalue="Application.Noise" />
       </list>
     </recent_temporary>
@@ -187,7 +205,7 @@
       <workItem from="1617885093859" duration="5632000" />
       <workItem from="1617904044129" duration="57000" />
       <workItem from="1617904151904" duration="276000" />
-      <workItem from="1617970648513" duration="4483000" />
+      <workItem from="1617970648513" duration="5486000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1613582156022</created>
@@ -322,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617974772663</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Fix error">
+      <created>1617975616808</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1617975616808</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
