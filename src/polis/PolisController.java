@@ -11,7 +11,7 @@ import prog2.util.Viewport;
 import views.GameGrid;
 
 
-public class polisController {
+public class PolisController {
     private gameController GC;
 
     public StackPane mainPane;
@@ -30,7 +30,7 @@ public class polisController {
     private static final int CELL_SIZE= 64;
 
 
-    public polisController(){
+    public PolisController(){
     }
 
     @FXML

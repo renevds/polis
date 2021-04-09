@@ -1,12 +1,11 @@
 package views;
 
 import javafx.scene.shape.Polygon;
-import polis.gameController;
-import polis.polisController;
+import polis.PolisController;
 import polis.tiles.Tile;
 
 public class TilePoly extends Polygon{
-    static int CELL_SIZE = polisController.getCELLSIZE();
+    static int CELL_SIZE = PolisController.getCELLSIZE();
 
     public TilePoly(Tile tile){
         this(tile.getGameGrid(), tile.getX(), tile.getY());

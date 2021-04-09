@@ -5,7 +5,7 @@ import javafx.beans.Observable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
-import polis.polisController;
+import polis.PolisController;
 import polis.tiles.ZoneTile;
 
 public class ZoneTileView extends ImageView implements InvalidationListener {
@@ -19,7 +19,7 @@ public class ZoneTileView extends ImageView implements InvalidationListener {
         super.setImage(img);
         zoneTile.getGameGrid().addChildrenToGrid(this, zoneTile.getX(), zoneTile.getY(), img.getWidth()/2, img.getHeight() - 128);
         setMouseTransparent(true);
-        int CELL_SIZE = polisController.getCELLSIZE();
+        int CELL_SIZE = PolisController.getCELLSIZE();
         ret = new Polygon(
                 0, 0,
                 CELL_SIZE, 0.5 * CELL_SIZE,

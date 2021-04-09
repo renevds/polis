@@ -1,21 +1,14 @@
 package views;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.stage.WindowEvent;
-import javafx.util.Duration;
 import polis.gameController;
-import polis.polisController;
+import polis.PolisController;
 import polis.tiles.*;
 
 import java.util.ArrayList;
@@ -163,11 +156,11 @@ public class GameGrid extends Pane {
     }
 
     public double getRenderY(int x, int y) {
-        return (double) polisController.getCELLSIZE() * (y + x) / 2 - polisController.getCELLSIZE() / 2.0;
+        return (double) PolisController.getCELLSIZE() * (y + x) / 2 - PolisController.getCELLSIZE() / 2.0;
     }
 
     public double getRenderX(int x, int y) {
-        return -((double) polisController.getCELLSIZE() * MAP_SIZE) / 2 + polisController.getCELLSIZE() * (1 - y + x);
+        return -((double) PolisController.getCELLSIZE() * MAP_SIZE) / 2 + PolisController.getCELLSIZE() * (1 - y + x);
     }
 
     public void addChildrenToGrid(Node node, int x, int y, double XOffset, double YOffset) {

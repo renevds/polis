@@ -2,13 +2,9 @@ package views;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import polis.polisController;
 import prog2.util.Noise;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
 
 public class BackgroundTile extends ImageView {
 

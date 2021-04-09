@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,7 +21,7 @@ public class Main extends Application {
         scene.getStylesheets().add("polis/style.css");
         stage.setScene(scene);
         stage.setTitle("Polis by René Van Der Schueren");
-        ((polisController)loader.getController()).setStage(stage);
+        ((PolisController)loader.getController()).setStage(stage);
         stage.show();
     }
 

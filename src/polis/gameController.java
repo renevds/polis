@@ -1,6 +1,5 @@
 package polis;
 
-import polis.Tools.Selector;
 import polis.tiles.*;
 import polis.Tools.Tool;
 import views.GameGrid;
@@ -10,13 +9,13 @@ import java.util.List;
 
 public class gameController {
     private GameGrid gameGrid;
-    private polisController PC;
+    private PolisController PC;
     private static int MAP_SIZE = 32;
     private List<Tile> tiles = new ArrayList<>();
     private Tool tool;
     private Tile lastHoverTile;
 
-    public gameController(polisController PC) {
+    public gameController(PolisController PC) {
         this.PC = PC;
     }
 
@@ -24,7 +23,7 @@ public class gameController {
         this.gameGrid = gameGrid;
     }
 
-    public polisController getPC() {
+    public PolisController getPC() {
         return PC;
     }
 

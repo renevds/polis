@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Text?>
 
 <StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-           fx:controller="polis.polisController">
+           fx:controller="polis.PolisController">
     <children>
         <BorderPane fx:id="borderPane" prefHeight="502.0" prefWidth="643.0">
             <top>
