@@ -1,7 +1,7 @@
 package polis.tiles;
 
-import polis.Drawers.Square;
 import polis.gameController;
+import views.StandardTileView;
 
 public class MultiTileFiller extends Tile {
     private final MultiTile parentZone;
@@ -10,8 +10,7 @@ public class MultiTileFiller extends Tile {
         super(x, y, GC);
         this.parentZone = parentZone;
         parentZone.addFillerTile(this);
-        eventNode = Square.drawOnTile(this, GC);
-        eventNode.setStyle("-fx-fill: transparent;");
+        eventNode = new StandardTileView(this);
         createEvents(eventNode);
     }
 

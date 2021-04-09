@@ -2,9 +2,9 @@ package polis.Tools;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
-import polis.Drawers.Square;
 import polis.gameController;
 import polis.tiles.*;
+import views.ValidPoly;
 
 import java.util.Arrays;
 
@@ -15,15 +15,6 @@ public class MultiTileBuilder extends MultiPolyTool {
         super(GC);
         this.type = type;
 
-    }
-
-    public Polygon createPolyOutsideMap(int x, int y){
-        Polygon polygon = Square.draw();
-        polygon.setFill(Color.rgb(255, 0, 0, 0.5));
-        polygon.setTranslateX(gameGrid.getRenderX(x, y));
-        polygon.setTranslateY(gameGrid.getRenderY(x, y));
-        GC.getPC().getGameGrid().getChildren().add(polygon);
-        return polygon;
     }
 
 
@@ -40,7 +31,7 @@ public class MultiTileBuilder extends MultiPolyTool {
                     hoverTiles.add(createPolyOnTile(newTile));
                 }
                 else {
-                    hoverTiles.add(createPolyOutsideMap(x, y));
+                    hoverTiles.add(new ValidPoly(gameGrid, x, y, false));
                 }
             }
         }

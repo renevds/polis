@@ -2,13 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b8ffceb-1858-4fe6-bfe2-2c496097eb85" name="Default Changelist" comment="New graphics and MVC stuff">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polisController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polisController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/views/GameGrid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/GameGrid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/GameGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/GameGrid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Drawers/Square.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiPolyTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiPolyTool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiTileBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiTileBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/MultiTileFiller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/MultiTileFiller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polis/Drawers/Square.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polis/Tools/MultiPolyTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/MultiPolyTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polis/Tools/MultiTileBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/MultiTileBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polis/Tools/WaterTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/WaterTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polis/tiles/MultiTileFiller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/MultiTileFiller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/BackgroundTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/BackgroundTile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/TilePoly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/TilePoly.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/ValidPoly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/ValidPoly.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,19 +124,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -180,7 +173,10 @@
       <workItem from="1617787447746" duration="31990000" />
       <workItem from="1617870414687" duration="10318000" />
       <workItem from="1617883178307" duration="1844000" />
-      <workItem from="1617885093859" duration="3999000" />
+      <workItem from="1617885093859" duration="5632000" />
+      <workItem from="1617904044129" duration="57000" />
+      <workItem from="1617904151904" duration="276000" />
+      <workItem from="1617970648513" duration="983000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1613582156022</created>
@@ -280,7 +276,21 @@
       <option name="project" value="LOCAL" />
       <updated>1617885590910</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="New graphics and MVC stuff">
+      <created>1617889205215</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1617889205215</updated>
+    </task>
+    <task id="LOCAL-00016" summary="New graphics and MVC stuff">
+      <created>1617889300286</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1617889300286</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

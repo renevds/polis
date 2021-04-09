@@ -6,6 +6,7 @@ import polis.tiles.StandardTile;
 import polis.tiles.Street;
 import polis.tiles.Tile;
 import views.DeletePoly;
+import views.TreePoly;
 
 public class WaterTool extends PolygonTool {
 
@@ -16,23 +17,13 @@ public class WaterTool extends PolygonTool {
     @Override
     public void hover(Tile tile) {
         hidePolygon();
-        polygon = new DeletePoly(tile);
+        polygon = new TreePoly(tile);
     }
 
     @Override
     public void clicked(Tile tile) {
-        if (tile.removable()) {
-            if (tile instanceof MultiTileFiller) {
-                clicked(((MultiTileFiller) tile).getParentZone());
-            } else {
-                StandardTile standardTile = new StandardTile(tile.getX(), tile.getY(), GC);
-                gameGrid.replaceTile(standardTile);
-                gameGrid.getBackgroundTileBehindTile(standardTile).setWater();
-                if (tile instanceof Street) {
-                    ((Street) tile).calculateOrientationNumber(true);
-                }
-                polygon.toFront();
-            }
+        if (tile instanceof StandardTile) {
+            gameGrid.getBackgroundTileBehindTile(tile).setWater();
         }
 
     }

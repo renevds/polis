@@ -9,12 +9,16 @@ public class TilePoly extends Polygon{
     static int CELL_SIZE = polisController.getCELLSIZE();
 
     public TilePoly(Tile tile){
+        this(tile.getGameGrid(), tile.getX(), tile.getY());
+    }
+
+    public TilePoly(GameGrid gameGrid, int x, int y){
         super(
                 0, 0,
                 CELL_SIZE , 0.5 * CELL_SIZE,
                 0, CELL_SIZE,
                 -CELL_SIZE, 0.5 * CELL_SIZE
         );
-        tile.getGameGrid().addChildrenToGrid(this, tile.getX(), tile.getY());
+        gameGrid.addChildrenToGrid(this, x, y);
     }
 }

@@ -76,18 +76,23 @@ public class BackgroundTile extends ImageView {
     }
 
     public void clear() {
-        Image newImage = grass;
-        setTranslateY(getTranslateY() + getImage().getHeight() - newImage.getHeight());
-        setImage(newImage);
+        fixTranslateY(grass);
+        setImage(grass);
     }
 
     public void changeDecoration() {
         Image newImage = allImages.get((allImages.indexOf(getImage()) + 1)%allImages.size());
-        setTranslateY(getTranslateY() + getImage().getHeight() - newImage.getHeight());
+        fixTranslateY(newImage);
         setImage(newImage);
     }
 
+    private void fixTranslateY(Image newImage){
+        setTranslateY(getTranslateY() + getImage().getHeight() - newImage.getHeight());
+    }
+
     public void setWater() {
+        fixTranslateY(water);
         setImage(water);
     }
+
 }
