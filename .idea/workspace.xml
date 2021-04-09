@@ -1,26 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3b8ffceb-1858-4fe6-bfe2-2c496097eb85" name="Default Changelist" comment="Fix error">
+    <list default="true" id="3b8ffceb-1858-4fe6-bfe2-2c496097eb85" name="Default Changelist" comment="Moved fxml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiPolyTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiPolyTool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/RoadTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/RoadTool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/Tool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/Tool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/gameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/gameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polis.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polisController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polisController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polisController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polisController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/MultiTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/MultiTile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/Tile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/Tile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/ZoneTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/ZoneTile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/views/BackgroundTile$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/BackgroundTile$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/views/BackgroundTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/BackgroundTile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/views/GameGrid.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/GameGrid.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/views/HelicopterTileView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/HelicopterTileView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/views/StandardTileView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/StandardTileView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/views/TilePoly.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/TilePoly.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/views/ZoneTileView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/views/ZoneTileView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/polis/polis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/polis.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,11 +64,11 @@
       <recent name="C:\Users\renev\Documents\informatica_b1_s1\OgPro\01908792\src\polis" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\renev\Documents\informatica_b1_s1\OgPro\01908792\src\polis" />
+      <recent name="C:\Users\renev\Documents\informatica_b1_s1\OgPro\01908792\resources\polis" />
       <recent name="C:\Users\renev\Documents\informatica_b1_s1\OgPro\01908792" />
       <recent name="C:\Users\renev\Documents\informatica_b1_s1\OgPro\01908792\resources\polis\tiles" />
       <recent name="C:\Users\renev\Documents\informatica_b1_s1\OgPro\01908792\src\polis\tiles" />
-      <recent name="C:\Users\renev\Documents\informatica_b1_s1\OgPro\01908792\src" />
-      <recent name="C:\Users\renev\Documents\informatica_b1_s1\OgPro\01908792\resources\polis\" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="polis" />
@@ -205,7 +188,7 @@
       <workItem from="1617885093859" duration="5632000" />
       <workItem from="1617904044129" duration="57000" />
       <workItem from="1617904151904" duration="276000" />
-      <workItem from="1617970648513" duration="5486000" />
+      <workItem from="1617970648513" duration="6355000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1613582156022</created>
@@ -347,7 +330,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617975616808</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Moved fxml">
+      <created>1617976689761</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1617976689761</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,7 +377,8 @@
     <MESSAGE value="Fix water tool&#10;Remove drawers" />
     <MESSAGE value="Cleanup fix hover change tool bug" />
     <MESSAGE value="Fix error" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix error" />
+    <MESSAGE value="Moved fxml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Moved fxml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
