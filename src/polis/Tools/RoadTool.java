@@ -3,7 +3,7 @@ package polis.Tools;
 import polis.tiles.StandardTile;
 import polis.tiles.Street;
 import polis.tiles.Tile;
-import polis.gameController;
+import polis.GameController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ public class RoadTool extends MultiPolyTool {
 
 
 
-    public RoadTool(gameController GC) {
+    public RoadTool(GameController GC) {
         super(GC);
     }
 

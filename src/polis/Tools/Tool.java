@@ -1,15 +1,14 @@
 package polis.Tools;
 
-import javafx.scene.layout.Pane;
 import polis.tiles.Tile;
-import polis.gameController;
+import polis.GameController;
 import views.GameGrid;
 
 public abstract class Tool {
-    protected gameController GC;
+    protected GameController GC;
     protected GameGrid gameGrid;
 
-    public Tool(gameController GC){
+    public Tool(GameController GC){
         this.GC = GC;
         gameGrid = GC.getPC().getGameGrid();
     }
@@ -23,4 +22,6 @@ public abstract class Tool {
     public void drag(Tile tile){};
 
     public void release(Tile tile){};
+
+    public abstract void toFront();
 }

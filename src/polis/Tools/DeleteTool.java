@@ -1,6 +1,6 @@
 package polis.Tools;
 
-import polis.gameController;
+import polis.GameController;
 import polis.tiles.StandardTile;
 import polis.tiles.Street;
 import polis.tiles.Tile;
@@ -9,7 +9,7 @@ import views.DeletePoly;
 
 public class DeleteTool extends PolygonTool {
 
-    public DeleteTool(gameController GC) {
+    public DeleteTool(GameController GC) {
         super(GC);
     }
 

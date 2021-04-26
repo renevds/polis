@@ -1,6 +1,6 @@
 package polis.tiles;
 
-import polis.gameController;
+import polis.GameController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public abstract class MultiTile extends Tile{
 
     private List<MultiTileFiller> childrenTiles = new ArrayList<>();
 
-    public MultiTile(int x, int y, gameController GC) {
+    public MultiTile(int x, int y, GameController GC) {
         super(x, y, GC);
     }
 
@@ -34,4 +34,8 @@ public abstract class MultiTile extends Tile{
         GC.getPC().getGameGrid().getChildren().remove(eventNode);
     }
 
+    @Override
+    public void step() {
+
+    }
 }

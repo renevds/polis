@@ -1,11 +1,15 @@
 package polis.tiles;
 
+import actors.Actor;
 import javafx.scene.Node;
-import polis.gameController;
+import polis.GameController;
 import views.GameGrid;
 
+import java.util.ArrayList;
+import java.util.List;
+
 abstract public class Tile {
-    protected gameController GC;
+    protected GameController GC;
     protected int x;
     protected int y;
 
@@ -13,12 +17,14 @@ abstract public class Tile {
 
     protected GameGrid gameGrid;
 
-    public Tile(int x, int y, gameController GC) {
+    Actor[] roadActors;
+
+    public Tile(int x, int y, GameController GC) {
         this.x = x;
         this.y = y;
         this.GC = GC;
-
         gameGrid = GC.getPC().getGameGrid();
+        roadActors = new Actor[4];
     }
 
 
@@ -69,5 +75,7 @@ abstract public class Tile {
     public GameGrid getGameGrid(){
         return gameGrid;
     }
+
+    public abstract void step();
 
 }

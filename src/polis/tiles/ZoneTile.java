@@ -1,9 +1,10 @@
 package polis.tiles;
 
+import actors.Actor;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.scene.image.Image;
-import polis.gameController;
+import polis.GameController;
 import views.ZoneTileView;
 
 import java.util.ArrayList;
@@ -19,10 +20,12 @@ public abstract class ZoneTile extends MultiTile implements Observable{
 
     private InvalidationListener listener;
 
-    public ZoneTile(int x, int y, gameController GC) {
+    protected List<Actor> residents = new ArrayList<>();
+
+    public ZoneTile(int x, int y, GameController GC) {
         super(x, y, GC);
         level = 1;
-        updateImageLink();
+        updateImage();
         zoneTileView = new ZoneTileView(this);
         addListener(zoneTileView);
         eventNode = zoneTileView.getRet();
@@ -32,11 +35,11 @@ public abstract class ZoneTile extends MultiTile implements Observable{
 
     public void increaseLevel() {
         level = level % MAX_LEVEL + 1;
-        updateImageLink();
+        updateImage();
         fireInvalidationEvent();
     }
 
-    public abstract void updateImageLink();
+    public abstract void updateImage();
 
     public void remove() {
         super.remove();
@@ -66,10 +69,14 @@ public abstract class ZoneTile extends MultiTile implements Observable{
         listener = null;
     }
 
-    private void fireInvalidationEvent () {
+    protected void fireInvalidationEvent () {
         if(listener != null) {
             listener.invalidated(this);
         }
     }
 
+    @Override
+    public void step() {
+
+    }
 }

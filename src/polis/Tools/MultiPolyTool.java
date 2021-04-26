@@ -2,7 +2,7 @@ package polis.Tools;
 
 import javafx.scene.shape.Polygon;
 
-import polis.gameController;
+import polis.GameController;
 import polis.tiles.StandardTile;
 import polis.tiles.Tile;
 import views.ValidPoly;
@@ -18,7 +18,7 @@ public abstract class MultiPolyTool extends Tool {
 
     protected Polygon cursorPoly;
 
-    public MultiPolyTool(gameController GC) {
+    public MultiPolyTool(GameController GC) {
         super(GC);
     }
 
@@ -46,5 +46,13 @@ public abstract class MultiPolyTool extends Tool {
         hideCursorPoly();
     }
 
-
+    @Override
+    public void toFront() {
+        for (Polygon polygon: hoverTiles){
+            polygon.toFront();
+        }
+        if(cursorPoly != null) {
+            cursorPoly.toFront();
+        }
+    }
 }

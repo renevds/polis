@@ -1,12 +1,12 @@
 package polis.Tools;
 
-import polis.gameController;
+import polis.GameController;
 import polis.tiles.StandardTile;
 import polis.tiles.Tile;
 import views.TreePoly;
 
 public class TreeTool extends PolygonTool{
-    public TreeTool(gameController GC) {
+    public TreeTool(GameController GC) {
         super(GC);
     }
     @Override

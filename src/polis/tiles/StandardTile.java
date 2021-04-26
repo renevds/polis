@@ -1,12 +1,12 @@
 package polis.tiles;
 
-import polis.gameController;
+import polis.GameController;
 import views.StandardTileView;
 
 public class StandardTile extends Tile {
 
 
-    public StandardTile(int x, int y, gameController GC) {
+    public StandardTile(int x, int y, GameController GC) {
         super(x, y, GC);
         eventNode = new StandardTileView(this);
         createEvents(eventNode);
@@ -21,6 +21,11 @@ public class StandardTile extends Tile {
 
     @Override
     public void toFront() {
+
+    }
+
+    @Override
+    public void step() {
 
     }
 }

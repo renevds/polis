@@ -7,7 +7,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import polis.gameController;
+import polis.GameController;
 import polis.PolisController;
 import polis.tiles.*;
 
@@ -19,9 +19,10 @@ public class GameGrid extends Pane {
     private final int MAP_SIZE;
     private final List<Tile> tiles;
     private final List<BackgroundTile> backgroundTiles;
-    private final gameController GC;
+    private final GameController GC;
+    private Street spawnStreet;
 
-    public GameGrid(gameController GC, int MAP_SIZE) {
+    public GameGrid(GameController GC, int MAP_SIZE) {
         this.MAP_SIZE = MAP_SIZE;
         tiles = new ArrayList<>();
         backgroundTiles = new ArrayList<>();
@@ -44,15 +45,25 @@ public class GameGrid extends Pane {
         }
     }
 
+    public List<Tile> getTiles(){
+        return tiles;
+    }
 
     public void createImmigrantRoad() {
         for (int i = 1; i <= 16; i++) {
             Street immigrantRoad = new Street(16, i, GC);
             replaceTile(immigrantRoad);
+            if(i == 1){
+                spawnStreet = immigrantRoad;
+            }
             immigrantRoad.makeUnRemovable();
             immigrantRoad.calculateOrientationNumber(true);
         }
 
+    }
+
+    public Street getSpawnStreet(){
+        return spawnStreet;
     }
 
     public void drawBackgroundTiles() {
@@ -153,6 +164,9 @@ public class GameGrid extends Pane {
             getBackgroundTileBehindTile(tile).toFront();
         }
         tile.toFront();
+        if(tile instanceof Street) {
+            ((Street) tile).actorsToFront();
+        }
     }
 
     public double getRenderY(int x, int y) {
@@ -181,5 +195,48 @@ public class GameGrid extends Pane {
         return MAP_SIZE;
     }
 
-    ;
+    public void addActor(ActorDotView view, Street parent) {
+        int actorPosition = parent.getRoadActorPositionFromList(view.getActor());
+        getChildren().add(view);
+        int dx;
+        int dy;
+        if(actorPosition == 1){
+            dx = -32;
+            dy = 32;
+        }
+        else if(actorPosition == 2){
+            dx = 0;
+            dy = 16;
+        }
+        else if(actorPosition == 3){
+            dx = 0;
+            dy = 48;
+        }
+        else{
+            dx = 32;
+            dy = 32;
+        }
+
+        view.setTranslateX(getRenderX(parent.getX(), parent.getY()) + dx);
+        view.setTranslateY(getRenderY(parent.getX(), parent.getY()) + dy);
+        fixLayers();
+    }
+
+    public List<Tile> getNeighbours(Tile tile){
+        List<Tile> neighbours = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            int dx = -1 + 2*i;
+            int dy = -1 + 2*i;
+
+            if(validCoord(tile.getX() + dx)){
+                neighbours.add(getTileAtCoord(dx + tile.getX(), tile.getY()));
+            }
+
+            if(validCoord(tile.getY() + dy)){
+                neighbours.add(getTileAtCoord(tile.getX(), dy + tile.getY()));
+            }
+        }
+        return neighbours;
+    }
+
 }

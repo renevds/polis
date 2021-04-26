@@ -1,9 +1,13 @@
 package polis.tiles;
 
+import actors.Actor;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import polis.gameController;
+import polis.GameController;
 import views.StreetTileView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Street extends Tile implements Observable {
     private boolean removable = true;
@@ -11,7 +15,7 @@ public class Street extends Tile implements Observable {
     private InvalidationListener listener;
     private int orientationNumber;
 
-    public Street(int x, int y, gameController GC) {
+    public Street(int x, int y, GameController GC) {
         super(x, y, GC);
         streetTileView = new StreetTileView(this);
         addListener(streetTileView);
@@ -103,5 +107,76 @@ public class Street extends Tile implements Observable {
 
     public int getOrientationNumber() {
         return orientationNumber;
+    }
+
+    public List<Street> getNeigbouringFreeStreets(){
+        List<Street> neighbours = new ArrayList<>();
+        for(Tile tile: gameGrid.getNeighbours(this)){
+            if(tile instanceof Street){
+                neighbours.add((Street) tile);
+            }
+        }
+        return neighbours;
+    }
+
+    public int getRoadActorPositionFromList(Actor actor){
+        for (int i = 0; i < 4; i++) {
+            if(roadActors[i] == actor){
+                return i + 1;
+            }
+        }
+        return -1;
+    }
+
+    public int getRoadActorPosition(Tile lasttile){
+        int actorposition;
+        int lastX = lasttile.getX();
+        int lastY = lasttile.getY();
+        if(lastX < x){
+            actorposition = 1;
+        }
+        else if(lastY < y){
+            actorposition = 2;
+        }
+        else if(lastY > y){
+            actorposition = 3;
+        }
+        else {
+            actorposition = 4;
+        }
+        return actorposition;
+    }
+
+    public void addRoadActor(Actor actor, Tile lasttile) {
+        int actorPosition = getRoadActorPosition(lasttile);
+        roadActors[actorPosition - 1] = actor;
+    }
+
+    public void addRoadActorAnywhere(Actor actor){
+        boolean found = false;
+        int i = 0;
+        while (!found && i < 4){
+            if (isFree(i + 1)){
+                roadActors[i] = actor;
+                found = true;
+            }
+            i += 1;
+        }
+    }
+
+    public void step(){
+        roadActors = new Actor[4];
+    }
+
+    public boolean isFree(int actorPosition){
+        return roadActors[actorPosition - 1] == null;
+    }
+
+    public void actorsToFront(){
+        for (Actor actor: roadActors){
+            if(actor != null) {
+                actor.getView().toFront();
+            }
+        }
     }
 }

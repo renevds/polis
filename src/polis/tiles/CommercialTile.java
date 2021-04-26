@@ -1,7 +1,7 @@
 package polis.tiles;
 
 import javafx.scene.image.Image;
-import polis.gameController;
+import polis.GameController;
 
 public class
 CommercialTile extends ZoneTile {
@@ -13,13 +13,13 @@ CommercialTile extends ZoneTile {
             new Image("/polis/tiles/commerce-3.png")
     };
 
-    public CommercialTile(int x, int y, gameController GC) {
+    public CommercialTile(int x, int y, GameController GC) {
         super(x, y, GC);
         width = 2;
         height = 2;
     }
 
-    public void updateImageLink() {
+    public void updateImage() {
         image = images[level - 1];
     }
 }

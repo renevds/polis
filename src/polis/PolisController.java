@@ -10,9 +10,11 @@ import polis.tiles.Tile;
 import prog2.util.Viewport;
 import views.GameGrid;
 
+import java.io.IOException;
+
 
 public class PolisController {
-    private gameController GC;
+    private GameController GC;
 
     public StackPane mainPane;
     public Viewport viewPort;
@@ -34,9 +36,9 @@ public class PolisController {
     }
 
     @FXML
-    void initialize(){
+    void initialize() throws IOException {
         int MAP_SIZE = 32;
-        GC = new gameController(this);
+        GC = new GameController(this);
         gameGrid = new GameGrid(GC, MAP_SIZE);
         viewPort = new Viewport(gameGrid, 0.3);
         mainPane.getChildren().add(viewPort);

@@ -1,13 +1,12 @@
 package polis.Tools;
 
 import javafx.scene.shape.Polygon;
-import polis.gameController;
-import polis.tiles.Tile;
+import polis.GameController;
 
 public abstract class PolygonTool extends Tool{
     protected Polygon polygon;
 
-    public PolygonTool(gameController GC) {
+    public PolygonTool(GameController GC) {
         super(GC);
     }
 
@@ -19,5 +18,12 @@ public abstract class PolygonTool extends Tool{
 
     public void close(){
         hidePolygon();
+    }
+
+    @Override
+    public void toFront() {
+        if(polygon != null) {
+            polygon.toFront();
+        }
     }
 }

@@ -1,10 +1,28 @@
 package polis.tiles;
 
+import actors.Actor;
 import javafx.scene.image.Image;
-import polis.gameController;
+import polis.GameController;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 public class
 ResidentialTile extends ZoneTile {
+    private static double FACTOR_JOB_FOUND;
+    private static double FACTOR_JOB_NOT_FOUND;
+    private static double FACTOR_SHOP_FOUND;
+    private static double FACTOR_SHOP_NOT_FOUND;
+    private static double CAPACITY_INITIAL;
+    private static double CAPACITY_MINIMAL;
+    private static double LEVEL1TO2;
+    private static double LEVEL2TO1;
+    private static double LEVEL2TO3;
+    private static double LEVEL3TO2;
+
+    private double capacity;
+    private int level = 0;
 
     static Image[] images = new Image[]{
             new Image("/polis/tiles/residence-0.png"),
@@ -13,13 +31,100 @@ ResidentialTile extends ZoneTile {
             new Image("/polis/tiles/residence-3.png")
     };
 
-    public ResidentialTile(int x, int y, gameController GC) {
+    public ResidentialTile(int x, int y, GameController GC) {
         super(x, y, GC);
         width = 2;
         height = 2;
+        capacity = CAPACITY_INITIAL;
     }
 
-    public void updateImageLink() {
-        image = images[level - 1];
+    @Override
+    public void step() {
+
     }
+
+    public boolean hasSpaceLeft(){
+        return residents.size() + 1 <= capacity;
+    }
+
+    public void addResident(Actor actor){
+        residents.add(actor);
+        updateImage();
+    }
+
+    public void jobFound(){
+        capacity *= FACTOR_JOB_FOUND;
+        updateImage();
+    }
+
+    public void jobNotFound(){
+        capacity *= FACTOR_JOB_NOT_FOUND;
+        kickOut();
+        updateImage();
+    }
+
+    public void shopFound(){
+        capacity *= FACTOR_SHOP_FOUND;
+        updateImage();
+    }
+
+    public void shopNotFound(){
+        capacity *= FACTOR_SHOP_NOT_FOUND;
+        kickOut();
+        updateImage();
+    }
+
+    public void kickOut(){
+        while (residents.size() > capacity){
+            Actor last = residents.get(residents.size() - 1);
+            residents.remove(last);
+        }
+    }
+
+    public void updateImage() {
+        if(residents.size() != 0 || level != 0){
+            if(level == 0){
+                level = 1;
+                updateImage();
+            }
+            else if(level == 1){
+                if(capacity > LEVEL1TO2){
+                    level = 2;
+                    updateImage();
+                }
+            }
+            else if(level == 2){
+                if(capacity < LEVEL2TO1){
+                    level = 1;
+                }
+                else if(capacity > LEVEL2TO3){
+                    level = 3;
+                }
+            }
+            else  if(level == 3){
+                if(capacity < LEVEL3TO2){
+                    level = 2;
+                    updateImage();
+                }
+            }
+        }
+        image = images[level];
+        fireInvalidationEvent();
+    }
+
+    public static void setProperties(Properties engine, Properties levels){
+        CAPACITY_MINIMAL = Double.parseDouble(engine.getProperty("residential.capacity.minimal"));
+        CAPACITY_INITIAL = Double.parseDouble(engine.getProperty("residential.capacity.initial"));
+
+        LEVEL1TO2 = Double.parseDouble(levels.getProperty("residential.level1to2"));
+        LEVEL2TO1 = Double.parseDouble(levels.getProperty("residential.level2to1"));
+        LEVEL2TO3 = Double.parseDouble(levels.getProperty("residential.level2to3"));
+        LEVEL3TO2 = Double.parseDouble(levels.getProperty("residential.level3to2"));
+        FACTOR_JOB_FOUND = Double.parseDouble(engine.getProperty("factor.job.found"));
+        FACTOR_JOB_NOT_FOUND = Double.parseDouble(engine.getProperty("factor.job.not.found"));
+        FACTOR_SHOP_FOUND = Double.parseDouble(engine.getProperty("factor.shop.found"));
+        FACTOR_SHOP_NOT_FOUND = Double.parseDouble(engine.getProperty("factor.shop.not.found"));
+
+    }
+
 }

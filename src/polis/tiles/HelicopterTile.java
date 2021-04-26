@@ -1,13 +1,13 @@
 package polis.tiles;
 
-import polis.gameController;
+import polis.GameController;
 import views.HelicopterTileView;
 
 public class HelicopterTile extends MultiTile{
 
     private HelicopterTileView helicopterTileView;
 
-    public HelicopterTile(int x, int y, gameController GC) {
+    public HelicopterTile(int x, int y, GameController GC) {
         super(x, y, GC);
         helicopterTileView = new HelicopterTileView(this);
         eventNode = helicopterTileView.getRet();

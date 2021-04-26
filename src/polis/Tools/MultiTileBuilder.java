@@ -1,17 +1,13 @@
 package polis.Tools;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Polygon;
-import polis.gameController;
+import polis.GameController;
 import polis.tiles.*;
 import views.ValidPoly;
-
-import java.util.Arrays;
 
 public class MultiTileBuilder extends MultiPolyTool {
     private String type;
 
-    public MultiTileBuilder(gameController GC, String type) {
+    public MultiTileBuilder(GameController GC, String type) {
         super(GC);
         this.type = type;
 
