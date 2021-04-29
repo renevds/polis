@@ -88,4 +88,6 @@ abstract public class Tile {
         return this;
     }
 
+    public abstract void setViewOrder();
+
 }

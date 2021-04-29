@@ -50,4 +50,9 @@ public class MultiTileFiller extends Tile {
     public Tile getParentTile() {
         return parentZone;
     }
+
+    @Override
+    public void setViewOrder() {
+
+    }
 }

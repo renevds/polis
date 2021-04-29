@@ -23,7 +23,7 @@ public abstract class MultiPolyTool extends Tool {
     }
 
     public Polygon createPolyOnTile(Tile tile){
-        Polygon polygon = new ValidPoly(tile, tile.getClass() == StandardTile.class);
+        Polygon polygon = new ValidPoly(tile, tile.getTileType() == Tile.TileType.STANDARD);
         polygon.toFront();
         return polygon;
     }

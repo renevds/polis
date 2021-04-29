@@ -185,7 +185,6 @@ CommercialTile extends ZoneTile {
 
     @Override
     public boolean acceptsResident(Actor actor) {
-        System.out.println("accepts");
         if(actor.getType() == Actor.ActorType.SHOPPER && canTakeCustomer()){
             Customer customer = new Customer(gameController, actor.getHomeResidential(), this);
             addCustomer(customer);

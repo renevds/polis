@@ -2,66 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b8ffceb-1858-4fe6-bfe2-2c496097eb85" name="Default Changelist" comment="Lots of work">
-      <change afterPath="$PROJECT_DIR$/src/polis/Tools/CommercialTool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/polis/Tools/HelicopterTool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/polis/Tools/ResidentialTool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/DeleteTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/DeleteTool.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiPolyTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiPolyTool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiTileBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/MultiTileBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/PolygonTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/PolygonTool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/RoadTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/RoadTool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/Selector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/Selector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/Tool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/Tool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/TreeTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/TreeTool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/Tools/WaterTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/Tools/WaterTool.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polisController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polisController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/polisController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/polisController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/CommercialTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/CommercialTile.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/HelicopterTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/HelicopterTile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/IndustrialTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/IndustrialTile.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/MultiTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/MultiTile.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/MultiTileFiller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/MultiTileFiller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/ResidentialTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/ResidentialTile.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/StandardTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/StandardTile.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/Street.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/Street.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/Tile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/Tile.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/polis/polis/tiles/ZoneTile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/polis/polis/tiles/ZoneTile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/PolisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/PolisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/DeleteTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/DeleteTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/IndustrialTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/IndustrialTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polis/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/polis/Tools/MultiPolyTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/MultiPolyTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/MultiTileBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/MultiTileBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/PolygonTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/PolygonTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/RoadTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/RoadTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/Selector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/Selector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/Tool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/TreeTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/TreeTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/Tools/WaterTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/Tools/WaterTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/actors/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/actors/Actor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/actors/ActorWithHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/actors/ActorWithHome.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/actors/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/actors/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/polis/actors/Good.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/actors/Good.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/actors/Immigrant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/actors/Immigrant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/actors/Jobseeker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/actors/Jobseeker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/actors/Shopper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/actors/Shopper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/actors/Sleeper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/actors/Sleeper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/actors/Trader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/actors/Trader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/actors/Worker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/actors/Worker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/polis.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/polis.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/polis/tiles/CommercialTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/CommercialTile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/polis/tiles/HelicopterTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/HelicopterTile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/tiles/IndustrialTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/IndustrialTile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/polis/tiles/MultiTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/MultiTile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/polis/tiles/MultiTileFiller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/MultiTileFiller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/tiles/ResidentialTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/ResidentialTile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/polis/tiles/StandardTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/StandardTile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/polis/tiles/Street.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/Street.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/polis/tiles/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/Tile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/polis/tiles/ZoneTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/tiles/ZoneTile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/ui/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/ui/Statistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polis/views/BackgroundTile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/views/BackgroundTile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/polis/views/GameGrid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/views/GameGrid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/polis/views/TreePoly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/views/TreePoly.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/polis/views/TilePoly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/polis/views/TilePoly.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -263,7 +227,7 @@
       <workItem from="1619675538971" duration="13837000" />
       <workItem from="1619693515697" duration="72000" />
       <workItem from="1619710568949" duration="8594000" />
-      <workItem from="1619722270481" duration="8506000" />
+      <workItem from="1619722270481" duration="13037000" />
     </task>
     <task id="LOCAL-00001" summary="Init">
       <created>1613582156022</created>
@@ -454,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619721901857</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Lots of work">
+      <created>1619733238691</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1619733238691</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

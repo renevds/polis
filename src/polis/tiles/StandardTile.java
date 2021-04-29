@@ -33,4 +33,9 @@ public class StandardTile extends Tile {
     public TileType getTileType() {
         return TileType.STANDARD;
     }
+
+    @Override
+    public void setViewOrder() {
+        eventNode.setViewOrder(- x -y - 1);
+    }
 }

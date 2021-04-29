@@ -35,7 +35,6 @@ public abstract class MultiTile extends Tile {
             multiTileFiller.remove();
         }
         gameController.getPC().getGameGrid().getChildren().remove(eventNode);
-        System.out.println("test");
     }
 
     public List<Street> getNeigbouringFreeStreets(){

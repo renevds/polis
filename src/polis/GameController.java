@@ -42,7 +42,7 @@ public class GameController {
 
         setProperties();
 
-        timeline = new Timeline(new KeyFrame(Duration.seconds(0.125), e -> step()));
+        timeline = new Timeline(new KeyFrame(Duration.seconds(0.250), e -> step()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.playFromStart();
         statistics = new Statistics(PC.getStatisticsPane());

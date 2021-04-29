@@ -110,7 +110,8 @@ public class GameGrid extends Pane {
         oldtile.remove();
         tiles.set(coordToIndex(x, y), newTile);
         getBackgroundTileBehindTile(newTile).clear();
-        fixLayers();
+        //fixLayers();
+        newTile.setViewOrder();
     }
 
     public void replaceMultiTile(MultiTile newTile) {
@@ -219,7 +220,8 @@ public class GameGrid extends Pane {
 
         view.setTranslateX(getRenderX(parent.getX(), parent.getY()) + dx);
         view.setTranslateY(getRenderY(parent.getX(), parent.getY()) + dy);
-        fixLayers();
+        //fixLayers();
+        view.setViewOrder(- parent.getX() - parent.getY() - 1.5);
     }
 
     public List<Tile> getNeighbours(Tile tile){

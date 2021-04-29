@@ -171,6 +171,11 @@ public class Street extends Tile implements Observable {
         roadActors = new MovingActor[4];
     }
 
+    @Override
+    public void setViewOrder() {
+        streetTileView.setViewOrder (- x - y - 1.0);
+    }
+
     private boolean isFree(int actorPosition){
         return roadActors[actorPosition - 1] == null;
     }

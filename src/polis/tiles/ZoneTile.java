@@ -121,4 +121,8 @@ public abstract class ZoneTile extends MultiTile implements Observable{
         return capacity;
     }
 
+    @Override
+    public void setViewOrder() {
+        zoneTileView.setViewOrder (- x - y - 2.0);
+    }
 }

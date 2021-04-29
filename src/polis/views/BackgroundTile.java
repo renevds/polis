@@ -35,6 +35,9 @@ public class BackgroundTile extends ImageView {
         }
     };
 
+    private int x;
+    private int y;
+
     private static float[][] noise;
 
     public BackgroundTile(int x, int y, GameGrid gameGrid) {
@@ -63,6 +66,10 @@ public class BackgroundTile extends ImageView {
         gameGrid.addChildrenToGrid(this, x, y, 64, getImage().getHeight() - 64);
         toFront();
         setMouseTransparent(true);
+        this.x = x;
+        this.y = y;
+
+        setViewOrder();
     }
 
     public static void regenNoise(GameGrid gameGrid){
@@ -74,12 +81,14 @@ public class BackgroundTile extends ImageView {
     public void clear() {
         fixTranslateY(grass);
         setImage(grass);
+        setViewOrder();
     }
 
     public void changeDecoration() {
         Image newImage = allImages.get((allImages.indexOf(getImage()) + 1)%allImages.size());
         fixTranslateY(newImage);
         setImage(newImage);
+        setViewOrder();
     }
 
     private void fixTranslateY(Image newImage){
@@ -89,6 +98,16 @@ public class BackgroundTile extends ImageView {
     public void setWater() {
         fixTranslateY(water);
         setImage(water);
+        setViewOrder();
+    }
+
+    public void setViewOrder() {
+        if(getImage() != grass) {
+            setViewOrder(-x - y - 2);
+        }
+        else {
+            setViewOrder(-x - y );
+        }
     }
 
 }

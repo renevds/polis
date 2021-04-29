@@ -63,4 +63,8 @@ public class HelicopterTile extends MultiTile{
         return TileType.HELICOPTER;
     }
 
+    @Override
+    public void setViewOrder() {
+        helicopterTileView.setViewOrder (- x - y - 3.0);
+    }
 }

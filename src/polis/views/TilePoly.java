@@ -19,5 +19,6 @@ public class TilePoly extends Polygon{
                 -CELL_SIZE, 0.5 * CELL_SIZE
         );
         gameGrid.addChildrenToGrid(this, x, y);
+        setViewOrder(-x - y - 10);
     }
 }

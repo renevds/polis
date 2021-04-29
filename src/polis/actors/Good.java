@@ -22,7 +22,7 @@ public class Good extends MovingActor{
     @Override
     protected boolean isTileDest(Tile tile) {
         tile = tile.getParentTile();
-        if(tile.getTileType() == Tile.TileType.COMMERCIAL){
+        if(tile.acceptsResident(this)){
             industrialTile.goodsDelivered();
             remove();
         }
