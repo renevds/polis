@@ -3,9 +3,11 @@ package polis.tiles;
 import polis.GameController;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public abstract class MultiTile extends Tile{
+public abstract class MultiTile extends Tile {
     protected int width;
     protected int height;
 
@@ -37,5 +39,19 @@ public abstract class MultiTile extends Tile{
     @Override
     public void step() {
 
+    }
+
+    public List<Street> getNeigbouringFreeStreets(){
+        List<Street> neighbours = new ArrayList<>();
+        Set<Tile> tilesToCheck = new HashSet<>(gameGrid.getNeighbours(this));
+        for(MultiTileFiller multiTileFiller: childrenTiles){
+            tilesToCheck.addAll(gameGrid.getNeighbours(multiTileFiller));
+        }
+        for(Tile tile: tilesToCheck){
+            if(tile instanceof Street){
+                neighbours.add((Street) tile);
+            }
+        }
+        return neighbours;
     }
 }

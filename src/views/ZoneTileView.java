@@ -5,12 +5,15 @@ import javafx.beans.Observable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import polis.PolisController;
 import polis.tiles.ZoneTile;
 
 public class ZoneTileView extends ImageView implements InvalidationListener {
     private ZoneTile zoneTile;
     private Polygon ret;
+    Text text;
 
     public ZoneTileView(ZoneTile zoneTile) {
         super();
@@ -29,8 +32,6 @@ public class ZoneTileView extends ImageView implements InvalidationListener {
         ret.setStyle("-fx-fill: transparent;");
         zoneTile.getGameGrid().addChildrenToGrid(ret, zoneTile.getX(), zoneTile.getY());
         ret.toFront();
-
-
     }
 
     @Override

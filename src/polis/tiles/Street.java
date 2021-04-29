@@ -1,6 +1,6 @@
 package polis.tiles;
 
-import actors.Actor;
+import polis.actors.Actor;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import polis.GameController;
@@ -109,16 +109,6 @@ public class Street extends Tile implements Observable {
         return orientationNumber;
     }
 
-    public List<Street> getNeigbouringFreeStreets(){
-        List<Street> neighbours = new ArrayList<>();
-        for(Tile tile: gameGrid.getNeighbours(this)){
-            if(tile instanceof Street){
-                neighbours.add((Street) tile);
-            }
-        }
-        return neighbours;
-    }
-
     public int getRoadActorPositionFromList(Actor actor){
         for (int i = 0; i < 4; i++) {
             if(roadActors[i] == actor){
@@ -128,7 +118,7 @@ public class Street extends Tile implements Observable {
         return -1;
     }
 
-    public int getRoadActorPosition(Tile lasttile){
+    private int getRoadActorPosition(Tile lasttile){
         int actorposition;
         int lastX = lasttile.getX();
         int lastY = lasttile.getY();
@@ -164,11 +154,21 @@ public class Street extends Tile implements Observable {
         }
     }
 
+    public List<Street> getNeigbouringFreeStreets(){
+        List<Street> neighbours = new ArrayList<>();
+        for(Tile tile: gameGrid.getNeighbours(this)){
+            if(tile instanceof Street){
+                neighbours.add((Street) tile);
+            }
+        }
+        return neighbours;
+    }
+
     public void step(){
         roadActors = new Actor[4];
     }
 
-    public boolean isFree(int actorPosition){
+    private boolean isFree(int actorPosition){
         return roadActors[actorPosition - 1] == null;
     }
 

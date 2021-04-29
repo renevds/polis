@@ -1,6 +1,6 @@
 package polis;
 
-import actors.Actor;
+import polis.actors.*;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -25,7 +25,7 @@ public class GameController {
     private Set<Actor> actorsToBeRemoved;
     private Set<Actor> actorsToBeAdded;
     //keep the frames for debug
-    static public int frame = 0;
+    private static int frame = 0;
 
 
     public GameController(PolisController PC) throws IOException {
@@ -85,7 +85,7 @@ public class GameController {
         actorsToBeRemoved.add(actor);
     }
 
-    public void step(){
+    private void step(){
         frame+=1;
         region.step();
         for(Tile tile: gameGrid.getTiles()){
@@ -121,8 +121,17 @@ public class GameController {
         return levelsProperties;
     }
 
-    public void setProperties(){
+    private void setProperties(){
         ResidentialTile.setProperties(engineProperties, levelsProperties);
+        IndustrialTile.setProperties(engineProperties, levelsProperties);
+
+        Immigrant.setProperties(engineProperties);
+
+        Jobseeker.setProperties(engineProperties);
+
+        Sleeper.setProperties(engineProperties);
+        Worker.setProperties(engineProperties);
+        Trader.setProperties(engineProperties);
     }
 
 }

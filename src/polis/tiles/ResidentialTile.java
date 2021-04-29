@@ -1,11 +1,9 @@
 package polis.tiles;
 
-import actors.Actor;
+import polis.actors.Actor;
 import javafx.scene.image.Image;
 import polis.GameController;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 public class
@@ -21,10 +19,7 @@ ResidentialTile extends ZoneTile {
     private static double LEVEL2TO3;
     private static double LEVEL3TO2;
 
-    private double capacity;
-    private int level = 0;
-
-    static Image[] images = new Image[]{
+    private static Image[] images = new Image[]{
             new Image("/polis/tiles/residence-0.png"),
             new Image("/polis/tiles/residence-1.png"),
             new Image("/polis/tiles/residence-2.png"),
@@ -38,18 +33,8 @@ ResidentialTile extends ZoneTile {
         capacity = CAPACITY_INITIAL;
     }
 
-    @Override
-    public void step() {
-
-    }
-
-    public boolean hasSpaceLeft(){
-        return residents.size() + 1 <= capacity;
-    }
-
-    public void addResident(Actor actor){
-        residents.add(actor);
-        updateImage();
+    public void floorCapacity(){
+        capacity = Math.max(capacity, CAPACITY_MINIMAL);
     }
 
     public void jobFound(){
@@ -59,6 +44,7 @@ ResidentialTile extends ZoneTile {
 
     public void jobNotFound(){
         capacity *= FACTOR_JOB_NOT_FOUND;
+        floorCapacity();
         kickOut();
         updateImage();
     }
@@ -70,15 +56,9 @@ ResidentialTile extends ZoneTile {
 
     public void shopNotFound(){
         capacity *= FACTOR_SHOP_NOT_FOUND;
+        floorCapacity();
         kickOut();
         updateImage();
-    }
-
-    public void kickOut(){
-        while (residents.size() > capacity){
-            Actor last = residents.get(residents.size() - 1);
-            residents.remove(last);
-        }
     }
 
     public void updateImage() {

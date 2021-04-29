@@ -35,7 +35,7 @@ public abstract class MultiPolyTool extends Tool {
         hoverTiles.clear();
     }
 
-    public void hideCursorPoly(){
+    private void hideCursorPoly(){
         GC.getPC().getGameGrid().getChildren().remove(cursorPoly);
         cursorPoly = null;
     }

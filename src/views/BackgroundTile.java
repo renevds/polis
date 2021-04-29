@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 public class BackgroundTile extends ImageView {
 
-    static Image grass = new Image("polis/tiles/backgrounds/grass.png");
-    static Image forest1 = new Image("polis/tiles/backgrounds/forest1.png");
-    static Image forest2 = new Image("polis/tiles/backgrounds/forest2.png");
-    static Image forest3 = new Image("polis/tiles/backgrounds/forest3.png");
-    static Image transmitter = new Image("polis/tiles/backgrounds/transmitter.png");
-    static Image grass_garbage = new Image("polis/tiles/backgrounds/grass_garbage.png");
-    static Image water = new Image("polis/tiles/backgrounds/water.png");
-    static Image[] forestImages = new Image[]{
+    private static Image grass = new Image("polis/tiles/backgrounds/grass.png");
+    private static Image forest1 = new Image("polis/tiles/backgrounds/forest1.png");
+    private static Image forest2 = new Image("polis/tiles/backgrounds/forest2.png");
+    private static Image forest3 = new Image("polis/tiles/backgrounds/forest3.png");
+    private static Image transmitter = new Image("polis/tiles/backgrounds/transmitter.png");
+    private static Image grass_garbage = new Image("polis/tiles/backgrounds/grass_garbage.png");
+    private static Image water = new Image("polis/tiles/backgrounds/water.png");
+    private static Image[] forestImages = new Image[]{
             forest3,
             forest2,
             forest2,
@@ -24,7 +24,7 @@ public class BackgroundTile extends ImageView {
             grass,
     };
 
-    static ArrayList<Image> allImages = new ArrayList<>() {
+    private static ArrayList<Image> allImages = new ArrayList<>() {
         {
             add(grass);
             add(forest1);
@@ -35,7 +35,7 @@ public class BackgroundTile extends ImageView {
         }
     };
 
-    static float[][] noise;
+    private static float[][] noise;
 
     public BackgroundTile(int x, int y, GameGrid gameGrid) {
         super();

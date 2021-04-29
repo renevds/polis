@@ -1,7 +1,7 @@
 package simulation;
 
-import actors.Actor;
-import actors.Immigrant;
+import polis.actors.Actor;
+import polis.actors.Immigrant;
 import polis.GameController;
 import polis.tiles.Street;
 
@@ -15,7 +15,7 @@ public class Region {
     final private double factor_slow_down;
     final private int immigrant_age;
     private double timer;
-    GameController gameController;
+    private GameController gameController;
 
     public Region(Properties engineProperties, GameController gameController){
         initial_rate = Double.parseDouble(engineProperties.getProperty("region.initial.rate"));
@@ -38,14 +38,14 @@ public class Region {
         }
     }
 
-    public void resetTimer(){
+    private void resetTimer(){
         Random rd = new Random();
         timer = rd.nextDouble()*(tempo - 1);
     }
 
-    public void spawnImmigrant(){
+    private void spawnImmigrant(){
         Street spawnStreet = gameController.getGameGrid().getSpawnStreet();
-        Actor newImmigrant = new Immigrant(immigrant_age, gameController, spawnStreet);
+        Actor newImmigrant = new Immigrant(gameController, spawnStreet);
         spawnStreet.addRoadActorAnywhere(newImmigrant);
 
     }

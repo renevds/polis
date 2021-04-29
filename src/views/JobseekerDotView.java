@@ -4,9 +4,9 @@ import polis.actors.MovingActor;
 import javafx.scene.paint.Color;
 import polis.tiles.Street;
 
-public class ImmigrantDotView extends ActorDotView{
-    public ImmigrantDotView(MovingActor actor, Street tile){
+public class JobseekerDotView extends ActorDotView {
+    public JobseekerDotView(MovingActor actor, Street tile) {
         super(actor, tile);
-        setFill(Color.GRAY);
+        setFill(Color.PERU);
     }
 }

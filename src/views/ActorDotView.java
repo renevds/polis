@@ -1,15 +1,14 @@
 package views;
 
-import actors.Actor;
-import actors.MovingActor;
+import polis.actors.Actor;
+import polis.actors.MovingActor;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.scene.shape.Circle;
 import polis.tiles.Street;
-import polis.tiles.Tile;
 
 public class ActorDotView extends Circle implements InvalidationListener {
-    MovingActor actor;
+    private MovingActor actor;
 
     public ActorDotView(MovingActor actor, Street tile){
         super();
@@ -30,6 +29,6 @@ public class ActorDotView extends Circle implements InvalidationListener {
     @Override
     public void invalidated(Observable observable) {
         actor.getGameController().getGameGrid().removeChildren(this);
-        actor.getGameController().getGameGrid().addActor(this, actor.getCurrentTile());
+        actor.getGameController().getGameGrid().addActor(this, actor.getCurrentStreet());
     }
 }

@@ -17,10 +17,10 @@ public class PolisController {
     private GameController GC;
 
     public StackPane mainPane;
-    public Viewport viewPort;
+    private Viewport viewPort;
     private GameGrid gameGrid;
     public BorderPane borderPane;
-    private Tile lastHoverTile;
+    public Tile lastHoverTile;
 
     public ToggleButton residential_button;
     public ToggleButton industrial_button;
@@ -36,7 +36,7 @@ public class PolisController {
     }
 
     @FXML
-    void initialize() throws IOException {
+    public void initialize() throws IOException {
         int MAP_SIZE = 32;
         GC = new GameController(this);
         gameGrid = new GameGrid(GC, MAP_SIZE);
@@ -62,7 +62,7 @@ public class PolisController {
     }
 
     public void setStage(Stage stage){
-        stage.setOnShown(gameGrid::askForRegen);
+        //stage.setOnShown(gameGrid::askForRegen);
     }
 
     public static int getCELLSIZE(){
@@ -74,47 +74,47 @@ public class PolisController {
     }
 
     @FXML
-    void selectButton(){
+    public void selectButton(){
         GC.setTool(new Selector(GC));
     }
 
     @FXML
-    void roadButton(){
+    public void roadButton(){
         GC.setTool(new RoadTool(GC));
     }
 
     @FXML
-    void deleteButton(){
+    public void deleteButton(){
         GC.setTool(new DeleteTool(GC));
     }
 
     @FXML
-    void buildResidentialButton(){
+    public void buildResidentialButton(){
         GC.setTool(new MultiTileBuilder(GC, "residential"));
     }
 
     @FXML
-    void buildIndustrialButton(){
+    public void buildIndustrialButton(){
         GC.setTool(new MultiTileBuilder(GC, "industrial"));
     }
 
     @FXML
-    void buildCommercialButton(){
+    public void buildCommercialButton(){
         GC.setTool(new MultiTileBuilder(GC, "commercial"));
     }
 
     @FXML
-    void buildHelicopterButton(){
+    public void buildHelicopterButton(){
         GC.setTool(new MultiTileBuilder(GC, "helicopter"));
     }
 
     @FXML
-    void buildTreeButton(){
+    public void buildTreeButton(){
         GC.setTool(new TreeTool(GC));
     }
 
     @FXML
-    void buildWaterButton(){
+    public void buildWaterButton(){
         GC.setTool(new WaterTool(GC));
     }
 

@@ -10,7 +10,7 @@ public class Noise {
     private Random rand_;
 
     /** Amount of roughness */
-    float roughness_;
+    private float roughness_;
 
     /** Plasma fractal grid */
     private float[][] grid;

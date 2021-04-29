@@ -35,7 +35,7 @@ public class MultiTileBuilder extends MultiPolyTool {
         temp.remove();
     }
 
-    public void checkValid(Tile tile) {
+    private void checkValid(Tile tile) {
         MultiTile temp = getTypeInstance(tile);
         valid = true;
         for(int dx = 0; dx< temp.getWidth(); dx++){
@@ -62,7 +62,7 @@ public class MultiTileBuilder extends MultiPolyTool {
         }
     }
 
-    public MultiTile getTypeInstance(Tile tile){
+    private MultiTile getTypeInstance(Tile tile){
         switch (type){
             case "residential":
                 return new ResidentialTile(tile.getX(), tile.getY(), GC);

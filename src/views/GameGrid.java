@@ -86,7 +86,7 @@ public class GameGrid extends Pane {
         }
     }
 
-    public void regenBackgroundTiles() {
+    private void regenBackgroundTiles() {
         BackgroundTile.regenNoise(this);
         for (int x = 1; x <= MAP_SIZE; x++) {
             for (int y = 1; y <= MAP_SIZE; y++) {
@@ -98,7 +98,7 @@ public class GameGrid extends Pane {
         createImmigrantRoad();
     }
 
-    public int coordToIndex(int x, int y) {
+    private int coordToIndex(int x, int y) {
         return (x - 1) * MAP_SIZE + y - 1;
     }
 
@@ -146,7 +146,7 @@ public class GameGrid extends Pane {
     }
 
 
-    public void fixLayers() {
+    private void fixLayers() {
         for (int a = 1; a < MAP_SIZE * 2; a++) {
             int Da = Math.min(a, MAP_SIZE);
             int Dy = Math.max(1, a - MAP_SIZE + 1);
@@ -158,7 +158,7 @@ public class GameGrid extends Pane {
         }
     }
 
-    public void fixCoordLayer(int x, int y) {
+    private void fixCoordLayer(int x, int y) {
         Tile tile = getTileAtCoord(x, y);
         if (!(tile instanceof MultiTileFiller)) {
             getBackgroundTileBehindTile(tile).toFront();
@@ -169,11 +169,11 @@ public class GameGrid extends Pane {
         }
     }
 
-    public double getRenderY(int x, int y) {
+    private double getRenderY(int x, int y) {
         return (double) PolisController.getCELLSIZE() * (y + x) / 2 - PolisController.getCELLSIZE() / 2.0;
     }
 
-    public double getRenderX(int x, int y) {
+    private double getRenderX(int x, int y) {
         return -((double) PolisController.getCELLSIZE() * MAP_SIZE) / 2 + PolisController.getCELLSIZE() * (1 - y + x);
     }
 

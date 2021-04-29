@@ -27,7 +27,7 @@ public class RoadTool extends MultiPolyTool {
         cursorPoly = createPolyOnTile(tile);
     }
 
-    void createPolys(){
+    private void createPolys(){
         hidePolys();
         editTiles.clear();
         int firstTileX = firstTile.getX();

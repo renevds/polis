@@ -20,15 +20,7 @@ public class Selector extends PolygonTool {
 
     @Override
     public void clicked(Tile tile){
-        if(tile instanceof ZoneTile){
-            ((ZoneTile)tile).increaseLevel();
-        }
-        else if(tile instanceof MultiTileFiller){
-            MultiTile parent = ((MultiTileFiller)tile).getParentZone();
-            if(parent instanceof ZoneTile){
-                ((ZoneTile) parent).increaseLevel();
-            }
-        }
+
     }
 
 }

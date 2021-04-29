@@ -9,7 +9,7 @@ import polis.tiles.Street;
 public class StreetTileView extends ImageView implements InvalidationListener {
     private Street street;
 
-    static Image[] images = new Image[]{
+    private static Image[] images = new Image[]{
             new Image("/polis/tiles/road-0.png"),
             new Image("/polis/tiles/road-1.png"),
             new Image("/polis/tiles/road-2.png"),

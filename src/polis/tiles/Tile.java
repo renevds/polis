@@ -1,12 +1,9 @@
 package polis.tiles;
 
-import actors.Actor;
+import polis.actors.Actor;
 import javafx.scene.Node;
 import polis.GameController;
 import views.GameGrid;
-
-import java.util.ArrayList;
-import java.util.List;
 
 abstract public class Tile {
     protected GameController GC;
@@ -40,23 +37,23 @@ abstract public class Tile {
 
     public abstract Boolean removable();
 
-    public void hover(){
+    private void hover(){
         GC.setCurrentHover(this);
     }
 
-    public void clicked(){
+    private void clicked(){
         GC.setClicked(this);
     }
 
-    public void drag(){
+    private void drag(){
         GC.setDrag(this);
     }
 
-    public void release(){
+    private void release(){
         GC.setRelease(this);
     }
 
-    public void startDrag(Node node){
+    private void startDrag(Node node){
         if(GC.getPC().getGameGrid().getChildren().contains(eventNode)){
             node.startFullDrag();
         }

@@ -8,7 +8,7 @@ import polis.tiles.HelicopterTile;
 
 public class HelicopterTileView extends ImageView {
     private Polygon ret;
-    static final Image image = new Image("polis/tiles/airfield.png");
+    private static final Image image = new Image("polis/tiles/airfield.png");
 
     public HelicopterTileView(HelicopterTile helicopterTile){
         setImage(image);

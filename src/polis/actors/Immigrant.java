@@ -1,4 +1,4 @@
-package actors;
+package polis.actors;
 
 import polis.GameController;
 import polis.tiles.MultiTileFiller;
@@ -7,10 +7,13 @@ import polis.tiles.Street;
 import polis.tiles.Tile;
 import views.ImmigrantDotView;
 
-public class Immigrant extends MovingActor {
+import java.util.Properties;
 
-    public Immigrant(int MAX_AGE, GameController gameController, Street tile){
-        super(MAX_AGE, gameController, null, tile);
+public class Immigrant extends polis.actors.MovingActor {
+    private static int IMMIGRANT_AGE;
+
+    public Immigrant(GameController gameController, Street tile){
+        super(IMMIGRANT_AGE, gameController, null, tile);
         this.view = new ImmigrantDotView(this, tile);
     }
 
@@ -30,22 +33,13 @@ public class Immigrant extends MovingActor {
         return false;
     }
 
-    public void step(){
-        boolean foundDestination = false;
-        for (Tile tile: gameController.getGameGrid().getNeighbours(currentTile)){
-            if(isTileDest(tile)){
-                foundDestination = true;
-                break;
-            }
-        }
-        if(!foundDestination) {
-            super.step();
-        }
-    }
-
     @Override
     public void dieEffect() {
         gameController.getRegion().slowDown();
+    }
+
+    public static void setProperties(Properties engineProperties){
+        IMMIGRANT_AGE = Integer.parseInt(engineProperties.getProperty("immigrant.age"));
     }
 
 }

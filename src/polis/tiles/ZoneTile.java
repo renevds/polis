@@ -1,30 +1,31 @@
 package polis.tiles;
 
-import actors.Actor;
+import polis.actors.Actor;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.scene.image.Image;
 import polis.GameController;
 import views.ZoneTileView;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public abstract class ZoneTile extends MultiTile implements Observable{
-    protected static int MAX_LEVEL = 4;
-    protected int level;
+    private static int MAX_LEVEL = 4;
 
     protected Image image;
 
-    protected ZoneTileView zoneTileView;
+    private ZoneTileView zoneTileView;
 
     private InvalidationListener listener;
 
     protected List<Actor> residents = new ArrayList<>();
 
+    protected double capacity;
+
+    protected int level;
+
     public ZoneTile(int x, int y, GameController GC) {
         super(x, y, GC);
-        level = 1;
         updateImage();
         zoneTileView = new ZoneTileView(this);
         addListener(zoneTileView);
@@ -32,14 +33,7 @@ public abstract class ZoneTile extends MultiTile implements Observable{
         createEvents(eventNode);
     }
 
-
-    public void increaseLevel() {
-        level = level % MAX_LEVEL + 1;
-        updateImage();
-        fireInvalidationEvent();
-    }
-
-    public abstract void updateImage();
+    protected abstract void updateImage();
 
     public void remove() {
         super.remove();
@@ -59,6 +53,10 @@ public abstract class ZoneTile extends MultiTile implements Observable{
         return image;
     };
 
+    public boolean hasSpaceLeft(){
+        return residents.size() + 1 <= capacity;
+    }
+
     @Override
     public void addListener(InvalidationListener invalidationListener) {
         listener = invalidationListener;
@@ -75,8 +73,39 @@ public abstract class ZoneTile extends MultiTile implements Observable{
         }
     }
 
+    public void addResident(Actor actor){
+        residents.add(actor);
+        updateImage();
+    }
+
+    public void removeResident(Actor actor){
+        residents.remove(actor);
+    }
+
+    public void replaceResident(Actor oldActor, Actor newActor){
+        residents.set(residents.indexOf(oldActor), newActor);
+    }
+
+    //add check if these streets have a free spot
+    public Street getBorderingStreet(){
+        return getNeigbouringFreeStreets().get(0);
+    }
+
+    protected void kickOut(){
+        while (residents.size() > capacity){
+            Actor last = residents.get(residents.size() - 1);
+            last.remove();
+            residents.remove(last);
+        }
+    }
+
+    public int getAmountOfResidents(){
+        return residents.size();
+    }
+
     @Override
     public void step() {
 
     }
+
 }
