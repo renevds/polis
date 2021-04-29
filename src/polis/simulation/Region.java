@@ -1,6 +1,5 @@
-package simulation;
+package polis.simulation;
 
-import polis.actors.Actor;
 import polis.actors.Immigrant;
 import polis.GameController;
 import polis.tiles.Street;
@@ -45,7 +44,7 @@ public class Region {
 
     private void spawnImmigrant(){
         Street spawnStreet = gameController.getGameGrid().getSpawnStreet();
-        Actor newImmigrant = new Immigrant(gameController, spawnStreet);
+        Immigrant newImmigrant = new Immigrant(gameController, spawnStreet);
         spawnStreet.addRoadActorAnywhere(newImmigrant);
 
     }

@@ -33,7 +33,7 @@ public abstract class MultiTile extends Tile {
         for (MultiTileFiller multiTileFiller : childrenTiles) {
             multiTileFiller.remove();
         }
-        GC.getPC().getGameGrid().getChildren().remove(eventNode);
+        gameController.getPC().getGameGrid().getChildren().remove(eventNode);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package polis.tiles;
 
 import polis.GameController;
-import views.HelicopterTileView;
+import polis.views.HelicopterTileView;
 
 public class HelicopterTile extends MultiTile{
 

@@ -1,4 +1,4 @@
-package views;
+package polis.views;
 
 import polis.tiles.Tile;
 

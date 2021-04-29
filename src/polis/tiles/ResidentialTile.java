@@ -31,10 +31,15 @@ ResidentialTile extends ZoneTile {
         width = 2;
         height = 2;
         capacity = CAPACITY_INITIAL;
+        gameController.getStatistics().registerResidential(this);
     }
 
     public void floorCapacity(){
         capacity = Math.max(capacity, CAPACITY_MINIMAL);
+    }
+
+    public boolean hasResident(Actor actor){
+        return residents.contains(actor);
     }
 
     public void jobFound(){
@@ -105,6 +110,12 @@ ResidentialTile extends ZoneTile {
         FACTOR_SHOP_FOUND = Double.parseDouble(engine.getProperty("factor.shop.found"));
         FACTOR_SHOP_NOT_FOUND = Double.parseDouble(engine.getProperty("factor.shop.not.found"));
 
+    }
+
+    @Override
+    public void remove() {
+        gameController.getStatistics().removeResidential(this);
+        super.remove();
     }
 
 }

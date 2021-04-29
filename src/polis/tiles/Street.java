@@ -4,7 +4,8 @@ import polis.actors.Actor;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import polis.GameController;
-import views.StreetTileView;
+import polis.actors.MovingActor;
+import polis.views.StreetTileView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Street extends Tile implements Observable {
     private StreetTileView streetTileView;
     private InvalidationListener listener;
     private int orientationNumber;
+    MovingActor[] roadActors;
 
     public Street(int x, int y, GameController GC) {
         super(x, y, GC);
@@ -21,6 +23,7 @@ public class Street extends Tile implements Observable {
         addListener(streetTileView);
         eventNode = streetTileView;
         createEvents(streetTileView);
+        roadActors = new MovingActor[4];
     }
 
 
@@ -137,12 +140,12 @@ public class Street extends Tile implements Observable {
         return actorposition;
     }
 
-    public void addRoadActor(Actor actor, Tile lasttile) {
+    public void addRoadActor(MovingActor actor, Tile lasttile) {
         int actorPosition = getRoadActorPosition(lasttile);
         roadActors[actorPosition - 1] = actor;
     }
 
-    public void addRoadActorAnywhere(Actor actor){
+    public void addRoadActorAnywhere(MovingActor actor){
         boolean found = false;
         int i = 0;
         while (!found && i < 4){
@@ -165,7 +168,7 @@ public class Street extends Tile implements Observable {
     }
 
     public void step(){
-        roadActors = new Actor[4];
+        roadActors = new MovingActor[4];
     }
 
     private boolean isFree(int actorPosition){

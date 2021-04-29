@@ -13,10 +13,20 @@ public class Sleeper extends ActorWithHome{
         super(gameController, parentResidential, SLEEPER_AGE);
     }
 
+    public boolean deleteIfNoHome(){
+        if(!gameController.getGameGrid().hasTile(parentResidential)){
+            remove();
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public void dieEffect() {
-        replaceSelfInParentResidential(new Jobseeker(gameController, parentResidential));
-        remove();
+        if(!deleteIfNoHome()) {
+            replaceSelfInParentResidential(new Jobseeker(gameController, parentResidential));
+            remove();
+        }
     }
 
     @Override

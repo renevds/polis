@@ -2,24 +2,20 @@ package polis.actors;
 
 import polis.GameController;
 import polis.tiles.*;
-import views.JobseekerDotView;
+import polis.views.JobseekerDotView;
 
 import java.util.Properties;
 
 public class Jobseeker extends MovingActor {
 
-    private ResidentialTile homeResidential;
     private static int JOBSEEKER_AGE;
 
     protected Jobseeker(GameController gameController, ResidentialTile homeTile) {
         super(JOBSEEKER_AGE, gameController, homeTile);
-        this.homeResidential = homeTile;
-        this.view = new JobseekerDotView(this, currentStreet);
-    }
 
-    @Override
-    public void notDeadStep() {
-        super.notDeadStep();
+        this.view = new JobseekerDotView(this, currentStreet);
+
+        System.out.println("job");
     }
 
     @Override
@@ -29,9 +25,13 @@ public class Jobseeker extends MovingActor {
         }
         if(tile instanceof CommercialTile){
             CommercialTile commercialTile =  (CommercialTile)tile;
-            parentResidential.jobFound();
-            remove();
-            return true;
+            if(commercialTile.canTakeTrader()) {
+                parentResidential.jobFound();
+                Trader trader = new Trader(gameController, parentResidential, commercialTile);
+                replaceSelfInParentResidential(trader);
+                remove();
+                return true;
+            }
 
         }
         else if(tile instanceof IndustrialTile){
@@ -50,11 +50,12 @@ public class Jobseeker extends MovingActor {
 
     @Override
     public void dieEffect() {
-        replaceSelfInParentResidential(new Sleeper(gameController, homeResidential));
-        homeResidential.jobNotFound();
+        replaceSelfInParentResidential(new Sleeper(gameController, parentResidential));
+        parentResidential.jobNotFound();
     }
 
     public static void setProperties(Properties engineProperties){
         JOBSEEKER_AGE = Integer.parseInt(engineProperties.getProperty("jobseeker.age"));
     }
+
 }

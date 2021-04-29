@@ -11,7 +11,7 @@ public abstract class Actor{
 
     Node view;
     protected int age = 0;
-    private int MAX_AGE;
+    protected int MAX_AGE;
 
     public Actor(GameController gameController, int maxAge){
         this.gameController = gameController;

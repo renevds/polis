@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class Worker extends ActorWithHome{
     private static int WORKER_AGE;
-    private IndustrialTile workplace;
+    private final IndustrialTile workplace;
     private static int STEPS_PER_GOOD;
 
     public Worker(GameController gameController, ResidentialTile parentResidential, IndustrialTile workplace) {
@@ -19,7 +19,7 @@ public class Worker extends ActorWithHome{
     @Override
     public void dieEffect() {
         workplace.removeResident(this);
-        replaceSelfInParentResidential(new Sleeper(gameController, parentResidential));
+        replaceSelfInParentResidential(new Shopper(gameController, parentResidential, parentResidential.getBorderingStreet()));
         remove();
     }
 

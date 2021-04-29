@@ -1,4 +1,4 @@
-package views;
+package polis.views;
 
 import javafx.scene.shape.Polygon;
 import polis.PolisController;

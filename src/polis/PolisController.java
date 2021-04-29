@@ -3,12 +3,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import polis.Tools.*;
 import polis.tiles.Tile;
 import prog2.util.Viewport;
-import views.GameGrid;
+import polis.views.GameGrid;
 
 import java.io.IOException;
 
@@ -28,6 +29,8 @@ public class PolisController {
     public ToggleButton road_button;
     public ToggleButton delete_button;
     public ToggleButton select_button;
+
+    public Pane statisticsPane;
 
     private static final int CELL_SIZE= 64;
 
@@ -63,6 +66,10 @@ public class PolisController {
 
     public void setStage(Stage stage){
         //stage.setOnShown(gameGrid::askForRegen);
+    }
+
+    public Pane getStatisticsPane(){
+        return statisticsPane;
     }
 
     public static int getCELLSIZE(){

@@ -1,4 +1,4 @@
-package views;
+package polis.views;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;

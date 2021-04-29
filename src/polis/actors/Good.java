@@ -2,7 +2,7 @@ package polis.actors;
 
 import polis.GameController;
 import polis.tiles.*;
-import views.GoodDotView;
+import polis.views.GoodDotView;
 
 import java.util.Properties;
 
@@ -10,12 +10,12 @@ public class Good extends MovingActor{
 
     IndustrialTile industrialTile;
 
-    private static int MAX_AGE;
+    private static int GOODS_AGE;
 
     protected Good(GameController gameController, IndustrialTile industrialTile) {
-        super(MAX_AGE, gameController, null, industrialTile.getBorderingStreet());
-        System.out.println(currentStreet);
-        this.view = new GoodDotView(this, currentStreet);
+        super(gameController, null, industrialTile.getBorderingStreet(), GOODS_AGE);
+        view = new GoodDotView(this, currentStreet);
+        currentStreet.addRoadActorAnywhere(this);
         this.industrialTile = industrialTile;
     }
 
@@ -30,6 +30,7 @@ public class Good extends MovingActor{
                 commercialTile.addGood();
                 industrialTile.goodsDelivered();
                 remove();
+                return true;
             }
         }
         return false;
@@ -38,10 +39,11 @@ public class Good extends MovingActor{
     @Override
     public void dieEffect() {
         industrialTile.goodsNotDelivered();
+        remove();
     }
 
-    public void setProperties(Properties engineProperties){
-        MAX_AGE = Integer.parseInt(engineProperties.getProperty("goods.age"));
+    public static void setProperties(Properties engineProperties){
+        GOODS_AGE = Integer.parseInt(engineProperties.getProperty("goods.age"));
     }
 
 }

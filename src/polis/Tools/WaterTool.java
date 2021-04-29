@@ -3,7 +3,7 @@ package polis.Tools;
 import polis.GameController;
 import polis.tiles.StandardTile;
 import polis.tiles.Tile;
-import views.TreePoly;
+import polis.views.TreePoly;
 
 public class WaterTool extends PolygonTool {
 

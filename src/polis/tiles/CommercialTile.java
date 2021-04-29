@@ -3,7 +3,9 @@ package polis.tiles;
 import javafx.scene.image.Image;
 import polis.GameController;
 import polis.actors.Actor;
+import polis.actors.Customer;
 import polis.actors.Trader;
+import polis.ui.Statistics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +33,13 @@ CommercialTile extends ZoneTile {
             new Image("/polis/tiles/commerce-3.png")
     };
 
-    public CommercialTile(int x, int y, GameController GC) {
-        super(x, y, GC);
+    public CommercialTile(int x, int y, GameController gameController) {
+        super(x, y, gameController);
         width = 2;
         height = 2;
         traderList = new ArrayList<>();
+        capacity = CAPACITY_INITIAL;
+        gameController.getStatistics().registerCommercial(this);
     }
 
     public void floorCapacity(){
@@ -53,6 +57,10 @@ CommercialTile extends ZoneTile {
         goods += 1;
     }
 
+    public void sellGood(){
+        goods -= 1;
+    }
+
     public void goodTrade(){
         capacity *= FACTOR_GOOD_TRADE;
         updateImage();
@@ -64,16 +72,50 @@ CommercialTile extends ZoneTile {
         updateImage();
     }
 
-    @Override
-    public void addResident(Actor actor) {
-        super.addResident(actor);
+    public boolean canTakeCustomer(){
+        if(residents.size() + 1 <= capacity){
+            System.out.println("goods: " + goods);
+            System.out.println("traders: " + traderList.size());
+            System.out.println("shopers: " + residents.size());
+            if(residents.size() + 1 <= goods && residents.size() + 1 <= traderList.size()){
+                return true;
+            }else {
+                badTrade();
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public boolean canTakeTrader(){
+        if(traderList.size() + 1 <= capacity){
+            return true;
+        }
+        return false;
+    }
+
+    public void addTrader(Trader trader){
+        traderList.add(trader);
+    }
+
+    public void removeTrader(Trader trader){
+        traderList.remove(trader);
+    }
+
+
+    public void addCustomer(Customer customer) {
+        super.addResident(customer);
         if(residents.size() + 1 > capacity){
             goodTrade();
         }
     }
 
+    public void removeCustomer(Customer customer){
+        residents.remove(customer);
+    }
+
     public void updateImage() {
-        if(residents.size() != 0 || level != 0){
+        if(residents.size() != 0 || level != 0 || goods!=0){
             if(level == 0){
                 level = 1;
                 updateImage();
@@ -115,4 +157,21 @@ CommercialTile extends ZoneTile {
         FACTOR_BAD_TRADE = Double.parseDouble(engine.getProperty("factor.bad.trade"));
 
     }
+
+    @Override
+    public void remove() {
+        gameController.getStatistics().removeCommercial(this);
+        super.remove();
+    }
+
+    public int getAmountOfTraders(){
+        return traderList.size();
+    }
+
+    public int getAmountOfGoods(){
+        return goods;
+    }
+
+
+
 }

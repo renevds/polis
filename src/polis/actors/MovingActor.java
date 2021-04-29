@@ -2,6 +2,7 @@ package polis.actors;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
+import javafx.scene.Node;
 import polis.GameController;
 import polis.tiles.ResidentialTile;
 import polis.tiles.Street;
@@ -16,13 +17,13 @@ public abstract class MovingActor extends ActorWithHome implements Observable {
     private Street lastTile;
     private InvalidationListener listener;
 
-    protected MovingActor(int maxAge, GameController gameController, ResidentialTile residentialTile, Street currentStreet) {
+    protected MovingActor(GameController gameController, ResidentialTile residentialTile, Street currentStreet, int maxAge) {
         super(gameController, residentialTile, maxAge);
         this.currentStreet = currentStreet;
     }
 
     protected MovingActor(int maxAge, GameController gameController, ResidentialTile residentialTile) {
-        this(maxAge, gameController, residentialTile, residentialTile.getBorderingStreet());
+        this(gameController, residentialTile, residentialTile.getBorderingStreet(), maxAge);
     }
 
     public void notDeadStep() {
@@ -86,6 +87,11 @@ public abstract class MovingActor extends ActorWithHome implements Observable {
 
     public Street getCurrentStreet(){
         return currentStreet;
+    }
+
+
+    public Node getView(){
+        return view;
     }
 
 }

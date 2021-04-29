@@ -7,8 +7,9 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import polis.tiles.*;
 import polis.Tools.Tool;
-import simulation.Region;
-import views.GameGrid;
+import polis.simulation.Region;
+import polis.ui.Statistics;
+import polis.views.GameGrid;
 
 import java.io.IOException;
 import java.util.*;
@@ -24,8 +25,7 @@ public class GameController {
     private Set<Actor> actors;
     private Set<Actor> actorsToBeRemoved;
     private Set<Actor> actorsToBeAdded;
-    //keep the frames for debug
-    private static int frame = 0;
+    private Statistics statistics;
 
 
     public GameController(PolisController PC) throws IOException {
@@ -44,6 +44,7 @@ public class GameController {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.125), e -> step()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.playFromStart();
+        statistics = new Statistics(PC.getStatisticsPane());
     }
 
     public void setGameGrid(GameGrid gameGrid) {
@@ -86,7 +87,6 @@ public class GameController {
     }
 
     private void step(){
-        frame+=1;
         region.step();
         for(Tile tile: gameGrid.getTiles()){
             tile.step();
@@ -99,6 +99,7 @@ public class GameController {
         actors.removeAll(actorsToBeRemoved);
         actorsToBeRemoved.clear();
         tool.toFront();
+        statistics.calculate();
     }
 
     public void setClicked(Tile tile) {
@@ -124,14 +125,21 @@ public class GameController {
     private void setProperties(){
         ResidentialTile.setProperties(engineProperties, levelsProperties);
         IndustrialTile.setProperties(engineProperties, levelsProperties);
+        CommercialTile.setProperties(engineProperties, levelsProperties);
 
         Immigrant.setProperties(engineProperties);
-
+        Good.setProperties(engineProperties);
         Jobseeker.setProperties(engineProperties);
+        Shopper.setProperties(engineProperties);
 
         Sleeper.setProperties(engineProperties);
         Worker.setProperties(engineProperties);
         Trader.setProperties(engineProperties);
+        Customer.setProperties(engineProperties);
+    }
+
+    public Statistics getStatistics(){
+        return statistics;
     }
 
 }

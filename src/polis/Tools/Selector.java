@@ -1,11 +1,8 @@
 package polis.Tools;
 
-import polis.tiles.MultiTile;
 import polis.tiles.Tile;
 import polis.GameController;
-import polis.tiles.MultiTileFiller;
-import polis.tiles.ZoneTile;
-import views.SelectorPoly;
+import polis.views.SelectorPoly;
 
 public class Selector extends PolygonTool {
     

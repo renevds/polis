@@ -2,7 +2,7 @@ package polis.Tools;
 
 import polis.tiles.Tile;
 import polis.GameController;
-import views.GameGrid;
+import polis.views.GameGrid;
 
 public abstract class Tool {
     protected GameController GC;

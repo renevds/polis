@@ -28,6 +28,7 @@ IndustrialTile extends ZoneTile {
         width = 2;
         height = 2;
         capacity = CAPACITY_INITIAL;
+        gameController.getStatistics().registerIndustrial(this);
     }
 
     public void floorCapacity(){
@@ -46,6 +47,7 @@ IndustrialTile extends ZoneTile {
     }
 
     public void updateImage() {
+        System.out.println("capacity: " + capacity);
         if(residents.size() != 0 || level != 0){
             if(level == 0){
                 level = 1;
@@ -88,4 +90,11 @@ IndustrialTile extends ZoneTile {
         FACTOR_GOODS_NOT_DELIVERED = Double.parseDouble(engine.getProperty("factor.goods.not.delivered"));
 
     }
+
+    @Override
+    public void remove() {
+        gameController.getStatistics().registerIndustrial(this);
+        super.remove();
+    }
+
 }

@@ -5,7 +5,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.scene.image.Image;
 import polis.GameController;
-import views.ZoneTileView;
+import polis.views.ZoneTileView;
 
 import java.util.*;
 
@@ -37,7 +37,7 @@ public abstract class ZoneTile extends MultiTile implements Observable{
 
     public void remove() {
         super.remove();
-        GC.getPC().getGameGrid().getChildren().remove(zoneTileView);
+        gameController.getPC().getGameGrid().getChildren().remove(zoneTileView);
     }
 
     @Override
@@ -83,7 +83,9 @@ public abstract class ZoneTile extends MultiTile implements Observable{
     }
 
     public void replaceResident(Actor oldActor, Actor newActor){
-        residents.set(residents.indexOf(oldActor), newActor);
+        if(residents.contains(oldActor)) {
+            residents.set(residents.indexOf(oldActor), newActor);
+        }
     }
 
     //add check if these streets have a free spot
@@ -106,6 +108,10 @@ public abstract class ZoneTile extends MultiTile implements Observable{
     @Override
     public void step() {
 
+    }
+
+    public double getCapacity(){
+        return capacity;
     }
 
 }

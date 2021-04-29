@@ -2,7 +2,7 @@ package polis.Tools;
 
 import polis.GameController;
 import polis.tiles.*;
-import views.ValidPoly;
+import polis.views.ValidPoly;
 
 public class MultiTileBuilder extends MultiPolyTool {
     private String type;

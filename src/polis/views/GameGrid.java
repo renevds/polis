@@ -1,4 +1,4 @@
-package views;
+package polis.views;
 
 import javafx.event.Event;
 import javafx.scene.Node;
@@ -237,6 +237,10 @@ public class GameGrid extends Pane {
             }
         }
         return neighbours;
+    }
+
+    public boolean hasTile(Tile tile){
+        return tiles.contains(tile);
     }
 
 }

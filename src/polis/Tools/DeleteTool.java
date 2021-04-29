@@ -5,7 +5,7 @@ import polis.tiles.StandardTile;
 import polis.tiles.Street;
 import polis.tiles.Tile;
 import polis.tiles.MultiTileFiller;
-import views.DeletePoly;
+import polis.views.DeletePoly;
 
 public class DeleteTool extends PolygonTool {
 

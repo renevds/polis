@@ -5,7 +5,7 @@ import javafx.scene.shape.Polygon;
 import polis.GameController;
 import polis.tiles.StandardTile;
 import polis.tiles.Tile;
-import views.ValidPoly;
+import polis.views.ValidPoly;
 
 import java.util.ArrayList;
 import java.util.List;

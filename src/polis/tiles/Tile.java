@@ -1,12 +1,11 @@
 package polis.tiles;
 
-import polis.actors.Actor;
 import javafx.scene.Node;
 import polis.GameController;
-import views.GameGrid;
+import polis.views.GameGrid;
 
 abstract public class Tile {
-    protected GameController GC;
+    protected GameController gameController;
     protected int x;
     protected int y;
 
@@ -14,14 +13,13 @@ abstract public class Tile {
 
     protected GameGrid gameGrid;
 
-    Actor[] roadActors;
 
-    public Tile(int x, int y, GameController GC) {
+    public Tile(int x, int y, GameController gameController) {
         this.x = x;
         this.y = y;
-        this.GC = GC;
-        gameGrid = GC.getPC().getGameGrid();
-        roadActors = new Actor[4];
+        this.gameController = gameController;
+        gameGrid = gameController.getPC().getGameGrid();
+
     }
 
 
@@ -38,23 +36,23 @@ abstract public class Tile {
     public abstract Boolean removable();
 
     private void hover(){
-        GC.setCurrentHover(this);
+        gameController.setCurrentHover(this);
     }
 
     private void clicked(){
-        GC.setClicked(this);
+        gameController.setClicked(this);
     }
 
     private void drag(){
-        GC.setDrag(this);
+        gameController.setDrag(this);
     }
 
     private void release(){
-        GC.setRelease(this);
+        gameController.setRelease(this);
     }
 
     private void startDrag(Node node){
-        if(GC.getPC().getGameGrid().getChildren().contains(eventNode)){
+        if(gameController.getPC().getGameGrid().getChildren().contains(eventNode)){
             node.startFullDrag();
         }
     }

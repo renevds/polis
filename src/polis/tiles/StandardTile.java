@@ -1,7 +1,7 @@
 package polis.tiles;
 
 import polis.GameController;
-import views.StandardTileView;
+import polis.views.StandardTileView;
 
 public class StandardTile extends Tile {
 

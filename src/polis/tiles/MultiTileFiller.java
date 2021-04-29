@@ -1,7 +1,7 @@
 package polis.tiles;
 
 import polis.GameController;
-import views.StandardTileView;
+import polis.views.StandardTileView;
 
 public class MultiTileFiller extends Tile {
     private final MultiTile parentZone;
@@ -17,7 +17,7 @@ public class MultiTileFiller extends Tile {
     @Override
     public void remove() {
         gameGrid.removeChildren(eventNode);
-        gameGrid.setTile(new StandardTile(this.x, this.y, GC));
+        gameGrid.setTile(new StandardTile(this.x, this.y, gameController));
     }
 
     @Override
