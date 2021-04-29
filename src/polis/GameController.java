@@ -26,7 +26,8 @@ public class GameController {
     private Set<Actor> actorsToBeRemoved;
     private Set<Actor> actorsToBeAdded;
     private Statistics statistics;
-
+    private Timeline timeline;
+    boolean playing;
 
     public GameController(PolisController PC) throws IOException {
         this.PC = PC;
@@ -41,10 +42,11 @@ public class GameController {
 
         setProperties();
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.125), e -> step()));
+        timeline = new Timeline(new KeyFrame(Duration.seconds(0.125), e -> step()));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.playFromStart();
         statistics = new Statistics(PC.getStatisticsPane());
+        playing = true;
     }
 
     public void setGameGrid(GameGrid gameGrid) {
@@ -114,14 +116,6 @@ public class GameController {
         tool.release(tile);
     }
 
-    public Properties getEngineProperties(){
-        return engineProperties;
-    }
-
-    public Properties getLevelsProperties(){
-        return levelsProperties;
-    }
-
     private void setProperties(){
         ResidentialTile.setProperties(engineProperties, levelsProperties);
         IndustrialTile.setProperties(engineProperties, levelsProperties);
@@ -142,4 +136,13 @@ public class GameController {
         return statistics;
     }
 
+    public void pausePlay(){
+        if(playing){
+           timeline.pause();
+        }
+        else {
+            timeline.play();
+        }
+        playing = !playing;
+    }
 }

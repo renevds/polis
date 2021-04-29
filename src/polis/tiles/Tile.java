@@ -22,6 +22,11 @@ abstract public class Tile {
 
     }
 
+    public enum TileType {
+        COMMERCIAL, INDUSTRIAL, STREET, RESIDENTIAL, HELICOPTER, STANDARD, FILLER;
+    }
+
+    public abstract TileType getTileType();
 
     public int getX(){
         return x;
@@ -72,5 +77,9 @@ abstract public class Tile {
     }
 
     public abstract void step();
+
+    public Tile getParentTile(){
+        return this;
+    }
 
 }

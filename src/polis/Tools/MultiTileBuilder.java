@@ -4,8 +4,10 @@ import polis.GameController;
 import polis.tiles.*;
 import polis.views.ValidPoly;
 
-public class MultiTileBuilder extends MultiPolyTool {
+public abstract class MultiTileBuilder extends MultiPolyTool {
     private String type;
+    int width;
+    int height;
 
     public MultiTileBuilder(GameController GC, String type) {
         super(GC);
@@ -16,10 +18,9 @@ public class MultiTileBuilder extends MultiPolyTool {
 
     @Override
     public void hover(Tile tile) {
-        MultiTile temp = getTypeInstance(tile);
         hidePolys();
-        for(int dx = 0; dx< temp.getWidth(); dx++){
-            for(int dy = 0; dy< temp.getHeight(); dy++){
+        for(int dx = 0; dx< width; dx++){
+            for(int dy = 0; dy< height; dy++){
                 int x = tile.getX() + dx;
                 int y = tile.getY() + dy;
                 if(gameGrid.validCoord(x) && gameGrid.validCoord(y)){
@@ -32,7 +33,6 @@ public class MultiTileBuilder extends MultiPolyTool {
             }
         }
         checkValid(tile);
-        temp.remove();
     }
 
     private void checkValid(Tile tile) {
@@ -62,18 +62,7 @@ public class MultiTileBuilder extends MultiPolyTool {
         }
     }
 
-    private MultiTile getTypeInstance(Tile tile){
-        switch (type){
-            case "residential":
-                return new ResidentialTile(tile.getX(), tile.getY(), GC);
-            case "industrial":
-                return new IndustrialTile(tile.getX(), tile.getY(), GC);
-            case "commercial":
-                return new CommercialTile(tile.getX(), tile.getY(), GC);
-            case "helicopter":
-                return new HelicopterTile(tile.getX(), tile.getY(), GC);
-        }
-        return null;
-    }
+    public abstract MultiTile getTypeInstance(Tile tile);
+
 
 }

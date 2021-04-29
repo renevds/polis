@@ -2,7 +2,7 @@ package polis.actors;
 
 import polis.GameController;
 import polis.tiles.*;
-import polis.simulation.ShopperDotView;
+import polis.views.ShopperDotView;
 
 import java.util.Properties;
 
@@ -28,11 +28,7 @@ public class Shopper extends MovingActor{
                 replaceSelfInParentResidential(customer);
                 parentResidential.shopFound();
                 remove();
-                System.out.println("shopper becomes customer");
                 return true;
-            }
-            else{
-                System.out.println("cant take customer");
             }
         }
         return false;

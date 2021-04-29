@@ -5,6 +5,7 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.scene.image.Image;
 import polis.GameController;
+import polis.actors.Immigrant;
 import polis.views.ZoneTileView;
 
 import java.util.*;
@@ -88,9 +89,15 @@ public abstract class ZoneTile extends MultiTile implements Observable{
         }
     }
 
-    //add check if these streets have a free spot
+
     public Street getBorderingStreet(){
-        return getNeigbouringFreeStreets().get(0);
+        List<Street> streets = getNeigbouringFreeStreets();
+        if(streets.size() > 0) {
+            return streets.get(0);
+        }
+        else {
+            return gameGrid.getSpawnStreet();
+        }
     }
 
     protected void kickOut(){

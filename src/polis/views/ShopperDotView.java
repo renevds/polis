@@ -1,4 +1,4 @@
-package polis.simulation;
+package polis.views;
 
 import javafx.scene.paint.Color;
 import polis.actors.MovingActor;

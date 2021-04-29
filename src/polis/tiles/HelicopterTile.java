@@ -1,11 +1,18 @@
 package polis.tiles;
 
 import polis.GameController;
+import polis.actors.Immigrant;
 import polis.views.HelicopterTileView;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class HelicopterTile extends MultiTile{
 
     private HelicopterTileView helicopterTileView;
+
+    private int counter;
 
     public HelicopterTile(int x, int y, GameController GC) {
         super(x, y, GC);
@@ -14,6 +21,7 @@ public class HelicopterTile extends MultiTile{
         createEvents(eventNode);
         width = 1;
         height = 3;
+        counter = -1;
     }
 
     @Override
@@ -31,4 +39,28 @@ public class HelicopterTile extends MultiTile{
     public void toFront() {
         helicopterTileView.toFront();
     }
+
+    @Override
+    public void step() {
+        if(counter == 0) {
+            List<Street> streets = getNeigbouringFreeStreets();
+            if(streets.size() != 0) {
+                new Immigrant(gameController, streets.get(0));
+            }
+            counter -= 1;
+        }
+        else if(counter < 0){
+            Random random = new Random();
+            counter = 100 + random.nextInt(100);
+        }
+        else {
+            counter -= 1;
+        }
+    }
+
+    @Override
+    public TileType getTileType() {
+        return TileType.HELICOPTER;
+    }
+
 }

@@ -3,10 +3,7 @@ package polis.ui;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.layout.Pane;
-import polis.tiles.CommercialTile;
-import polis.tiles.IndustrialTile;
-import polis.tiles.ResidentialTile;
-import polis.tiles.Tile;
+import polis.tiles.*;
 import polis.views.StatisticsText;
 
 import java.util.HashSet;
@@ -16,7 +13,7 @@ public class Statistics {
     private HashSet<ResidentialTile> residentialTiles;
     private HashSet<IndustrialTile> industrialTiles;
 
-    private Tile selected;
+    private ZoneTile selected;
 
     private Pane statisticsPane;
 
@@ -72,6 +69,10 @@ public class Statistics {
         calculate();
     }
 
+    public void setSelected(ZoneTile tile){
+        selected = tile;
+    }
+
     public void calculate(){
 
         inhabitansNumber = 0;
@@ -86,10 +87,28 @@ public class Statistics {
         customersNumber = 0;
         customersMax = 0;
 
-        if(selected == null){
+        if(selected instanceof CommercialTile){
             for (CommercialTile commercialTile: commercialTiles) {
                 addToJobs(commercialTile);
                 addToGoods(commercialTile);
+                addToCustomers(commercialTile);
+            }
+        }
+        else if(selected instanceof IndustrialTile){
+            for (IndustrialTile industrialTile: industrialTiles) {
+                addToJobs(industrialTile);
+            }
+        }
+        else if(selected instanceof ResidentialTile){
+            for (ResidentialTile residentialTile: residentialTiles) {
+                addToInhabitans(residentialTile);
+            }
+        }
+        else{
+            for (CommercialTile commercialTile: commercialTiles) {
+                addToJobs(commercialTile);
+                addToGoods(commercialTile);
+                addToCustomers(commercialTile);
             }
             for (IndustrialTile industrialTile: industrialTiles) {
                 addToJobs(industrialTile);
@@ -123,12 +142,12 @@ public class Statistics {
 
     private void addToGoods(CommercialTile commercialTile){
         goodsNumber += commercialTile.getAmountOfGoods();
-        goodsMax += commercialTile.getCapacity();
+        goodsMax += commercialTile.getGoodCapacity();
     }
 
     private void addToCustomers(CommercialTile commercialTile){
-        customersNumber += commercialTile.getAmountOfGoods();
-        customersMax += commercialTile.getCapacity();
+        customersNumber += commercialTile.getAmountOfResidents();
+        customersMax += commercialTile.getCustomerCapacity();
     }
 
 

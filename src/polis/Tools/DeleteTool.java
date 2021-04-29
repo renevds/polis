@@ -21,17 +21,14 @@ public class DeleteTool extends PolygonTool {
 
     @Override
     public void clicked(Tile tile) {
+        tile = tile.getParentTile();
         if (tile.removable()) {
-            if (tile instanceof MultiTileFiller) {
-                clicked(((MultiTileFiller)tile).getParentZone());
-            } else {
-                gameGrid.replaceTile(new StandardTile(tile.getX(), tile.getY(), GC));
+            gameGrid.replaceTile(new StandardTile(tile.getX(), tile.getY(), GC));
 
-                if (tile instanceof Street) {
-                    ((Street) tile).calculateOrientationNumber(true);
-                }
-                polygon.toFront();
+            if (tile.getTileType() == Tile.TileType.STREET) {
+                ((Street) tile).calculateOrientationNumber(true);
             }
+            polygon.toFront();
         }
 
     }

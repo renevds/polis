@@ -22,7 +22,6 @@ public class Customer extends ActorWithHome{
         commercialTile.removeCustomer(this);
         replaceSelfInParentResidential(new Sleeper(gameController, parentResidential));
         remove();
-        System.out.println("customer to sleeper");
     }
 
     @Override

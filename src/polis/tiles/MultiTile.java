@@ -29,16 +29,13 @@ public abstract class MultiTile extends Tile {
         return height;
     };
 
+    @Override
     public void remove(){
         for (MultiTileFiller multiTileFiller : childrenTiles) {
             multiTileFiller.remove();
         }
         gameController.getPC().getGameGrid().getChildren().remove(eventNode);
-    }
-
-    @Override
-    public void step() {
-
+        System.out.println("test");
     }
 
     public List<Street> getNeigbouringFreeStreets(){

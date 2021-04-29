@@ -118,4 +118,9 @@ ResidentialTile extends ZoneTile {
         super.remove();
     }
 
+    @Override
+    public TileType getTileType() {
+        return TileType.RESIDENTIAL;
+    }
+
 }

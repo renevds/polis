@@ -47,7 +47,6 @@ IndustrialTile extends ZoneTile {
     }
 
     public void updateImage() {
-        System.out.println("capacity: " + capacity);
         if(residents.size() != 0 || level != 0){
             if(level == 0){
                 level = 1;
@@ -93,8 +92,13 @@ IndustrialTile extends ZoneTile {
 
     @Override
     public void remove() {
-        gameController.getStatistics().registerIndustrial(this);
+        gameController.getStatistics().removeIndustrialTile(this);
         super.remove();
+    }
+
+    @Override
+    public TileType getTileType() {
+        return TileType.INDUSTRIAL;
     }
 
 }

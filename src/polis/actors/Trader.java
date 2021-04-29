@@ -20,6 +20,7 @@ public class Trader extends ActorWithHome{
     @Override
     protected void dieEffect() {
         commercialTile.removeTrader(this);
+        replaceSelfInParentResidential(new Shopper(gameController, parentResidential, parentResidential.getBorderingStreet()));
     }
 
     @Override

@@ -40,4 +40,14 @@ public class MultiTileFiller extends Tile {
     public MultiTile getParentZone() {
         return parentZone;
     }
+
+    @Override
+    public TileType getTileType() {
+        return TileType.FILLER;
+    }
+
+    @Override
+    public Tile getParentTile() {
+        return parentZone;
+    }
 }

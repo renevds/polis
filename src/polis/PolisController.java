@@ -125,6 +125,11 @@ public class PolisController {
         GC.setTool(new WaterTool(GC));
     }
 
+    @FXML
+    public void pausePlay(){
+        GC.pausePlay();
+    }
+
     private void handleKeyPressed(KeyEvent keyEvent) {
         switch (keyEvent.getCode()) {
             case R:

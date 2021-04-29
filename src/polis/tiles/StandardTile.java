@@ -28,4 +28,9 @@ public class StandardTile extends Tile {
     public void step() {
 
     }
+
+    @Override
+    public TileType getTileType() {
+        return TileType.STANDARD;
+    }
 }

@@ -12,10 +12,7 @@ public class Jobseeker extends MovingActor {
 
     protected Jobseeker(GameController gameController, ResidentialTile homeTile) {
         super(JOBSEEKER_AGE, gameController, homeTile);
-
         this.view = new JobseekerDotView(this, currentStreet);
-
-        System.out.println("job");
     }
 
     @Override

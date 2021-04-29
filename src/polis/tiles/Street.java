@@ -182,4 +182,9 @@ public class Street extends Tile implements Observable {
             }
         }
     }
+
+    @Override
+    public TileType getTileType() {
+        return TileType.STREET;
+    }
 }
