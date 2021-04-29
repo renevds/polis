@@ -25,8 +25,8 @@ public abstract class ZoneTile extends MultiTile implements Observable{
 
     protected int level;
 
-    public ZoneTile(int x, int y, GameController GC) {
-        super(x, y, GC);
+    public ZoneTile(int x, int y, GameController gameController) {
+        super(x, y, gameController);
         updateImage();
         zoneTileView = new ZoneTileView(this);
         addListener(zoneTileView);

@@ -3,6 +3,7 @@ package polis.actors;
 import polis.GameController;
 import polis.tiles.CommercialTile;
 import polis.tiles.ResidentialTile;
+import polis.tiles.ZoneTile;
 
 import java.util.Properties;
 
@@ -14,7 +15,6 @@ public class Trader extends ActorWithHome{
     public Trader(GameController gameController, ResidentialTile parentResidential, CommercialTile commercialTile) {
         super(gameController, parentResidential, MAX_AGE);
         this.commercialTile = commercialTile;
-        commercialTile.addTrader(this);
     }
 
     @Override
@@ -29,5 +29,10 @@ public class Trader extends ActorWithHome{
 
     public static void setProperties(Properties engineProperties){
         MAX_AGE = Integer.parseInt(engineProperties.getProperty("trader.age"));
+    }
+
+    @Override
+    public ActorType getType() {
+        return ActorType.TRADER;
     }
 }

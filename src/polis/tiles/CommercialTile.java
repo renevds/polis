@@ -5,7 +5,6 @@ import polis.GameController;
 import polis.actors.Actor;
 import polis.actors.Customer;
 import polis.actors.Trader;
-import polis.ui.Statistics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -122,12 +121,16 @@ CommercialTile extends ZoneTile {
         return getCustomerCapacity() * GOODS_PER_CUSTOMER;
     }
 
+    public boolean canTakeGood(){
+        return goods + 1 < getGoodCapacity();
+    }
+
     public void removeCustomer(Customer customer) {
         residents.remove(customer);
     }
 
     public void updateImage() {
-        if (residents.size() != 0 || level != 0 || goods != 0) {
+        if (residents.size() != 0 || level != 0 || goods != 0 || (traderList != null && traderList.size() != 0)) {
             if (level == 0) {
                 level = 1;
                 updateImage();
@@ -180,5 +183,27 @@ CommercialTile extends ZoneTile {
         return goods;
     }
 
-
+    @Override
+    public boolean acceptsResident(Actor actor) {
+        System.out.println("accepts");
+        if(actor.getType() == Actor.ActorType.SHOPPER && canTakeCustomer()){
+            Customer customer = new Customer(gameController, actor.getHomeResidential(), this);
+            addCustomer(customer);
+            customer.getHomeResidential().replaceResident(actor, customer);
+            updateImage();
+            return true;
+        }
+        else if(actor.getType() == Actor.ActorType.JOBSEEKER && canTakeTrader()){
+            Trader trader = new Trader(gameController, actor.getHomeResidential(), this);
+            addTrader(trader);
+            trader.getHomeResidential().replaceResident(actor, trader);
+            updateImage();
+            return true;
+        }
+        else if(actor.getType() == Actor.ActorType.GOOD && canTakeGood()){
+            addGood();
+            return true;
+        }
+        return false;
+    }
 }

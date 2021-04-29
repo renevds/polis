@@ -21,17 +21,10 @@ public class Good extends MovingActor{
 
     @Override
     protected boolean isTileDest(Tile tile) {
-        if(tile instanceof MultiTileFiller){
-            tile = ((MultiTileFiller) tile).getParentZone();
-        }
-        if(tile instanceof CommercialTile){
-            CommercialTile commercialTile =  (CommercialTile)tile;
-            if(commercialTile.hasSpaceLeftForGood()) {
-                commercialTile.addGood();
-                industrialTile.goodsDelivered();
-                remove();
-                return true;
-            }
+        tile = tile.getParentTile();
+        if(tile.getTileType() == Tile.TileType.COMMERCIAL){
+            industrialTile.goodsDelivered();
+            remove();
         }
         return false;
     }
@@ -44,6 +37,11 @@ public class Good extends MovingActor{
 
     public static void setProperties(Properties engineProperties){
         GOODS_AGE = Integer.parseInt(engineProperties.getProperty("goods.age"));
+    }
+
+    @Override
+    public ActorType getType() {
+        return ActorType.GOOD;
     }
 
 }

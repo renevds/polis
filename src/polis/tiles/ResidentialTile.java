@@ -3,6 +3,7 @@ package polis.tiles;
 import polis.actors.Actor;
 import javafx.scene.image.Image;
 import polis.GameController;
+import polis.actors.Sleeper;
 
 import java.util.Properties;
 
@@ -26,8 +27,8 @@ ResidentialTile extends ZoneTile {
             new Image("/polis/tiles/residence-3.png")
     };
 
-    public ResidentialTile(int x, int y, GameController GC) {
-        super(x, y, GC);
+    public ResidentialTile(int x, int y, GameController gameController) {
+        super(x, y, gameController);
         width = 2;
         height = 2;
         capacity = CAPACITY_INITIAL;
@@ -123,4 +124,13 @@ ResidentialTile extends ZoneTile {
         return TileType.RESIDENTIAL;
     }
 
+    @Override
+    public boolean acceptsResident(Actor actor) {
+        if(actor.getType() == Actor.ActorType.IMMIGRANT && hasSpaceLeft()){
+            Sleeper sleeper = new Sleeper(gameController, this);
+            addResident(sleeper);
+            return true;
+        }
+        return false;
+    }
 }

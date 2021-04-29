@@ -193,7 +193,7 @@
                                         mnemonicParsing="false" prefHeight="44.0" prefWidth="80.0" onAction="#pausePlay">
                                     <graphic>
                                         <ImageView fitHeight="37.0" fitWidth="64.0" pickOnBounds="true"
-                                                   preserveRatio="true">
+                                                   preserveRatio="true" fx:id="pausePlayButtonImage">
                                             <image>
                                                 <Image url="@/polis/buttons/play.png"/>
                                             </image>

@@ -19,14 +19,14 @@ public class GameGrid extends Pane {
     private final int MAP_SIZE;
     private final List<Tile> tiles;
     private final List<BackgroundTile> backgroundTiles;
-    private final GameController GC;
+    private final GameController gameController;
     private Street spawnStreet;
 
-    public GameGrid(GameController GC, int MAP_SIZE) {
+    public GameGrid(GameController gameController, int MAP_SIZE) {
         this.MAP_SIZE = MAP_SIZE;
         tiles = new ArrayList<>();
         backgroundTiles = new ArrayList<>();
-        this.GC = GC;
+        this.gameController = gameController;
 
         InnerShadow innerShadow = new InnerShadow();
         innerShadow.setOffsetX(0);
@@ -39,7 +39,7 @@ public class GameGrid extends Pane {
     public void createTiles() {
         for (int x = 1; x <= MAP_SIZE; x++) {
             for (int y = 1; y <= MAP_SIZE; y++) {
-                Tile temp = new StandardTile(x, y, GC);
+                Tile temp = new StandardTile(x, y, gameController);
                 tiles.add(temp);
             }
         }
@@ -51,7 +51,7 @@ public class GameGrid extends Pane {
 
     public void createImmigrantRoad() {
         for (int i = 1; i <= 16; i++) {
-            Street immigrantRoad = new Street(16, i, GC);
+            Street immigrantRoad = new Street(16, i, gameController);
             replaceTile(immigrantRoad);
             if(i == 1){
                 spawnStreet = immigrantRoad;
@@ -121,7 +121,7 @@ public class GameGrid extends Pane {
                 if (dx == 0 && dy == 0) {
                     replaceTile(newTile);
                 } else {
-                    replaceTile(new MultiTileFiller(x + dx, y + dy, GC, newTile));
+                    replaceTile(new MultiTileFiller(x + dx, y + dy, gameController, newTile));
                 }
             }
         }
@@ -160,11 +160,11 @@ public class GameGrid extends Pane {
 
     private void fixCoordLayer(int x, int y) {
         Tile tile = getTileAtCoord(x, y);
-        if (!(tile instanceof MultiTileFiller)) {
+        if (!(tile.getTileType() == Tile.TileType.FILLER)) {
             getBackgroundTileBehindTile(tile).toFront();
         }
         tile.toFront();
-        if(tile instanceof Street) {
+        if(tile.getTileType() == Tile.TileType.STREET) {
             ((Street) tile).actorsToFront();
         }
     }

@@ -17,13 +17,13 @@ public class RoadTool extends MultiPolyTool {
 
 
 
-    public RoadTool(GameController GC) {
-        super(GC);
+    public RoadTool(GameController gameController) {
+        super(gameController);
     }
 
     @Override
     public void hover(Tile tile) {
-        GC.getPC().getGameGrid().getChildren().remove(cursorPoly);
+        gameController.getPC().getGameGrid().getChildren().remove(cursorPoly);
         cursorPoly = createPolyOnTile(tile);
     }
 
@@ -59,7 +59,7 @@ public class RoadTool extends MultiPolyTool {
 
     @Override
     public void drag(Tile tile) {
-        GC.getPC().getGameGrid().getChildren().remove(cursorPoly);
+        gameController.getPC().getGameGrid().getChildren().remove(cursorPoly);
         if(firstTile == null){
             firstTile = tile;
             lastTile = tile;
@@ -76,8 +76,8 @@ public class RoadTool extends MultiPolyTool {
         firstTile = null;
         lastTile = null;
         for(Tile editTile: editTiles){
-            if(editTile instanceof StandardTile) {
-                Street newStreet = new Street(editTile.getX(), editTile.getY(), GC);
+            if(editTile.getTileType() == Tile.TileType.STANDARD) {
+                Street newStreet = new Street(editTile.getX(), editTile.getY(), gameController);
                 gameGrid.replaceTile(newStreet);
                 newStreet.calculateOrientationNumber(true);
             }

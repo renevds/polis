@@ -87,32 +87,32 @@ public class Statistics {
         customersNumber = 0;
         customersMax = 0;
 
-        if(selected instanceof CommercialTile){
+        if(selected == null){
             for (CommercialTile commercialTile: commercialTiles) {
                 addToJobs(commercialTile);
                 addToGoods(commercialTile);
                 addToCustomers(commercialTile);
             }
-        }
-        else if(selected instanceof IndustrialTile){
             for (IndustrialTile industrialTile: industrialTiles) {
                 addToJobs(industrialTile);
             }
-        }
-        else if(selected instanceof ResidentialTile){
             for (ResidentialTile residentialTile: residentialTiles) {
                 addToInhabitans(residentialTile);
             }
         }
-        else{
+        else if(selected.getTileType() == Tile.TileType.COMMERCIAL){
             for (CommercialTile commercialTile: commercialTiles) {
                 addToJobs(commercialTile);
                 addToGoods(commercialTile);
                 addToCustomers(commercialTile);
             }
+        }
+        else if(selected.getTileType() == Tile.TileType.INDUSTRIAL){
             for (IndustrialTile industrialTile: industrialTiles) {
                 addToJobs(industrialTile);
             }
+        }
+        else if(selected.getTileType() == Tile.TileType.RESIDENTIAL){
             for (ResidentialTile residentialTile: residentialTiles) {
                 addToInhabitans(residentialTile);
             }

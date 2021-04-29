@@ -13,8 +13,8 @@ public abstract class MultiTile extends Tile {
 
     private List<MultiTileFiller> childrenTiles = new ArrayList<>();
 
-    public MultiTile(int x, int y, GameController GC) {
-        super(x, y, GC);
+    public MultiTile(int x, int y, GameController gameController) {
+        super(x, y, gameController);
     }
 
     public void addFillerTile(MultiTileFiller multiTileFiller) {
@@ -45,7 +45,7 @@ public abstract class MultiTile extends Tile {
             tilesToCheck.addAll(gameGrid.getNeighbours(multiTileFiller));
         }
         for(Tile tile: tilesToCheck){
-            if(tile instanceof Street){
+            if(tile.getTileType() == TileType.STREET){
                 neighbours.add((Street) tile);
             }
         }

@@ -14,8 +14,8 @@ public class HelicopterTile extends MultiTile{
 
     private int counter;
 
-    public HelicopterTile(int x, int y, GameController GC) {
-        super(x, y, GC);
+    public HelicopterTile(int x, int y, GameController gameController) {
+        super(x, y, gameController);
         helicopterTileView = new HelicopterTileView(this);
         eventNode = helicopterTileView.getRet();
         createEvents(eventNode);

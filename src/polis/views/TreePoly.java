@@ -5,6 +5,6 @@ import polis.tiles.Tile;
 
 public class TreePoly extends ValidPoly{
     public TreePoly(Tile tile) {
-        super(tile, (tile instanceof StandardTile));
+        super(tile, (tile.getTileType() == Tile.TileType.STANDARD));
     }
 }

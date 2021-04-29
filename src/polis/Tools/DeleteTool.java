@@ -9,8 +9,8 @@ import polis.views.DeletePoly;
 
 public class DeleteTool extends PolygonTool {
 
-    public DeleteTool(GameController GC) {
-        super(GC);
+    public DeleteTool(GameController gameController) {
+        super(gameController);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class DeleteTool extends PolygonTool {
     public void clicked(Tile tile) {
         tile = tile.getParentTile();
         if (tile.removable()) {
-            gameGrid.replaceTile(new StandardTile(tile.getX(), tile.getY(), GC));
+            gameGrid.replaceTile(new StandardTile(tile.getX(), tile.getY(), gameController));
 
             if (tile.getTileType() == Tile.TileType.STREET) {
                 ((Street) tile).calculateOrientationNumber(true);

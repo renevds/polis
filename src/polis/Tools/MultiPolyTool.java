@@ -18,8 +18,8 @@ public abstract class MultiPolyTool extends Tool {
 
     protected Polygon cursorPoly;
 
-    public MultiPolyTool(GameController GC) {
-        super(GC);
+    public MultiPolyTool(GameController gameController) {
+        super(gameController);
     }
 
     public Polygon createPolyOnTile(Tile tile){
@@ -30,13 +30,13 @@ public abstract class MultiPolyTool extends Tool {
 
     public void hidePolys(){
         for(Polygon polygon: hoverTiles){
-            GC.getPC().getGameGrid().getChildren().remove(polygon);
+            gameController.getPC().getGameGrid().getChildren().remove(polygon);
         }
         hoverTiles.clear();
     }
 
     private void hideCursorPoly(){
-        GC.getPC().getGameGrid().getChildren().remove(cursorPoly);
+        gameController.getPC().getGameGrid().getChildren().remove(cursorPoly);
         cursorPoly = null;
     }
 

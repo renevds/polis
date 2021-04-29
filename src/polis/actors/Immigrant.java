@@ -1,8 +1,6 @@
 package polis.actors;
 
 import polis.GameController;
-import polis.tiles.MultiTileFiller;
-import polis.tiles.ResidentialTile;
 import polis.tiles.Street;
 import polis.tiles.Tile;
 import polis.views.ImmigrantDotView;
@@ -18,14 +16,9 @@ public class Immigrant extends polis.actors.MovingActor {
     }
 
     public boolean isTileDest(Tile tile){
-        if(tile instanceof MultiTileFiller){
-            tile = ((MultiTileFiller) tile).getParentZone();
-        }
-        if(tile instanceof ResidentialTile){
-            ResidentialTile residentialTile =  (ResidentialTile)tile;
-            if(residentialTile.hasSpaceLeft()) {
-                Sleeper sleeper = new Sleeper(gameController, residentialTile);
-                residentialTile.addResident(sleeper);
+        tile = tile.getParentTile();
+        if(tile.getTileType() == Tile.TileType.RESIDENTIAL ){
+            if(tile.acceptsResident(this)) {
                 remove();
                 return true;
             }
@@ -42,4 +35,8 @@ public class Immigrant extends polis.actors.MovingActor {
         IMMIGRANT_AGE = Integer.parseInt(engineProperties.getProperty("immigrant.age"));
     }
 
+    @Override
+    public ActorType getType() {
+        return ActorType.IMMIGRANT;
+    }
 }

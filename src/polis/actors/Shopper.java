@@ -10,22 +10,15 @@ public class Shopper extends MovingActor{
 
     private static int SHOPPER_AGE;
 
-    protected Shopper(GameController gameController, ResidentialTile residentialTile, Street currentStreet) {
-        super(gameController, residentialTile, currentStreet, SHOPPER_AGE);
+    protected Shopper(GameController gameController, ResidentialTile parentResidential, Street currentStreet) {
+        super(gameController, parentResidential, currentStreet, SHOPPER_AGE);
         view = new ShopperDotView(this, currentStreet);
     }
 
     @Override
     protected boolean isTileDest(Tile tile) {
-        if(tile instanceof MultiTileFiller){
-            tile = ((MultiTileFiller) tile).getParentZone();
-        }
-        if(tile instanceof CommercialTile){
-            CommercialTile commercialTile =  (CommercialTile)tile;
-            if(commercialTile.canTakeCustomer()) {
-                Customer customer = new Customer(gameController, parentResidential, commercialTile);
-                commercialTile.addCustomer(customer);
-                replaceSelfInParentResidential(customer);
+        if(tile.getTileType() == Tile.TileType.COMMERCIAL){
+            if(tile.acceptsResident(this)) {
                 parentResidential.shopFound();
                 remove();
                 return true;
@@ -42,5 +35,10 @@ public class Shopper extends MovingActor{
 
     public static void setProperties(Properties properties){
         SHOPPER_AGE = Integer.parseInt(properties.getProperty("shopper.age"));
+    }
+
+    @Override
+    public ActorType getType() {
+        return ActorType.SHOPPER;
     }
 }

@@ -17,8 +17,8 @@ public class Street extends Tile implements Observable {
     private int orientationNumber;
     MovingActor[] roadActors;
 
-    public Street(int x, int y, GameController GC) {
-        super(x, y, GC);
+    public Street(int x, int y, GameController gameController) {
+        super(x, y, gameController);
         streetTileView = new StreetTileView(this);
         addListener(streetTileView);
         eventNode = streetTileView;
@@ -49,7 +49,7 @@ public class Street extends Tile implements Observable {
         orientationNumber = 0;
         if (gameGrid.validCoord(y - 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x, y - 1);
-            if (neighbourTile instanceof polis.tiles.Street) {
+            if (neighbourTile.getTileType() == TileType.STREET) {
                 orientationNumber += 1;
                 if (starter) {
                     ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
@@ -62,7 +62,7 @@ public class Street extends Tile implements Observable {
 
         if (gameGrid.validCoord(y + 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x, y + 1);
-            if (neighbourTile instanceof polis.tiles.Street) {
+            if (neighbourTile.getTileType() == TileType.STREET) {
                 orientationNumber += 4;
                 if (starter) {
                     ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
@@ -72,7 +72,7 @@ public class Street extends Tile implements Observable {
 
         if (gameGrid.validCoord(x - 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x - 1, y);
-            if (neighbourTile instanceof polis.tiles.Street) {
+            if (neighbourTile.getTileType() == TileType.STREET) {
                 orientationNumber += 8;
                 if (starter) {
                     ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
@@ -82,7 +82,7 @@ public class Street extends Tile implements Observable {
 
         if (gameGrid.validCoord(x + 1)) {
             Tile neighbourTile = gameGrid.getTileAtCoord(x + 1, y);
-            if (neighbourTile instanceof polis.tiles.Street) {
+            if (neighbourTile.getTileType() == TileType.STREET) {
                 orientationNumber += 2;
                 if (starter) {
                     ((polis.tiles.Street) neighbourTile).calculateOrientationNumber(false);
@@ -160,7 +160,7 @@ public class Street extends Tile implements Observable {
     public List<Street> getNeigbouringFreeStreets(){
         List<Street> neighbours = new ArrayList<>();
         for(Tile tile: gameGrid.getNeighbours(this)){
-            if(tile instanceof Street){
+            if(tile.getTileType() == TileType.STREET){
                 neighbours.add((Street) tile);
             }
         }

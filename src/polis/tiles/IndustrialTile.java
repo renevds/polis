@@ -2,6 +2,8 @@ package polis.tiles;
 
 import javafx.scene.image.Image;
 import polis.GameController;
+import polis.actors.Actor;
+import polis.actors.Worker;
 
 import java.util.Properties;
 
@@ -23,8 +25,8 @@ IndustrialTile extends ZoneTile {
             new Image("/polis/tiles/industry-3.png")
     };
 
-    public IndustrialTile(int x, int y, GameController GC) {
-        super(x, y, GC);
+    public IndustrialTile(int x, int y, GameController gameController) {
+        super(x, y, gameController);
         width = 2;
         height = 2;
         capacity = CAPACITY_INITIAL;
@@ -101,4 +103,14 @@ IndustrialTile extends ZoneTile {
         return TileType.INDUSTRIAL;
     }
 
+    @Override
+    public boolean acceptsResident(Actor actor) {
+        if(actor.getType() == Actor.ActorType.JOBSEEKER && hasSpaceLeft()) {
+            Worker worker = new Worker(gameController, actor.getHomeResidential(), this);
+            addResident(worker);
+            actor.getHomeResidential().replaceResident(actor, worker);
+            return true;
+        }
+        return false;
+    }
 }

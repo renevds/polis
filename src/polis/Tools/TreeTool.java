@@ -6,8 +6,8 @@ import polis.tiles.Tile;
 import polis.views.TreePoly;
 
 public class TreeTool extends PolygonTool{
-    public TreeTool(GameController GC) {
-        super(GC);
+    public TreeTool(GameController gameController) {
+        super(gameController);
     }
     @Override
     public void hover(Tile tile) {
@@ -17,7 +17,7 @@ public class TreeTool extends PolygonTool{
 
     @Override
     public void clicked(Tile tile) {
-        if(tile instanceof StandardTile){
+        if(tile.getTileType() == Tile.TileType.STANDARD){
             gameGrid.getBackgroundTileBehindTile(tile).changeDecoration();
         }
     }

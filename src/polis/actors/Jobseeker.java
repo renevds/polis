@@ -10,37 +10,18 @@ public class Jobseeker extends MovingActor {
 
     private static int JOBSEEKER_AGE;
 
-    protected Jobseeker(GameController gameController, ResidentialTile homeTile) {
-        super(JOBSEEKER_AGE, gameController, homeTile);
-        this.view = new JobseekerDotView(this, currentStreet);
+    protected Jobseeker(GameController gameController, ResidentialTile parentResidential) {
+        super(JOBSEEKER_AGE, gameController, parentResidential);
+        view = new JobseekerDotView(this, currentStreet);
     }
 
     @Override
     protected boolean isTileDest(Tile tile) {
-        if(tile instanceof MultiTileFiller){
-            tile = ((MultiTileFiller) tile).getParentZone();
-        }
-        if(tile instanceof CommercialTile){
-            CommercialTile commercialTile =  (CommercialTile)tile;
-            if(commercialTile.canTakeTrader()) {
-                parentResidential.jobFound();
-                Trader trader = new Trader(gameController, parentResidential, commercialTile);
-                replaceSelfInParentResidential(trader);
-                remove();
-                return true;
-            }
-
-        }
-        else if(tile instanceof IndustrialTile){
-            IndustrialTile industrialTile =  (IndustrialTile)tile;
-            if(industrialTile.hasSpaceLeft()) {
-                Worker worker = new Worker(gameController, parentResidential, industrialTile);
-                replaceSelfInParentResidential(worker);
-                industrialTile.addResident(worker);
-                parentResidential.jobFound();
-                remove();
-                return true;
-            }
+        tile = tile.getParentTile();
+        if(tile.acceptsResident(this)){
+            parentResidential.jobFound();
+            remove();
+            return true;
         }
         return false;
     }
@@ -53,6 +34,11 @@ public class Jobseeker extends MovingActor {
 
     public static void setProperties(Properties engineProperties){
         JOBSEEKER_AGE = Integer.parseInt(engineProperties.getProperty("jobseeker.age"));
+    }
+
+    @Override
+    public ActorType getType() {
+        return ActorType.JOBSEEKER;
     }
 
 }

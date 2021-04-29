@@ -6,8 +6,8 @@ import polis.views.StandardTileView;
 public class StandardTile extends Tile {
 
 
-    public StandardTile(int x, int y, GameController GC) {
-        super(x, y, GC);
+    public StandardTile(int x, int y, GameController gameController) {
+        super(x, y, gameController);
         eventNode = new StandardTileView(this);
         createEvents(eventNode);
     }

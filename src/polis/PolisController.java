@@ -1,6 +1,9 @@
 package polis;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -15,13 +18,12 @@ import java.io.IOException;
 
 
 public class PolisController {
-    private GameController GC;
+    private GameController gameController;
 
     public StackPane mainPane;
     private Viewport viewPort;
     private GameGrid gameGrid;
     public BorderPane borderPane;
-    public Tile lastHoverTile;
 
     public ToggleButton residential_button;
     public ToggleButton industrial_button;
@@ -29,11 +31,14 @@ public class PolisController {
     public ToggleButton road_button;
     public ToggleButton delete_button;
     public ToggleButton select_button;
+    public ImageView pausePlayButtonImage;
 
     public Pane statisticsPane;
 
     private static final int CELL_SIZE= 64;
 
+    Image play;
+    Image pause;
 
     public PolisController(){
     }
@@ -41,8 +46,8 @@ public class PolisController {
     @FXML
     public void initialize() throws IOException {
         int MAP_SIZE = 32;
-        GC = new GameController(this);
-        gameGrid = new GameGrid(GC, MAP_SIZE);
+        gameController = new GameController(this);
+        gameGrid = new GameGrid(gameController, MAP_SIZE);
         viewPort = new Viewport(gameGrid, 0.3);
         mainPane.getChildren().add(viewPort);
         mainPane.setOnKeyPressed(this::handleKeyPressed);
@@ -60,8 +65,12 @@ public class PolisController {
         gameGrid.drawBackgroundTiles();
         gameGrid.createImmigrantRoad();
 
-        GC.setGameGrid(gameGrid);
-        GC.setTool(new Selector(GC));
+        gameController.setGameGrid(gameGrid);
+        gameController.setTool(new Selector(gameController));
+
+        play = new Image("polis/buttons/play.png");
+        pause = new Image("polis/buttons/pause.png");
+        pausePlayButtonImage.setImage(pause);
     }
 
     public void setStage(Stage stage){
@@ -82,52 +91,58 @@ public class PolisController {
 
     @FXML
     public void selectButton(){
-        GC.setTool(new Selector(GC));
+        gameController.setTool(new Selector(gameController));
     }
 
     @FXML
     public void roadButton(){
-        GC.setTool(new RoadTool(GC));
+        gameController.setTool(new RoadTool(gameController));
     }
 
     @FXML
     public void deleteButton(){
-        GC.setTool(new DeleteTool(GC));
+        gameController.setTool(new DeleteTool(gameController));
     }
 
     @FXML
     public void buildResidentialButton(){
-        GC.setTool(new MultiTileBuilder(GC, "residential"));
+        gameController.setTool(new ResidentialTool(gameController));
     }
 
     @FXML
     public void buildIndustrialButton(){
-        GC.setTool(new MultiTileBuilder(GC, "industrial"));
+        gameController.setTool(new IndustrialTool(gameController));
     }
 
     @FXML
     public void buildCommercialButton(){
-        GC.setTool(new MultiTileBuilder(GC, "commercial"));
+        gameController.setTool(new CommercialTool(gameController));
     }
 
     @FXML
     public void buildHelicopterButton(){
-        GC.setTool(new MultiTileBuilder(GC, "helicopter"));
+        gameController.setTool(new HelicopterTool(gameController));
     }
 
     @FXML
     public void buildTreeButton(){
-        GC.setTool(new TreeTool(GC));
+        gameController.setTool(new TreeTool(gameController));
     }
 
     @FXML
     public void buildWaterButton(){
-        GC.setTool(new WaterTool(GC));
+        gameController.setTool(new WaterTool(gameController));
     }
 
     @FXML
     public void pausePlay(){
-        GC.pausePlay();
+        if(pausePlayButtonImage.getImage() == play){
+            pausePlayButtonImage.setImage(pause);
+        }
+        else {
+            pausePlayButtonImage.setImage(play);
+        }
+        gameController.pausePlay();
     }
 
     private void handleKeyPressed(KeyEvent keyEvent) {

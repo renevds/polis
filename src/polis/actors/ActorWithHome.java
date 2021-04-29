@@ -3,6 +3,7 @@ package polis.actors;
 import polis.GameController;
 import polis.tiles.ResidentialTile;
 import polis.tiles.Tile;
+import polis.tiles.ZoneTile;
 
 public abstract class ActorWithHome extends Actor{
 
@@ -13,11 +14,16 @@ public abstract class ActorWithHome extends Actor{
         this.parentResidential = parentResidential;
     }
 
-    public Tile getParentResidential(){
+    public ResidentialTile getParentZone(){
         return parentResidential;
     }
 
     public void replaceSelfInParentResidential(Actor actor){
         parentResidential.replaceResident(this, actor);
     };
+
+    @Override
+    public ResidentialTile getHomeResidential() {
+        return parentResidential;
+    }
 }

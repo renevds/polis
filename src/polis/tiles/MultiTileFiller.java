@@ -6,8 +6,8 @@ import polis.views.StandardTileView;
 public class MultiTileFiller extends Tile {
     private final MultiTile parentZone;
 
-    public MultiTileFiller(int x, int y, GameController GC, MultiTile parentZone) {
-        super(x, y, GC);
+    public MultiTileFiller(int x, int y, GameController gameController, MultiTile parentZone) {
+        super(x, y, gameController);
         this.parentZone = parentZone;
         parentZone.addFillerTile(this);
         eventNode = new StandardTileView(this);

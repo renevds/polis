@@ -8,8 +8,8 @@ import polis.views.SelectorPoly;
 
 public class Selector extends PolygonTool {
     
-    public Selector(GameController GC){
-        super(GC);
+    public Selector(GameController gameController){
+        super(gameController);
     }
 
     public void hover(Tile tile) {
@@ -19,14 +19,12 @@ public class Selector extends PolygonTool {
 
     @Override
     public void clicked(Tile tile){
-        if(tile instanceof MultiTileFiller){
-            tile = ((MultiTileFiller) tile).getParentZone();
-        }
-        if(tile instanceof ZoneTile) {
-            GC.getStatistics().setSelected((ZoneTile) tile);
+        tile = tile.getParentTile();
+        if(tile.getTileType() == Tile.TileType.COMMERCIAL || tile.getTileType() == Tile.TileType.RESIDENTIAL  || tile.getTileType() == Tile.TileType.INDUSTRIAL) {
+            gameController.getStatistics().setSelected((ZoneTile) tile);
         }
         else {
-            GC.getStatistics().setSelected(null);
+            gameController.getStatistics().setSelected(null);
         }
     }
 

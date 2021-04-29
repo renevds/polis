@@ -5,14 +5,14 @@ import polis.tiles.*;
 import polis.views.ValidPoly;
 
 public abstract class MultiTileBuilder extends MultiPolyTool {
-    private String type;
+
     int width;
     int height;
 
-    public MultiTileBuilder(GameController GC, String type) {
-        super(GC);
-        this.type = type;
-
+    public MultiTileBuilder(GameController gameController, int width, int height) {
+        super(gameController);
+        this.width = width;
+        this.height = height;
     }
 
 
@@ -36,22 +36,20 @@ public abstract class MultiTileBuilder extends MultiPolyTool {
     }
 
     private void checkValid(Tile tile) {
-        MultiTile temp = getTypeInstance(tile);
         valid = true;
-        for(int dx = 0; dx< temp.getWidth(); dx++){
-            for(int dy = 0; dy< temp.getHeight(); dy++){
+        for(int dx = 0; dx< width; dx++){
+            for(int dy = 0; dy< height; dy++){
                 int x = tile.getX() + dx;
                 int y = tile.getY() + dy;
                 if(gameGrid.validCoord(x) && gameGrid.validCoord(y)){
                     Tile newTile = gameGrid.getTileAtCoord(x, y);
-                    valid &= newTile instanceof StandardTile;
+                    valid &= newTile.getTileType() == Tile.TileType.STANDARD;
                 }
                 else {
                     valid = false;
                 }
             }
         }
-        temp.remove();
     }
 
     @Override

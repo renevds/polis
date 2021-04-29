@@ -2,6 +2,7 @@ package polis.actors;
 
 import polis.GameController;
 import polis.tiles.ResidentialTile;
+import polis.tiles.ZoneTile;
 
 import java.util.Properties;
 
@@ -38,4 +39,8 @@ public class Sleeper extends ActorWithHome{
         SLEEPER_AGE = Integer.parseInt(engineProperties.getProperty("sleeper.age"));
     }
 
+    @Override
+    public ActorType getType() {
+        return ActorType.SLEEPER;
+    }
 }

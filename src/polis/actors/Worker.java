@@ -34,4 +34,9 @@ public class Worker extends ActorWithHome{
         WORKER_AGE = Integer.parseInt(engineProperties.getProperty("worker.age"));
         STEPS_PER_GOOD = Integer.parseInt(engineProperties.getProperty("steps.per.goods"));
     }
+
+    @Override
+    public ActorType getType() {
+        return ActorType.WORKER;
+    }
 }

@@ -2,6 +2,7 @@ package polis.tiles;
 
 import javafx.scene.Node;
 import polis.GameController;
+import polis.actors.Actor;
 import polis.views.GameGrid;
 
 abstract public class Tile {
@@ -77,6 +78,11 @@ abstract public class Tile {
     }
 
     public abstract void step();
+
+
+    public boolean acceptsResident(Actor actor){
+        return false;
+    };
 
     public Tile getParentTile(){
         return this;

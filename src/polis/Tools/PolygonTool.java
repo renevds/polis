@@ -6,8 +6,8 @@ import polis.GameController;
 public abstract class PolygonTool extends Tool{
     protected Polygon polygon;
 
-    public PolygonTool(GameController GC) {
-        super(GC);
+    public PolygonTool(GameController gameController) {
+        super(gameController);
     }
 
     public void hidePolygon(){

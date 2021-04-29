@@ -1,6 +1,7 @@
 package polis.actors;
 import javafx.scene.Node;
 import polis.GameController;
+import polis.tiles.MultiTile;
 import polis.tiles.ResidentialTile;
 import polis.tiles.Tile;
 import polis.tiles.ZoneTile;
@@ -17,6 +18,10 @@ public abstract class Actor{
         this.gameController = gameController;
         this.MAX_AGE = maxAge;
         gameController.addActor(this);
+    }
+
+    public enum ActorType{
+        CUSTOMER, GOOD, IMMIGRANT, JOBSEEKER, SHOPPER, SLEEPER, TRADER, WORKER
     }
 
     public void remove(){
@@ -49,4 +54,9 @@ public abstract class Actor{
         return gameController;
     }
 
+    public abstract ActorType getType();
+
+    public ResidentialTile getHomeResidential(){
+        return null;
+    }
 }

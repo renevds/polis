@@ -5,12 +5,12 @@ import polis.GameController;
 import polis.views.GameGrid;
 
 public abstract class Tool {
-    protected GameController GC;
+    protected GameController gameController;
     protected GameGrid gameGrid;
 
-    public Tool(GameController GC){
-        this.GC = GC;
-        gameGrid = GC.getPC().getGameGrid();
+    public Tool(GameController gameController){
+        this.gameController = gameController;
+        gameGrid = gameController.getPC().getGameGrid();
     }
 
     public void hover(Tile tile){};

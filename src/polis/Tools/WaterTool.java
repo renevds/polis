@@ -7,8 +7,8 @@ import polis.views.TreePoly;
 
 public class WaterTool extends PolygonTool {
 
-    public WaterTool(GameController GC) {
-        super(GC);
+    public WaterTool(GameController gameController) {
+        super(gameController);
     }
 
     @Override
@@ -19,7 +19,7 @@ public class WaterTool extends PolygonTool {
 
     @Override
     public void clicked(Tile tile) {
-        if (tile instanceof StandardTile) {
+        if (tile.getTileType() == Tile.TileType.STANDARD) {
             gameGrid.getBackgroundTileBehindTile(tile).setWater();
         }
 
