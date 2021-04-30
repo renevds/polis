@@ -1,11 +1,12 @@
 package polis.Tools;
 
 import polis.GameController;
-import polis.tiles.StandardTile;
 import polis.tiles.Tile;
 import polis.views.TreePoly;
 
 public class WaterTool extends PolygonTool {
+
+    //deze tool laat de gebruiker water plaatsen voor decoratie
 
     public WaterTool(GameController gameController) {
         super(gameController);

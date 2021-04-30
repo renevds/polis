@@ -3,55 +3,37 @@ package prog2.util;
 import java.util.Random;
 
 public class Noise {
-    /** Perlin Noise generator genomen van https://stackoverflow.com/questions/5531019/perlin-noise-in-java door jt78 **/
+    /* Perlin Noise generator genomen en aangepast van https://stackoverflow.com/questions/5531019/perlin-noise-in-java door jt78
+    * deze wordt gebruikt voor het genereren van mooiere patronen voor de achtergrondtegels */
 
+    private final Random rand_;
 
-    /** Source of entropy */
-    private Random rand_;
+    private final float roughness_;
 
-    /** Amount of roughness */
-    private float roughness_;
+    private final float[][] grid;
 
-    /** Plasma fractal grid */
-    private float[][] grid;
-
-
-    /** Generate a noise source based upon the midpoint displacement fractal.
-     *
-     * @param rand The random number generator
-     * @param roughness a roughness parameter
-     * @param width the width of the grid
-     * @param height the height of the grid
-     */
     public Noise(Random rand, float roughness, int width, int height) {
         roughness_ = roughness / width;
         grid = new float[width][height];
         rand_ = (rand == null) ? new Random() : rand;
     }
 
-
     public void initialise() {
         int xh = grid.length - 1;
         int yh = grid[0].length - 1;
 
-        // set the corner points
         grid[0][0] = rand_.nextFloat() - 0.5f;
         grid[0][yh] = rand_.nextFloat() - 0.5f;
         grid[xh][0] = rand_.nextFloat() - 0.5f;
         grid[xh][yh] = rand_.nextFloat() - 0.5f;
 
-        // generate the fractal
         generate(0, 0, xh, yh);
     }
 
-
-    // Add a suitable amount of random displacement to a point
     private float roughen(float v, int l, int h) {
         return v + roughness_ * (float) (rand_.nextGaussian() * (h - l));
     }
 
-
-    // generate the fractal
     private void generate(int xl, int yl, int xh, int yh) {
         int xm = (xl + xh) / 2;
         int ym = (yl + yh) / 2;

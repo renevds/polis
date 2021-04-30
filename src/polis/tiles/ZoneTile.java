@@ -5,28 +5,29 @@ import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.scene.image.Image;
 import polis.GameController;
-import polis.actors.Immigrant;
 import polis.views.ZoneTileView;
 
 import java.util.*;
 
 public abstract class ZoneTile extends MultiTile implements Observable{
-    private static int MAX_LEVEL = 4;
 
     protected Image image;
 
-    private ZoneTileView zoneTileView;
+    private final ZoneTileView zoneTileView;
 
     private InvalidationListener listener;
 
-    protected List<Actor> residents = new ArrayList<>();
+    protected final List<Actor> residents;
 
     protected double capacity;
 
     protected int level;
 
+    /* deze tegel stelt een zone voor met bewoners en een level*/
+
     public ZoneTile(int x, int y, GameController gameController) {
         super(x, y, gameController);
+        residents =  new ArrayList<>();
         updateImage();
         zoneTileView = new ZoneTileView(this);
         addListener(zoneTileView);
@@ -36,6 +37,7 @@ public abstract class ZoneTile extends MultiTile implements Observable{
 
     protected abstract void updateImage();
 
+    @Override
     public void remove() {
         super.remove();
         gameController.getPC().getGameGrid().getChildren().remove(zoneTileView);
@@ -46,14 +48,11 @@ public abstract class ZoneTile extends MultiTile implements Observable{
         return true;
     }
 
-    public void toFront() {
-        zoneTileView.toFront();
-    }
-
     public Image getImage(){
         return image;
-    };
+    }
 
+    //controleer of er nog plek is voor een bewoner
     public boolean hasSpaceLeft(){
         return residents.size() + 1 <= capacity;
     }
@@ -89,9 +88,9 @@ public abstract class ZoneTile extends MultiTile implements Observable{
         }
     }
 
-
-    public Street getBorderingStreet(){
-        List<Street> streets = getNeigbouringFreeStreets();
+    //zoek een mogelijke straat voor de Actor te plaatsen en plaats hem anders in het begin van de initiele straat
+    public Street getAPossibleSpawnStreet(){
+        List<Street> streets = getNeigbouringStreets();
         if(streets.size() > 0) {
             return streets.get(0);
         }
@@ -100,6 +99,7 @@ public abstract class ZoneTile extends MultiTile implements Observable{
         }
     }
 
+    //verwijder bewoners indien de capaciteit krimpt
     protected void kickOut(){
         while (residents.size() > capacity){
             Actor last = residents.get(residents.size() - 1);
@@ -121,8 +121,4 @@ public abstract class ZoneTile extends MultiTile implements Observable{
         return capacity;
     }
 
-    @Override
-    public void setViewOrder() {
-        zoneTileView.setViewOrder (- x - y - 2.0);
-    }
 }

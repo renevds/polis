@@ -1,6 +1,5 @@
 package polis;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,7 +9,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import polis.Tools.*;
-import polis.tiles.Tile;
 import prog2.util.Viewport;
 import polis.views.GameGrid;
 
@@ -39,6 +37,9 @@ public class PolisController {
 
     Image play;
     Image pause;
+
+    /* centrale PolisController bouwt de UI op en bestuurt hem, is ook de controller van de FXML
+    * In de FXML wordt alleen de UI beschreven */
 
     public PolisController(){
     }
@@ -74,7 +75,7 @@ public class PolisController {
     }
 
     public void setStage(Stage stage){
-        //stage.setOnShown(gameGrid::askForRegen);
+        stage.setOnShown(gameGrid::askForRegen);
     }
 
     public Pane getStatisticsPane(){

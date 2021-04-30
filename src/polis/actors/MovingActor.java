@@ -7,15 +7,17 @@ import polis.GameController;
 import polis.tiles.ResidentialTile;
 import polis.tiles.Street;
 import polis.tiles.Tile;
-import polis.tiles.ZoneTile;
 
 import java.util.List;
 import java.util.Random;
 
-public abstract class MovingActor extends ActorWithHome implements Observable {
+public abstract class MovingActor extends Actor implements Observable {
     Street currentStreet;
     private Street lastTile;
     private InvalidationListener listener;
+
+    /*stelt een Actor die zich over de straten verplaatst voor
+     is een Observable voor de standard ActorDotView*/
 
     protected MovingActor(GameController gameController, ResidentialTile residentialTile, Street currentStreet, int maxAge) {
         super(gameController, residentialTile, maxAge);
@@ -23,9 +25,10 @@ public abstract class MovingActor extends ActorWithHome implements Observable {
     }
 
     protected MovingActor(int maxAge, GameController gameController, ResidentialTile residentialTile) {
-        this(gameController, residentialTile, residentialTile.getBorderingStreet(), maxAge);
+        this(gameController, residentialTile, residentialTile.getAPossibleSpawnStreet(), maxAge);
     }
 
+    @Override
     public void notDeadStep() {
         boolean foundDestination = false;
         for (Tile tile: gameController.getGameGrid().getNeighbours(currentStreet)){
@@ -39,10 +42,10 @@ public abstract class MovingActor extends ActorWithHome implements Observable {
         }
     }
 
+    //kijk voor een bepaalde tegel of het een geldige bestemming en doe de nodige actie
     protected abstract boolean isTileDest(Tile tile);
 
-    public abstract void dieEffect();
-
+    //beweeg naar de volgende straat
     private void moveToNextStreet() {
         List<Street> options = currentStreet.getNeigbouringFreeStreets();
         Street next;
@@ -63,8 +66,6 @@ public abstract class MovingActor extends ActorWithHome implements Observable {
             currentStreet = lastTile;
             lastTile = temp;
             fireInvalidationEvent();
-        } else {
-            currentStreet.addRoadActorAnywhere(this);
         }
 
     }
@@ -90,6 +91,7 @@ public abstract class MovingActor extends ActorWithHome implements Observable {
     }
 
 
+    @Override
     public Node getView(){
         return view;
     }

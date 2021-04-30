@@ -3,7 +3,6 @@ package polis.Tools;
 import javafx.scene.shape.Polygon;
 
 import polis.GameController;
-import polis.tiles.StandardTile;
 import polis.tiles.Tile;
 import polis.views.ValidPoly;
 
@@ -12,14 +11,18 @@ import java.util.List;
 
 public abstract class MultiPolyTool extends Tool {
 
-    protected Boolean valid = false;
+    //voor tools die meerdere Polygonen tekenen
 
-    protected List<Polygon> hoverTiles = new ArrayList<>();
+    protected Boolean valid;
+
+    protected final List<Polygon> hoverTiles;
 
     protected Polygon cursorPoly;
 
     public MultiPolyTool(GameController gameController) {
         super(gameController);
+        hoverTiles = new ArrayList<>();
+        valid = false;
     }
 
     public Polygon createPolyOnTile(Tile tile){

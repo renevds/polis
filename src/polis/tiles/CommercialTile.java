@@ -25,9 +25,11 @@ CommercialTile extends ZoneTile {
     private static double GOODS_PER_CUSTOMER;
 
     private int goods;
-    private List<Trader> traderList;
+    private final List<Trader> traderList;
 
-    private static Image[] images = new Image[]{
+    //deze klasse stelt een commerciele zone voor en bevat boven op de residents lijst van ZoneTile nog een extra lijst van Traders
+
+    private static final Image[] images = new Image[]{
             new Image("/polis/tiles/commerce-0.png"),
             new Image("/polis/tiles/commerce-1.png"),
             new Image("/polis/tiles/commerce-2.png"),
@@ -50,13 +52,6 @@ CommercialTile extends ZoneTile {
 
     public void floorCapacity() {
         capacity = Math.max(capacity, CAPACITY_MINIMAL);
-    }
-
-    public boolean hasSpaceLeftForGood() {
-        if (goods + 1 < capacity * GOODS_PER_CUSTOMER) {
-            return true;
-        }
-        return false;
     }
 
     public void addGood() {
@@ -91,10 +86,7 @@ CommercialTile extends ZoneTile {
     }
 
     public boolean canTakeTrader() {
-        if (traderList.size() + 1 <= capacity) {
-            return true;
-        }
-        return false;
+        return traderList.size() + 1 <= capacity;
     }
 
     public void addTrader(Trader trader) {
@@ -129,6 +121,7 @@ CommercialTile extends ZoneTile {
         residents.remove(customer);
     }
 
+    @Override
     public void updateImage() {
         if (residents.size() != 0 || level != 0 || goods != 0 || (traderList != null && traderList.size() != 0)) {
             if (level == 0) {
@@ -201,8 +194,14 @@ CommercialTile extends ZoneTile {
         }
         else if(actor.getType() == Actor.ActorType.GOOD && canTakeGood()){
             addGood();
+            updateImage();
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "COMMERCIEEL @ " + x + ":" + y;
     }
 }

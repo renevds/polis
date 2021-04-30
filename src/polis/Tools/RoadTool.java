@@ -1,6 +1,5 @@
 package polis.Tools;
 
-import polis.tiles.StandardTile;
 import polis.tiles.Street;
 import polis.tiles.Tile;
 import polis.GameController;
@@ -13,7 +12,7 @@ public class RoadTool extends MultiPolyTool {
     private Tile firstTile;
     private Tile lastTile;
 
-    private List<Tile> editTiles = new ArrayList<>();
+    private final List<Tile> editTiles = new ArrayList<>();
 
 
 
@@ -53,6 +52,7 @@ public class RoadTool extends MultiPolyTool {
         }
     }
 
+    @Override
     public void clicked(Tile tile){
         drag(tile);
     }
@@ -62,11 +62,8 @@ public class RoadTool extends MultiPolyTool {
         gameController.getPC().getGameGrid().getChildren().remove(cursorPoly);
         if(firstTile == null){
             firstTile = tile;
-            lastTile = tile;
         }
-        else {
-            lastTile = tile;
-        }
+        lastTile = tile;
         createPolys();
     }
 

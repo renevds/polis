@@ -30,6 +30,7 @@ public class Jobseeker extends MovingActor {
     public void dieEffect() {
         replaceSelfInParentResidential(new Sleeper(gameController, parentResidential));
         parentResidential.jobNotFound();
+        remove();
     }
 
     public static void setProperties(Properties engineProperties){

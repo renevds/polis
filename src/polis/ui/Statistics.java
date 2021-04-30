@@ -1,29 +1,29 @@
 package polis.ui;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import polis.tiles.*;
 import polis.views.StatisticsText;
 
 import java.util.HashSet;
 
 public class Statistics {
-    private HashSet<CommercialTile> commercialTiles;
-    private HashSet<ResidentialTile> residentialTiles;
-    private HashSet<IndustrialTile> industrialTiles;
+    private final HashSet<CommercialTile> commercialTiles;
+    private final HashSet<ResidentialTile> residentialTiles;
+    private final HashSet<IndustrialTile> industrialTiles;
 
     private ZoneTile selected;
 
-    private Pane statisticsPane;
+    final ObservableFraction inhabitans;
 
-    ObservableFraction inhabitans;
+    final ObservableFraction jobs;
 
-    ObservableFraction jobs;
+    final ObservableFraction goods;
 
-    ObservableFraction goods;
+    final ObservableFraction customers;
 
-    ObservableFraction customers;
+    final SimpleStringProperty title;
 
     private double inhabitansNumber;
     private double inhabitansMax;
@@ -37,17 +37,25 @@ public class Statistics {
     private double customersNumber;
     private double customersMax;
 
+    //deze klasse houd de statistieken bij
 
     public Statistics(Pane statisticsPane){
         commercialTiles = new HashSet<>();
         residentialTiles = new HashSet<>();
         industrialTiles = new HashSet<>();
-        this.statisticsPane = statisticsPane;
+
+        title = new SimpleStringProperty();
 
         inhabitans = new ObservableFraction("Bewoners");
         jobs = new ObservableFraction("Jobs");
         goods = new ObservableFraction("Goederen");
         customers = new ObservableFraction("Klanten");
+
+        Text titleText = new Text("STATISTIEKEN");
+        titleText.setLayoutY(27);
+        titleText.setLayoutX(14);
+        titleText.getStyleClass().add("white-text");
+        titleText.textProperty().bind(title);
 
         StatisticsText inhabitanText = new StatisticsText(inhabitans);
         inhabitanText.setLayoutY(47);
@@ -61,6 +69,7 @@ public class Statistics {
         StatisticsText customerText = new StatisticsText(customers);
         customerText.setLayoutY(107);
 
+        statisticsPane.getChildren().add(titleText);
         statisticsPane.getChildren().add(inhabitanText);
         statisticsPane.getChildren().add(jobsText);
         statisticsPane.getChildren().add(goodsText);
@@ -73,6 +82,8 @@ public class Statistics {
         selected = tile;
     }
 
+
+    //berken elke frame
     public void calculate(){
 
         inhabitansNumber = 0;
@@ -88,6 +99,7 @@ public class Statistics {
         customersMax = 0;
 
         if(selected == null){
+            title.setValue("STATISTIEKEN");
             for (CommercialTile commercialTile: commercialTiles) {
                 addToJobs(commercialTile);
                 addToGoods(commercialTile);
@@ -101,21 +113,16 @@ public class Statistics {
             }
         }
         else if(selected.getTileType() == Tile.TileType.COMMERCIAL){
-            for (CommercialTile commercialTile: commercialTiles) {
-                addToJobs(commercialTile);
-                addToGoods(commercialTile);
-                addToCustomers(commercialTile);
-            }
+            CommercialTile commercialTile = (CommercialTile) selected;
+            addToJobs(commercialTile);
+            addToGoods(commercialTile);
+            addToCustomers(commercialTile);
         }
         else if(selected.getTileType() == Tile.TileType.INDUSTRIAL){
-            for (IndustrialTile industrialTile: industrialTiles) {
-                addToJobs(industrialTile);
-            }
+            addToJobs(selected);
         }
         else if(selected.getTileType() == Tile.TileType.RESIDENTIAL){
-            for (ResidentialTile residentialTile: residentialTiles) {
-                addToInhabitans(residentialTile);
-            }
+            addToInhabitans(selected);
         }
 
         inhabitans.setValue(inhabitansNumber, inhabitansMax);
@@ -125,14 +132,16 @@ public class Statistics {
 
     }
 
-    private void addToInhabitans(ResidentialTile residentialTile){
-        inhabitansNumber += residentialTile.getAmountOfResidents();
-        inhabitansMax += residentialTile.getCapacity();
+    //functies om tegels te registreren en verwijderen
+
+    private void addToInhabitans(ZoneTile zoneTile){
+        inhabitansNumber += zoneTile.getAmountOfResidents();
+        inhabitansMax += zoneTile.getCapacity();
     }
 
-    private void addToJobs(IndustrialTile industrialTile){
-        jobsNumber += industrialTile.getAmountOfResidents();
-        jobsMax += industrialTile.getCapacity();
+    private void addToJobs(ZoneTile zoneTile){
+        jobsNumber += zoneTile.getAmountOfResidents();
+        jobsMax += zoneTile.getCapacity();
     }
 
     private void addToJobs(CommercialTile commercialTile){

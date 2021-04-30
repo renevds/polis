@@ -5,7 +5,7 @@ import polis.PolisController;
 import polis.tiles.Tile;
 
 public class TilePoly extends Polygon{
-    private static int CELL_SIZE = PolisController.getCELLSIZE();
+    private static final int CELL_SIZE = PolisController.getCELLSIZE();
 
     public TilePoly(Tile tile){
         this(tile.getGameGrid(), tile.getX(), tile.getY());

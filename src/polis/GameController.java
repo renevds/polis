@@ -16,18 +16,20 @@ import java.util.*;
 
 public class GameController {
     private GameGrid gameGrid;
-    private PolisController PC;
+    private final PolisController PC;
     private Tool tool;
     private Tile lastHoverTile;
     private final Properties engineProperties;
     private final Properties levelsProperties;
-    private Region region;
-    private Set<Actor> actors;
-    private Set<Actor> actorsToBeRemoved;
-    private Set<Actor> actorsToBeAdded;
-    private Statistics statistics;
-    private Timeline timeline;
+    private final Region region;
+    private final Set<Actor> actors;
+    private final Set<Actor> actorsToBeRemoved;
+    private final Set<Actor> actorsToBeAdded;
+    private final Statistics statistics;
+    private final Timeline timeline;
     boolean playing;
+
+    //de centrale GameController bestuurt de simulatie
 
     public GameController(PolisController PC) throws IOException {
         this.PC = PC;
@@ -35,12 +37,12 @@ public class GameController {
         engineProperties.load(getClass().getClassLoader().getResourceAsStream("polis/engine.properties"));
         levelsProperties = new Properties();
         levelsProperties.load(getClass().getClassLoader().getResourceAsStream("polis/levels.properties"));
+        setProperties();
         region = new Region(engineProperties, this);
         actors = new HashSet<>();
         actorsToBeRemoved = new HashSet<>();
         actorsToBeAdded = new HashSet<>();
 
-        setProperties();
 
         timeline = new Timeline(new KeyFrame(Duration.seconds(0.250), e -> step()));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -88,6 +90,7 @@ public class GameController {
         actorsToBeRemoved.add(actor);
     }
 
+    //elke fram doe een stap voor alle gesimuleerde klassen
     private void step(){
         region.step();
         for(Tile tile: gameGrid.getTiles()){

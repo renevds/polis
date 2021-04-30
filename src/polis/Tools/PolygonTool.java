@@ -12,10 +12,11 @@ public abstract class PolygonTool extends Tool{
 
     public void hidePolygon(){
         if (polygon != null){
-            gameGrid.getChildren().remove(polygon);
+            gameGrid.removeChildren(polygon);
         }
     }
 
+    @Override
     public void close(){
         hidePolygon();
     }

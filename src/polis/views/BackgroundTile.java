@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 public class BackgroundTile extends ImageView {
 
-    private static Image grass = new Image("polis/tiles/backgrounds/grass.png");
-    private static Image forest1 = new Image("polis/tiles/backgrounds/forest1.png");
-    private static Image forest2 = new Image("polis/tiles/backgrounds/forest2.png");
-    private static Image forest3 = new Image("polis/tiles/backgrounds/forest3.png");
-    private static Image transmitter = new Image("polis/tiles/backgrounds/transmitter.png");
-    private static Image grass_garbage = new Image("polis/tiles/backgrounds/grass_garbage.png");
-    private static Image water = new Image("polis/tiles/backgrounds/water.png");
-    private static Image[] forestImages = new Image[]{
+    private static final Image grass = new Image("polis/tiles/backgrounds/grass.png");
+    private static final Image forest1 = new Image("polis/tiles/backgrounds/forest1.png");
+    private static final Image forest2 = new Image("polis/tiles/backgrounds/forest2.png");
+    private static final Image forest3 = new Image("polis/tiles/backgrounds/forest3.png");
+    private static final Image transmitter = new Image("polis/tiles/backgrounds/transmitter.png");
+    private static final Image grass_garbage = new Image("polis/tiles/backgrounds/grass_garbage.png");
+    private static final Image water = new Image("polis/tiles/backgrounds/water.png");
+    private static final Image[] forestImages = new Image[]{
             forest3,
             forest2,
             forest2,
@@ -24,7 +24,7 @@ public class BackgroundTile extends ImageView {
             grass,
     };
 
-    private static ArrayList<Image> allImages = new ArrayList<>() {
+    private static final ArrayList<Image> allImages = new ArrayList<>() {
         {
             add(grass);
             add(forest1);
@@ -35,10 +35,14 @@ public class BackgroundTile extends ImageView {
         }
     };
 
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
 
     private static float[][] noise;
+
+    /* deze klasse stelt een achtergrondtegel voor, achtergrondtegels hebben geen effect op de simulatie maar zijn er puur
+    * voor het visueel effect, de vele images worden als statische variabelen opgeslaan in een pogin om Vram te besparen
+    * JavaFX is hier heel slecht in en de standaard Vram hoeveelheid is te klein voor meer als 32x32 tegels */
 
     public BackgroundTile(int x, int y, GameGrid gameGrid) {
         super();

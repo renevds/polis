@@ -1,6 +1,5 @@
 package polis.Tools;
 
-import polis.tiles.MultiTileFiller;
 import polis.tiles.Tile;
 import polis.GameController;
 import polis.tiles.ZoneTile;
@@ -12,6 +11,7 @@ public class Selector extends PolygonTool {
         super(gameController);
     }
 
+    @Override
     public void hover(Tile tile) {
         hidePolygon();
         polygon = new SelectorPoly(tile);

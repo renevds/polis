@@ -7,9 +7,9 @@ import javafx.scene.image.ImageView;
 import polis.tiles.Street;
 
 public class StreetTileView extends ImageView implements InvalidationListener {
-    private Street street;
+    private final Street street;
 
-    private static Image[] images = new Image[]{
+    private static final Image[] images = new Image[]{
             new Image("/polis/tiles/road-0.png"),
             new Image("/polis/tiles/road-1.png"),
             new Image("/polis/tiles/road-2.png"),
@@ -32,6 +32,7 @@ public class StreetTileView extends ImageView implements InvalidationListener {
         this.street = street;
         setImage(images[0]);
         street.getGameGrid().addChildrenToGrid(this, street.getX(), street.getY(), getImage().getWidth()/2, 0);
+        setViewOrder (- street.getX() - street.getY() - 1.0);
     }
 
     @Override

@@ -21,13 +21,6 @@ public class MultiTileFiller extends Tile {
     }
 
     @Override
-    public void toFront() {
-        if((x - parentZone.getX()) <= (parentZone.getWidth()/2.0-1) || (y - parentZone.getY()) <= (parentZone.getHeight()/2.0 -1)){
-            parentZone.toFront();
-        }
-    }
-
-    @Override
     public void step() {
 
     }
@@ -35,10 +28,6 @@ public class MultiTileFiller extends Tile {
     @Override
     public Boolean removable() {
         return parentZone.removable();
-    }
-
-    public MultiTile getParentZone() {
-        return parentZone;
     }
 
     @Override
@@ -51,8 +40,4 @@ public class MultiTileFiller extends Tile {
         return parentZone;
     }
 
-    @Override
-    public void setViewOrder() {
-
-    }
 }

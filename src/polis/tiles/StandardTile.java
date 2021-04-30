@@ -5,6 +5,7 @@ import polis.views.StandardTileView;
 
 public class StandardTile extends Tile {
 
+    //standaard lege tegel
 
     public StandardTile(int x, int y, GameController gameController) {
         super(x, y, gameController);
@@ -12,16 +13,14 @@ public class StandardTile extends Tile {
         createEvents(eventNode);
     }
 
-    public void remove() {}
+    @Override
+    public void remove() {
+        gameGrid.removeChildren(eventNode);
+    }
 
     @Override
     public Boolean removable() {
         return true;
-    }
-
-    @Override
-    public void toFront() {
-
     }
 
     @Override
@@ -32,10 +31,5 @@ public class StandardTile extends Tile {
     @Override
     public TileType getTileType() {
         return TileType.STANDARD;
-    }
-
-    @Override
-    public void setViewOrder() {
-        eventNode.setViewOrder(- x -y - 1);
     }
 }

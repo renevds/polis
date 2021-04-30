@@ -18,7 +18,7 @@ IndustrialTile extends ZoneTile {
     private static double FACTOR_GOODS_NOT_DELIVERED;
     private static double FACTOR_GOODS_DELIVERED;
 
-    private static Image[] images = new Image[]{
+    private static final Image[] images = new Image[]{
             new Image("/polis/tiles/industry-0.png"),
             new Image("/polis/tiles/industry-1.png"),
             new Image("/polis/tiles/industry-2.png"),
@@ -48,6 +48,7 @@ IndustrialTile extends ZoneTile {
         kickOut();
     }
 
+    @Override
     public void updateImage() {
         if(residents.size() != 0 || level != 0){
             if(level == 0){
@@ -112,5 +113,10 @@ IndustrialTile extends ZoneTile {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "INDUSTRIEEL @ " + x + ":" + y;
     }
 }

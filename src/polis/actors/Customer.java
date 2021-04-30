@@ -3,14 +3,13 @@ package polis.actors;
 import polis.GameController;
 import polis.tiles.CommercialTile;
 import polis.tiles.ResidentialTile;
-import polis.tiles.ZoneTile;
 
 import java.util.Properties;
 
-public class Customer extends ActorWithHome{
+public class Customer extends Actor{
 
     static private int CUSTOMER_AGE;
-    CommercialTile commercialTile;
+    final CommercialTile commercialTile;
 
     public Customer(GameController gameController, ResidentialTile parentResidential, CommercialTile commercialTile) {
         super(gameController, parentResidential, CUSTOMER_AGE);

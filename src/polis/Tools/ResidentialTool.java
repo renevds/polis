@@ -1,7 +1,6 @@
 package polis.Tools;
 
 import polis.GameController;
-import polis.tiles.CommercialTile;
 import polis.tiles.MultiTile;
 import polis.tiles.ResidentialTile;
 import polis.tiles.Tile;

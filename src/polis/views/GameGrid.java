@@ -75,7 +75,8 @@ public class GameGrid extends Pane {
     }
 
     public void askForRegen(Event event) {
-        Boolean regen = true;
+        gameController.pausePlay();
+        boolean regen = true;
         while (regen) {
             Alert alert = new Alert(Alert.AlertType.NONE, "Would you like to generate a different map?", ButtonType.YES, ButtonType.NO);
             alert.showAndWait();
@@ -84,9 +85,11 @@ public class GameGrid extends Pane {
                 regenBackgroundTiles();
             }
         }
+        gameController.pausePlay();
     }
 
     private void regenBackgroundTiles() {
+        //regenerates the background of the map with new noise
         BackgroundTile.regenNoise(this);
         for (int x = 1; x <= MAP_SIZE; x++) {
             for (int y = 1; y <= MAP_SIZE; y++) {
@@ -110,8 +113,6 @@ public class GameGrid extends Pane {
         oldtile.remove();
         tiles.set(coordToIndex(x, y), newTile);
         getBackgroundTileBehindTile(newTile).clear();
-        //fixLayers();
-        newTile.setViewOrder();
     }
 
     public void replaceMultiTile(MultiTile newTile) {
@@ -146,30 +147,6 @@ public class GameGrid extends Pane {
         tiles.set(coordToIndex(x, y), newTile);
     }
 
-
-    private void fixLayers() {
-        for (int a = 1; a < MAP_SIZE * 2; a++) {
-            int Da = Math.min(a, MAP_SIZE);
-            int Dy = Math.max(1, a - MAP_SIZE + 1);
-            for (int i = 0; i < Da && Dy + i <= MAP_SIZE; i++) {
-                int x = Da - i;
-                int y = Dy + i;
-                fixCoordLayer(x, y);
-            }
-        }
-    }
-
-    private void fixCoordLayer(int x, int y) {
-        Tile tile = getTileAtCoord(x, y);
-        if (!(tile.getTileType() == Tile.TileType.FILLER)) {
-            getBackgroundTileBehindTile(tile).toFront();
-        }
-        tile.toFront();
-        if(tile.getTileType() == Tile.TileType.STREET) {
-            ((Street) tile).actorsToFront();
-        }
-    }
-
     private double getRenderY(int x, int y) {
         return (double) PolisController.getCELLSIZE() * (y + x) / 2 - PolisController.getCELLSIZE() / 2.0;
     }
@@ -185,6 +162,8 @@ public class GameGrid extends Pane {
     }
 
     public void removeChildren(Node node) {
+        //setting mouseTransparent before removing children stops bug JDK-8256571, described in bug.md, in JavaFX from happening
+        node.setMouseTransparent(true);
         getChildren().remove(node);
     }
 
@@ -220,8 +199,6 @@ public class GameGrid extends Pane {
 
         view.setTranslateX(getRenderX(parent.getX(), parent.getY()) + dx);
         view.setTranslateY(getRenderY(parent.getX(), parent.getY()) + dy);
-        //fixLayers();
-        view.setViewOrder(- parent.getX() - parent.getY() - 1.5);
     }
 
     public List<Tile> getNeighbours(Tile tile){
@@ -240,6 +217,8 @@ public class GameGrid extends Pane {
         }
         return neighbours;
     }
+
+
 
     public boolean hasTile(Tile tile){
         return tiles.contains(tile);

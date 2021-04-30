@@ -2,11 +2,10 @@ package polis.actors;
 
 import polis.GameController;
 import polis.tiles.ResidentialTile;
-import polis.tiles.ZoneTile;
 
 import java.util.Properties;
 
-public class Sleeper extends ActorWithHome{
+public class Sleeper extends Actor{
 
     private static int SLEEPER_AGE;
 

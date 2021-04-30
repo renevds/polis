@@ -1,6 +1,5 @@
 package polis.views;
 
-import polis.tiles.StandardTile;
 import polis.tiles.Tile;
 
 public class TreePoly extends ValidPoly{

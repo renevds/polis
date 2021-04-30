@@ -6,7 +6,7 @@ import polis.tiles.ResidentialTile;
 
 import java.util.Properties;
 
-public class Worker extends ActorWithHome{
+public class Worker extends Actor{
     private static int WORKER_AGE;
     private final IndustrialTile workplace;
     private static int STEPS_PER_GOOD;
@@ -19,7 +19,7 @@ public class Worker extends ActorWithHome{
     @Override
     public void dieEffect() {
         workplace.removeResident(this);
-        replaceSelfInParentResidential(new Shopper(gameController, parentResidential, parentResidential.getBorderingStreet()));
+        replaceSelfInParentResidential(new Shopper(gameController, parentResidential, parentResidential.getAPossibleSpawnStreet()));
         remove();
     }
 

@@ -17,12 +17,10 @@ public class Shopper extends MovingActor{
 
     @Override
     protected boolean isTileDest(Tile tile) {
-        if(tile.getTileType() == Tile.TileType.COMMERCIAL){
-            if(tile.acceptsResident(this)) {
-                parentResidential.shopFound();
-                remove();
-                return true;
-            }
+        if(tile.acceptsResident(this)){
+            parentResidential.shopFound();
+            remove();
+            return true;
         }
         return false;
     }
@@ -31,6 +29,7 @@ public class Shopper extends MovingActor{
     public void dieEffect() {
         parentResidential.shopNotFound();
         replaceSelfInParentResidential(new Sleeper(gameController, parentResidential));
+        remove();
     }
 
     public static void setProperties(Properties properties){

@@ -6,14 +6,15 @@ import polis.actors.Actor;
 import polis.views.GameGrid;
 
 abstract public class Tile {
-    protected GameController gameController;
-    protected int x;
-    protected int y;
+    protected final GameController gameController;
+    protected final int x;
+    protected final int y;
 
     protected Node eventNode;
 
-    protected GameGrid gameGrid;
+    protected final GameGrid gameGrid;
 
+    //Deze klasse stelt een tegel voor
 
     public Tile(int x, int y, GameController gameController) {
         this.x = x;
@@ -24,9 +25,10 @@ abstract public class Tile {
     }
 
     public enum TileType {
-        COMMERCIAL, INDUSTRIAL, STREET, RESIDENTIAL, HELICOPTER, STANDARD, FILLER;
+        COMMERCIAL, INDUSTRIAL, STREET, RESIDENTIAL, HELICOPTER, STANDARD, FILLER
     }
 
+    //te gebruiken met bovenstaande enum
     public abstract TileType getTileType();
 
     public int getX(){
@@ -37,9 +39,15 @@ abstract public class Tile {
         return y;
     }
 
+    //om zichzelf van de simulatie te verwijderen
     public abstract void remove();
 
+    //can tegels onverwijderbaar maken zoals de initiële straat
     public abstract Boolean removable();
+
+    /* onderstaande functies worden allemaal gebonden aan een muisevent
+    * de GameController wordt dan geupdate wanneer een tegel een bepaalde event ontvangt
+    * de GameController verwittigd dan de momenteel gekozen Tool */
 
     private void hover(){
         gameController.setCurrentHover(this);
@@ -71,23 +79,21 @@ abstract public class Tile {
         node.setOnMouseReleased(mouseEvent -> release());
     }
 
-    public abstract  void toFront();
-
     public GameGrid getGameGrid(){
         return gameGrid;
     }
 
+    //simulatie stap elke frame
     public abstract void step();
 
 
     public boolean acceptsResident(Actor actor){
         return false;
-    };
+    }
 
+    //sommige tegels maken gebruik van Filler (zie MultiTileFiller) deze methode geeft de Parent terug indien deze tegel een Filler is
     public Tile getParentTile(){
         return this;
     }
-
-    public abstract void setViewOrder();
 
 }

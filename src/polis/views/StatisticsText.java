@@ -2,13 +2,12 @@ package polis.views;
 
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.beans.property.StringProperty;
 import javafx.scene.text.Text;
 import polis.ui.ObservableFraction;
 
 public class StatisticsText extends Text implements InvalidationListener {
 
-    ObservableFraction observableFraction;
+    final ObservableFraction observableFraction;
 
     public StatisticsText(ObservableFraction observableFraction){
         super();

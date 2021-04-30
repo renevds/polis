@@ -8,12 +8,12 @@ import java.util.Properties;
 
 public class Good extends MovingActor{
 
-    IndustrialTile industrialTile;
+    final IndustrialTile industrialTile;
 
     private static int GOODS_AGE;
 
     protected Good(GameController gameController, IndustrialTile industrialTile) {
-        super(gameController, null, industrialTile.getBorderingStreet(), GOODS_AGE);
+        super(gameController, null, industrialTile.getAPossibleSpawnStreet(), GOODS_AGE);
         view = new GoodDotView(this, currentStreet);
         currentStreet.addRoadActorAnywhere(this);
         this.industrialTile = industrialTile;
@@ -25,6 +25,7 @@ public class Good extends MovingActor{
         if(tile.acceptsResident(this)){
             industrialTile.goodsDelivered();
             remove();
+            return true;
         }
         return false;
     }

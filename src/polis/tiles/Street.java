@@ -12,10 +12,13 @@ import java.util.List;
 
 public class Street extends Tile implements Observable {
     private boolean removable = true;
-    private StreetTileView streetTileView;
+    private final StreetTileView streetTileView;
     private InvalidationListener listener;
     private int orientationNumber;
     MovingActor[] roadActors;
+
+    /*dit stelt een straattegel voor in de opgave heeft een straat maar 2 locaties maar in deze implementatie heeft hij
+    * er 4 dit geeft een mooier effect, zeker op drukke kruispunten */
 
     public Street(int x, int y, GameController gameController) {
         super(x, y, gameController);
@@ -27,8 +30,9 @@ public class Street extends Tile implements Observable {
     }
 
 
+    @Override
     public void remove() {
-        gameGrid.getChildren().remove(streetTileView);
+        gameGrid.removeChildren(eventNode);
     }
 
     @Override
@@ -36,15 +40,11 @@ public class Street extends Tile implements Observable {
         return removable;
     }
 
-    @Override
-    public void toFront() {
-        streetTileView.toFront();
-    }
-
     public void makeUnRemovable() {
         removable = false;
     }
 
+    //deze functie regelt de orientatienummers die de sprite van de straten doen veranderen
     public void calculateOrientationNumber(Boolean starter) {
         orientationNumber = 0;
         if (gameGrid.validCoord(y - 1)) {
@@ -167,25 +167,13 @@ public class Street extends Tile implements Observable {
         return neighbours;
     }
 
+    @Override
     public void step(){
         roadActors = new MovingActor[4];
     }
 
-    @Override
-    public void setViewOrder() {
-        streetTileView.setViewOrder (- x - y - 1.0);
-    }
-
     private boolean isFree(int actorPosition){
         return roadActors[actorPosition - 1] == null;
-    }
-
-    public void actorsToFront(){
-        for (Actor actor: roadActors){
-            if(actor != null) {
-                actor.getView().toFront();
-            }
-        }
     }
 
     @Override

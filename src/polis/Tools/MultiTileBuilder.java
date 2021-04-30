@@ -6,8 +6,11 @@ import polis.views.ValidPoly;
 
 public abstract class MultiTileBuilder extends MultiPolyTool {
 
-    int width;
-    int height;
+    final int width;
+    final int height;
+
+    /* deze tool is de ouder van tools die zones tekenen deze verbeterde tool toont per deel van de zone
+    * die de gebruiker probeert te plaatsen of deze vrij is door het aan te duiden met rood of blauw */
 
     public MultiTileBuilder(GameController gameController, int width, int height) {
         super(gameController);

@@ -15,13 +15,12 @@ public class Immigrant extends polis.actors.MovingActor {
         view = new ImmigrantDotView(this, tile);
     }
 
+    @Override
     public boolean isTileDest(Tile tile){
         tile = tile.getParentTile();
-        if(tile.getTileType() == Tile.TileType.RESIDENTIAL ){
-            if(tile.acceptsResident(this)) {
-                remove();
-                return true;
-            }
+        if(tile.acceptsResident(this)) {
+            remove();
+            return true;
         }
         return false;
     }
@@ -29,6 +28,7 @@ public class Immigrant extends polis.actors.MovingActor {
     @Override
     public void dieEffect() {
         gameController.getRegion().slowDown();
+        remove();
     }
 
     public static void setProperties(Properties engineProperties){

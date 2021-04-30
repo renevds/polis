@@ -20,7 +20,7 @@ ResidentialTile extends ZoneTile {
     private static double LEVEL2TO3;
     private static double LEVEL3TO2;
 
-    private static Image[] images = new Image[]{
+    private static final Image[] images = new Image[]{
             new Image("/polis/tiles/residence-0.png"),
             new Image("/polis/tiles/residence-1.png"),
             new Image("/polis/tiles/residence-2.png"),
@@ -37,10 +37,6 @@ ResidentialTile extends ZoneTile {
 
     public void floorCapacity(){
         capacity = Math.max(capacity, CAPACITY_MINIMAL);
-    }
-
-    public boolean hasResident(Actor actor){
-        return residents.contains(actor);
     }
 
     public void jobFound(){
@@ -67,6 +63,7 @@ ResidentialTile extends ZoneTile {
         updateImage();
     }
 
+    @Override
     public void updateImage() {
         if(residents.size() != 0 || level != 0){
             if(level == 0){
@@ -132,5 +129,10 @@ ResidentialTile extends ZoneTile {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "RESIDENTIEEL @ " + x + ":" + y;
     }
 }

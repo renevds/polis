@@ -1,11 +1,13 @@
 package polis.Tools;
 
 import polis.GameController;
-import polis.tiles.StandardTile;
 import polis.tiles.Tile;
 import polis.views.TreePoly;
 
 public class TreeTool extends PolygonTool{
+
+    //deze tool laat de gebruiker de standaardtegels veranderen naar andere begroeing voor decoratie
+
     public TreeTool(GameController gameController) {
         super(gameController);
     }
