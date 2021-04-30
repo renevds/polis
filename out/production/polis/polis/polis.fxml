@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane fx:id="mainPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
+<StackPane fx:id="mainPane" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="polis.PolisController">
     <children>
         <BorderPane fx:id="borderPane" prefHeight="502.0" prefWidth="643.0">
@@ -172,12 +172,6 @@
                                 <Pane fx:id="statisticsPane" layoutY="24.0" prefHeight="128.0" prefWidth="212.0"
                                       styleClass="statistics">
                                     <children>
-                                        <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                                              styleClass="white-text" text="STATISTIEKEN" wrappingWidth="197.13671875">
-                                            <font>
-                                                <Font size="15.0"/>
-                                            </font>
-                                        </Text>
                                     </children>
                                     <padding>
                                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
