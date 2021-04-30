@@ -39,7 +39,7 @@ public abstract class MultiTile extends Tile {
         for (MultiTileFiller multiTileFiller : childrenTiles) {
             multiTileFiller.remove();
         }
-        gameController.getPC().getGameGrid().getChildren().remove(eventNode);
+        gameController.getPC().getGameGrid().removeChildren(eventNode);
     }
 
     //zoek een aangrenzende straat om Actoren op te plaatsen van deze Tile of een van de Fillers

@@ -22,7 +22,9 @@ public class RoadTool extends MultiPolyTool {
 
     @Override
     public void hover(Tile tile) {
-        gameController.getPC().getGameGrid().getChildren().remove(cursorPoly);
+        if (cursorPoly!= null) {
+            gameController.getPC().getGameGrid().removeChildren(cursorPoly);
+        }
         cursorPoly = createPolyOnTile(tile);
     }
 
@@ -59,7 +61,7 @@ public class RoadTool extends MultiPolyTool {
 
     @Override
     public void drag(Tile tile) {
-        gameController.getPC().getGameGrid().getChildren().remove(cursorPoly);
+        gameController.getPC().getGameGrid().removeChildren(cursorPoly);
         if(firstTile == null){
             firstTile = tile;
         }

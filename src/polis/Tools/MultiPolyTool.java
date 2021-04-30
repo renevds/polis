@@ -33,14 +33,16 @@ public abstract class MultiPolyTool extends Tool {
 
     public void hidePolys(){
         for(Polygon polygon: hoverTiles){
-            gameController.getPC().getGameGrid().getChildren().remove(polygon);
+            gameController.getPC().getGameGrid().removeChildren(polygon);
         }
         hoverTiles.clear();
     }
 
     private void hideCursorPoly(){
-        gameController.getPC().getGameGrid().getChildren().remove(cursorPoly);
-        cursorPoly = null;
+        if(cursorPoly != null) {
+            gameController.getPC().getGameGrid().removeChildren(cursorPoly);
+            cursorPoly = null;
+        }
     }
 
     @Override

@@ -40,7 +40,7 @@ public abstract class ZoneTile extends MultiTile implements Observable{
     @Override
     public void remove() {
         super.remove();
-        gameController.getPC().getGameGrid().getChildren().remove(zoneTileView);
+        gameController.getPC().getGameGrid().removeChildren(zoneTileView);
     }
 
     @Override
