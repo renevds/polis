@@ -113,15 +113,18 @@ public class Statistics {
             }
         }
         else if(selected.getTileType() == Tile.TileType.COMMERCIAL){
+            title.set(selected.toString());
             CommercialTile commercialTile = (CommercialTile) selected;
             addToJobs(commercialTile);
             addToGoods(commercialTile);
             addToCustomers(commercialTile);
         }
         else if(selected.getTileType() == Tile.TileType.INDUSTRIAL){
+            title.set(selected.toString());
             addToJobs(selected);
         }
         else if(selected.getTileType() == Tile.TileType.RESIDENTIAL){
+            title.set(selected.toString());
             addToInhabitans(selected);
         }
 

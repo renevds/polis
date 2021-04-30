@@ -28,4 +28,9 @@ public class Selector extends PolygonTool {
         }
     }
 
+    @Override
+    public void close() {
+        super.close();
+        gameController.getStatistics().setSelected(null);
+    }
 }
